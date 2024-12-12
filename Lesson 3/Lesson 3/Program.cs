@@ -357,7 +357,6 @@ class Program
                     }
                     break;
                 
-                
                 case 5:
                     int counter = 0;
                     for (int i = 0; i < curr+1; i++)
