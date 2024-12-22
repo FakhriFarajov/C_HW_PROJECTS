@@ -1,65 +1,9 @@
 ﻿using System.Threading.Channels;
-
-interface ICalculatorOperation
-{
-    public double Execute(double a, double b);
-    public string Name { get; set; }
-}
-public class Addition : ICalculatorOperation
-{
-    public double Execute(double a, double b)
-    {
-        return a + b;
-    }
-    private string _name = "Addition";
-
-    public string Name
-    {
-        get { return _name; }
-        set { _name = value; }
-    }
-}
-public class Subtraction : ICalculatorOperation
-{
-    public double Execute(double a, double b)
-    {
-        return a - b;
-    }
-    private string _name = "Subtraction";
-
-    public string Name
-    {
-        get { return _name; }
-        set { _name = value; }
-    }
-}
-public class Multiplication : ICalculatorOperation{
-    public double Execute(double a, double b)
-    {
-        return a * b;
-    }
-    private string _name = "Multiplication";
-
-    public string Name
-    {
-        get { return _name; }
-        set { _name = value; }
-    }
-}
-public class Division : ICalculatorOperation{
-    public double Execute(double a, double b)
-    {
-        return a / b;
-    }
-    private string _name = "Division";
-
-    public string Name
-    {
-        get { return _name; }
-        set { _name = value; }
-    }
-}
-
+using static ICalculatorOperation;
+using static Addition;
+using static Subtraction;
+using static Multiplication;
+using static Division;
 public class Program
 {
     static void Main()
@@ -90,6 +34,7 @@ public class Program
             catch (FormatException ex)
             {
                 Console.WriteLine(ex.Message);
+                exception_list_log += $"FormatException: {ex.Message}|";
                 continue;
             }   
             if (input < 1 || input > 6)
