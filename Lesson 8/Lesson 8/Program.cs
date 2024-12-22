@@ -603,7 +603,7 @@ public class Program
                     break;
                 case 6:
                     
-                    using (StreamWriter writer = new StreamWriter(filePath, false)) // 'false' overwrites the file
+                    using (StreamWriter writer = new StreamWriter(filePath, false))
                     {
                         foreach (Transport transport in transports)
                         {
