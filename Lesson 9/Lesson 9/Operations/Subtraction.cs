@@ -1,4 +1,6 @@
-using static ICalculatorOperation;
+namespace Lesson_9.Operations;
+using Lesson_9.Interfaces;
+
 public class Subtraction : ICalculatorOperation
 {
     public double Execute(double a, double b)

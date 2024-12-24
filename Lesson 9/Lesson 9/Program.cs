@@ -1,19 +1,17 @@
 ﻿using System.Threading.Channels;
-using static ICalculatorOperation;
-using static Addition;
-using static Subtraction;
-using static Multiplication;
-using static Division;
+using Lesson_9.Interfaces;
+using Lesson_9.Operations;
+
 public class Program
 {
     static void Main()
     {
-        string exception_list_log = "";
-        string file_path = "Exceptions.txt";
+        string exceptionListLog = "";
+        string filePath = "Exceptions.txt";
 
-        if (!File.Exists(file_path))
+        if (!File.Exists(filePath))
         {
-            File.Create(file_path).Close();
+            File.Create(filePath).Close();
         }
         List <ICalculatorOperation> operations = new List<ICalculatorOperation>()
         {
@@ -22,8 +20,8 @@ public class Program
             new Multiplication(),
             new Division()
         };
-        bool is_running = true;
-        while (is_running)
+        bool isRunning = true;
+        while (isRunning)
         {
             int input = -1;
             try
@@ -34,7 +32,7 @@ public class Program
             catch (FormatException ex)
             {
                 Console.WriteLine(ex.Message);
-                exception_list_log += $"FormatException: {ex.Message}|";
+                exceptionListLog += $"FormatException: {ex.Message}|";
                 continue;
             }   
             if (input < 1 || input > 6)
@@ -59,7 +57,7 @@ public class Program
                         catch (FormatException ex)
                         {
                             Console.WriteLine("Enter a valid number.");
-                            exception_list_log += $"FormatException: {ex.Message}|";
+                            exceptionListLog += $"FormatException: {ex.Message}|";
                             continue;
                         }
                         break;
@@ -79,7 +77,7 @@ public class Program
                         catch (FormatException ex)
                         {
                             Console.WriteLine("Enter a valid number.");
-                            exception_list_log += $"FormatException: {ex.Message}|";
+                            exceptionListLog += $"FormatException: {ex.Message}|";
                             continue;
                         }
                         break;
@@ -99,7 +97,7 @@ public class Program
                         catch (FormatException ex)
                         {
                             Console.WriteLine("Enter a valid number.");
-                            exception_list_log += $"FormatException: {ex.Message}|";
+                            exceptionListLog += $"FormatException: {ex.Message}|";
                             continue;
                         }
                         break;
@@ -119,7 +117,7 @@ public class Program
                         catch (FormatException ex)
                         {
                             Console.WriteLine("Enter a valid number.");
-                            exception_list_log += $"FormatException: {ex.Message}|";
+                            exceptionListLog += $"FormatException: {ex.Message}|";
                             continue;
                         }
                         break;
@@ -135,7 +133,7 @@ public class Program
                     catch (DivideByZeroException ex)
                     {
                         Console.WriteLine("Can not divide by zero.");
-                        exception_list_log += $"DivisionByZeroException: {ex.Message}|";
+                        exceptionListLog += $"DivisionByZeroException: {ex.Message}|";
                         continue;
                     } 
 
@@ -143,13 +141,13 @@ public class Program
                     operations.Add(new Division());
                     break;
                 case 5:
-                    using (StreamWriter writer = new StreamWriter(file_path, true))
+                    using (StreamWriter writer = new StreamWriter(filePath, true))
                     {
-                        string[] log_list = exception_list_log.Split("|");
-                        log_list.ToList().ForEach(writer.WriteLine);
+                        string[] logList = exceptionListLog.Split("|");
+                        logList.ToList().ForEach(writer.WriteLine);
                     }
                     Console.WriteLine("Bye!");
-                    is_running = false;
+                    isRunning = false;
                     break;
             }
         }

@@ -1,4 +1,5 @@
-using static ICalculatorOperation;
+namespace Lesson_9.Operations;
+using Lesson_9.Interfaces;
 
 public class Division : ICalculatorOperation{
     public double Execute(double a, double b)
