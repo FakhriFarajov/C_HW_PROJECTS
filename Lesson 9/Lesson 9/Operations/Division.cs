@@ -13,4 +13,4 @@ public class Division : ICalculatorOperation{
         get { return _name; }
         set { _name = value; }
     }
-}
+}    
