@@ -1,17 +1,21 @@
-﻿using Lesson11;
+﻿using System.Text.Json;
+using Lesson11;
+using Lesson11.Data.Model;
 using Lesson11.Implementations;
 using Lesson11.Interfaces;
 
 Menu menu = new();
 IMovieService movieService = new MovieService();
+FileService fileService = new FileService();
 
-menu.DisplayMenu();
-
-MenuChoice choice = menu.GetMenuChoice();
 
 bool flag = true;
 while (flag)
 {
+    menu.DisplayMenu();
+
+    MenuChoice choice = menu.GetMenuChoice();//I Replaced this line and now it is here
+
     switch (choice.Id)
     {
         case 1:
@@ -27,13 +31,34 @@ while (flag)
             foreach (var movie in res.results)
             {
                 Console.WriteLine(movie);
+                fileService.Save(movie);
             }
+            
             
             break;
         case 2:
             Console.WriteLine($"You chose {choice.Description}");
             break;
         case 3:
+            Console.WriteLine($"You chose {choice.Description}");
+            
+            break;
+        case 4:
+            Console.WriteLine($"You chose {choice.Description}");
+            Console.WriteLine("Type the id:");
+            if (int.TryParse(Console.ReadLine(), out int id))
+            {
+                try
+                {
+                    fileService.Delete(id);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Not found!");
+                }
+            }
+            break;
+        case 5:
             flag = false;
             Console.WriteLine("Exit");
             break;

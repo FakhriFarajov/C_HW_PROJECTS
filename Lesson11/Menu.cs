@@ -8,7 +8,9 @@ public class Menu
     {
         new() { Id = 1, Description = "Search for a movie by name" },
         new() { Id = 2, Description = "Search for a movie by genre" },
-        new() { Id = 3, Description = "Exit" },
+        new() { Id = 3, Description = "Check the history" },
+        new() { Id = 4, Description = "Delete the movie by id" },
+        new() { Id = 5, Description = "Exit" },
     };
     
     public void DisplayMenu()

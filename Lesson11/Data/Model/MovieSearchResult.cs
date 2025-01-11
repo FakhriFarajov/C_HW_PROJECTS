@@ -32,7 +32,7 @@ public class Results
     
     public override string ToString()
     {
-        return $"{title} ({release_date})";
+        return $"{title} ({release_date}) id:{id}";
     }
 }
 
