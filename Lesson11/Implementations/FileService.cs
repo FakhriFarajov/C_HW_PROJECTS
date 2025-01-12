@@ -9,7 +9,6 @@ public class FileService : IFileService
     public List<Results>? ResultsList { get; set; } = new();
     public void Save(Results result)//Read all the text, add new result, serialize
     {
-        
         var json = File.ReadAllText("./Data/Search.json");
         if (json.Length != 0)
         {
@@ -44,6 +43,5 @@ public class FileService : IFileService
         File.WriteAllText("./Data/Search.json", jsonNew);
         Console.WriteLine("Deleted!");
         Console.WriteLine("Saved!");
-        
     }
 }
