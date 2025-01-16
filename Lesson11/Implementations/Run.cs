@@ -1,6 +1,6 @@
 namespace Lesson11.Implementations;
-using Lesson11.Interfaces;
-
+using Implementations;
+using Interfaces;
 public class Run
 {
     public static void RunProgram()
@@ -14,9 +14,17 @@ public class Run
         while (flag)
         {
             menu.DisplayMenu();
-        
-            MenuChoice choice = menu.GetMenuChoice();
-        
+
+            MenuChoice choice = new();
+            try
+            {
+                choice = menu.GetMenuChoice();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Incorrect input or out of range.");
+            }
+
             switch (choice.Id)
             {
                 case 1:

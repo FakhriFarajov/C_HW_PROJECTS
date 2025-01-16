@@ -1,7 +1,3 @@
-using System.Xml;
-
-namespace Lesson11;
-
 public class Menu
 {
     public List<MenuChoice> MenuChoices = new()
@@ -25,11 +21,7 @@ public class Menu
     public MenuChoice GetMenuChoice()
     {
         var choice = Console.ReadLine();
-        if (int.TryParse(choice, out var result))
-        {
-            return MenuChoices[result - 1];
-        }
-        return MenuChoices[2];
+        return MenuChoices[int.Parse(choice) - 1];
     }
 }
 
