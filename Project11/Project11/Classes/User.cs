@@ -6,4 +6,5 @@ public class User
     public Guid ShowRoomId { get; set; }
     public string UserName { get; set; }
     public string Password { get; set; }
+    public RoleEnum UserRoleEnum { get; init; } = RoleEnum.USUAL;
 }

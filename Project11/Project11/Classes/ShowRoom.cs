@@ -1,7 +1,5 @@
 namespace Classes;
 
-
-
 public class ShowRoom
 {
     public Guid Id { get; set; } = Guid.NewGuid();
@@ -13,4 +11,5 @@ public class ShowRoom
     public int CarCount  => Cars.Count;
     public int UserCount  => Users.Count;
     public int SalesCount { get; set; }
+    
 }

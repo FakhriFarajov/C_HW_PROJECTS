@@ -1,3 +1,7 @@
+using Classes;
+using Data.User_DTO;
+using Interfaces;
+using Services;
 
 public class Run
 {
@@ -11,12 +15,17 @@ public class Run
             new(){ Id = 3, Description = "Exit" },
         };
         
+        
+        
+        
+        
         bool flag = true;
         while (flag)
         {
             LoginRegisterMenu.DisplayMenu();
 
             MenuChoice choice = new();
+            ILoginRegisterService LogRegServer = new LoginRegisterService();
 
             //Checking
             
@@ -34,11 +43,47 @@ public class Run
             {
                 case 1:
                     Console.WriteLine($"You chose {choice.Description}");
-                    Console.WriteLine("");
+                    
+                    Console.WriteLine("Enter Login:");
+                    var Username = Console.ReadLine();
+                    Console.WriteLine("Enter Password:");
+                    var Password = Console.ReadLine();
 
+                    Login_DTO loginDto = new Login_DTO(Username, Password);
+
+                    try
+                    {
+                        LogRegServer.LoginUser(loginDto);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Invalid credentials or there is no such user!");
+                        continue;
+                    }
+                    
+                    
                     break;
                 case 2:
                     Console.WriteLine($"You chose {choice.Description}");
+                    Console.WriteLine("Enter Login:");
+                    Console.WriteLine("Requirements\n1.Starts with a letter.\n2.Ends with a letter or digit.\n3.Allows letters, digits, ., -, _ in between.\n4.1 to 20 characters long\nExample: [user.name].");
+                    var RegisterUsername = Console.ReadLine();
+                    Console.WriteLine("Enter Password:");
+                    Console.WriteLine("Requirements:\n1.At least 1 uppercase letter\n2.At least 1 lowercase letter\n3.At least 1 digit\n4.At least 1 special character (!@#$%&_)\n5.8-16 characters long\nExample: [Password123!].");
+                    var RegisterPassword = Console.ReadLine();
+
+                    Register_DTO registerDto = new Register_DTO(RegisterUsername, RegisterPassword);
+
+                    try
+                    {
+                        LogRegServer.RegisterUser(registerDto);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Invalid credentials or this Password is already in use!");
+                        continue;
+                    }
+
                     
                     break;
                 case 3:
