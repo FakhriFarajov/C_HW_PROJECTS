@@ -38,12 +38,12 @@ public class Run
                 Console.WriteLine("The input is either incorrect or out of range.");
                 continue;
             }
-        
+
             switch (choice.Id)
             {
                 case 1:
                     Console.WriteLine($"You chose {choice.Description}");
-                    
+
                     Console.WriteLine("Enter Login:");
                     var Username = Console.ReadLine();
                     Console.WriteLine("Enter Password:");
@@ -57,22 +57,37 @@ public class Run
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("Invalid credentials or there is no such user!");
+                        Console.WriteLine(e.Message);
                         continue;
                     }
-                    
-                    
+
+
                     break;
                 case 2:
                     Console.WriteLine($"You chose {choice.Description}");
                     Console.WriteLine("Enter Login:");
-                    Console.WriteLine("Requirements\n1.Starts with a letter.\n2.Ends with a letter or digit.\n3.Allows letters, digits, ., -, _ in between.\n4.1 to 20 characters long\nExample: [user.name].");
+                    Console.WriteLine(
+                        "Requirements\n1.Starts with a letter.\n2.Ends with a letter or digit.\n3.Allows letters, digits, ., -, _ in between.\n4.1 to 20 characters long\nExample: [user.name].");
                     var RegisterUsername = Console.ReadLine();
                     Console.WriteLine("Enter Password:");
-                    Console.WriteLine("Requirements:\n1.At least 1 uppercase letter\n2.At least 1 lowercase letter\n3.At least 1 digit\n4.At least 1 special character (!@#$%&_)\n5.8-16 characters long\nExample: [Password123!].");
+                    Console.WriteLine(
+                        "Requirements:\n1.At least 1 uppercase letter\n2.At least 1 lowercase letter\n3.At least 1 digit\n4.At least 1 special character (!@#$%&_)\n5.8-16 characters long\nExample: [Password123!].");
                     var RegisterPassword = Console.ReadLine();
+                    Console.WriteLine("Enter the user role:");
+                    Console.WriteLine("1.User\n2.Admin");
+                    var Role = Console.ReadLine();
+                    Role = Role.ToLower();
 
-                    Register_DTO registerDto = new Register_DTO(RegisterUsername, RegisterPassword);
+                    int role = 0;
+                    if (Role == "admin") role = 2;
+                    else if (Role == "user") role = 1;
+                    else
+                    {
+                        Console.WriteLine("Invalid role!");
+                        continue;
+                    }
+                    
+                    Register_DTO registerDto = new Register_DTO(RegisterUsername, RegisterPassword, (RoleEnum)role);
 
                     try
                     {
@@ -80,11 +95,9 @@ public class Run
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("Invalid credentials or this Password is already in use!");
+                        Console.WriteLine(e.Message);
                         continue;
                     }
-
-                    
                     break;
                 case 3:
                     flag = false;
