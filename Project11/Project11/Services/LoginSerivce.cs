@@ -37,7 +37,7 @@ public class LoginRegisterService: ILoginRegisterService
                 throw new Exception("This password is already in use!");
         }
 
-        User newUser = new() { UserName = registerDto.username, Password = registerDto.password };
+        User newUser = new() { UserName = registerDto.username, Password = registerDto.password, UserRoleEnum = registerDto.role };
         UsersList.Add(newUser);
         foreach (var user in UsersList)
         {

@@ -16,9 +16,6 @@ public class Run
         };
         
         
-        
-        
-        
         bool flag = true;
         while (flag)
         {
@@ -50,16 +47,20 @@ public class Run
                     var Password = Console.ReadLine();
 
                     Login_DTO loginDto = new Login_DTO(Username, Password);
-
+                    
+                    User MainUser  = new User(); 
+                        
                     try
                     {
-                        LogRegServer.LoginUser(loginDto);
+                        MainUser = LogRegServer.LoginUser(loginDto);
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                         continue;
                     }
+                    
+                    
 
 
                     break;
@@ -79,8 +80,8 @@ public class Run
                     Role = Role.ToLower();
 
                     int role = 0;
-                    if (Role == "admin") role = 2;
-                    else if (Role == "user") role = 1;
+                    if (Role == "user") role = 1;
+                    else if (Role == "admin") role = 2;
                     else
                     {
                         Console.WriteLine("Invalid role!");
@@ -98,6 +99,9 @@ public class Run
                         Console.WriteLine(e.Message);
                         continue;
                     }
+                    
+                    
+                    
                     break;
                 case 3:
                     flag = false;
