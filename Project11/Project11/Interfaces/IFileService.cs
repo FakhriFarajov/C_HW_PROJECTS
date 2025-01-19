@@ -9,8 +9,10 @@ public interface IFileService
     
     
     public void WriteUserToFile(User user);
+    public void WriteUserListToFile(List<User> users);
     public List<User> GetUsersFromFile();
     
     public void WriteShowRoomToFile(ShowRoom ShowRoom);
+    public void WriteShowRoomListToFile(List<ShowRoom> ShowRooms);
     public List<ShowRoom> GetShowRoomsFromFile();
 }

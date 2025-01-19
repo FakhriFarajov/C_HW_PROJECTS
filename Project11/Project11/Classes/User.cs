@@ -7,4 +7,8 @@ public class User
     public string UserName { get; set; }
     public string Password { get; set; }
     public RoleEnum UserRoleEnum { get; init; } = RoleEnum.USUAL;
+    public override string ToString()
+    {
+        return $"Username {UserName}";
+    }
 }

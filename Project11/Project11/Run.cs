@@ -1,6 +1,7 @@
 using Classes;
 using Data.User_DTO;
 using Interfaces;
+using Project11.UsersInterfaces;
 using Services;
 
 public class Run
@@ -61,8 +62,17 @@ public class Run
                     }
                     
                     
-
-
+                    if (MainUser.UserRoleEnum == RoleEnum.USUAL)
+                    {
+                        IUsualUser usualUser = new UsualUser();
+                        usualUser.UsualUserInterface(MainUser);
+                    }
+                    else
+                    {
+                        IAdminUser adminUser = new AdminUser();
+                        adminUser.AdminUserInterface(MainUser);
+                    }
+                    
                     break;
                 case 2:
                     Console.WriteLine($"You chose {choice.Description}");
@@ -89,19 +99,27 @@ public class Run
                     }
                     
                     Register_DTO registerDto = new Register_DTO(RegisterUsername, RegisterPassword, (RoleEnum)role);
-
+                    User MainUser1  = new User(); 
                     try
                     {
-                        LogRegServer.RegisterUser(registerDto);
+                        MainUser1 = LogRegServer.RegisterUser(registerDto);
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                         continue;
                     }
-                    
-                    
-                    
+
+                    if ((RoleEnum)role == RoleEnum.USUAL)
+                    {
+                        IUsualUser usualUser = new UsualUser();
+                        usualUser.UsualUserInterface(MainUser1);
+                    }
+                    else
+                    {
+                        IAdminUser adminUser = new AdminUser();
+                        adminUser.AdminUserInterface(MainUser1);
+                    }
                     break;
                 case 3:
                     flag = false;

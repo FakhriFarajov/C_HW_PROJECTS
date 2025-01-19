@@ -39,10 +39,7 @@ public class LoginRegisterService: ILoginRegisterService
 
         User newUser = new() { UserName = registerDto.username, Password = registerDto.password, UserRoleEnum = registerDto.role };
         UsersList.Add(newUser);
-        foreach (var user in UsersList)
-        {
-            fileService.WriteUserToFile(user);
-        }
+        fileService.WriteUserListToFile(UsersList);
         return newUser;
     }
 }
