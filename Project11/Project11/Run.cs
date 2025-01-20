@@ -88,6 +88,7 @@ public class Run
                     var RegisterPassword = Console.ReadLine();
                     Console.WriteLine("Enter the user role:");
                     Console.WriteLine("1.User\n2.Admin");
+                    Console.Write("Choice: ");
                     var Role = Console.ReadLine();
                     Role = Role.ToLower();
 

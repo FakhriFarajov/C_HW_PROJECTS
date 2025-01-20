@@ -4,8 +4,9 @@ public class ShowRoom
 {
     public Guid Id { get; set; } = Guid.NewGuid();
     public string Name { get; set; }
-    public List<Car> Cars { get; set; } = new List<Car>();
-    public List<User> Users { get; set; } = new List<User>();
+    public List<Car> Cars { get; set; } = new ();
+    public List<User> Users { get; set; } = new ();
+    public List<Sales> Sales { get; set; } = new ();
     public int CarCapacity { get; set; }
     public int UserCapacity { get; set; }
     public int CarCount  => Cars.Count;

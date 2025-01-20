@@ -59,11 +59,8 @@ public class AdminUser:IAdminUser
                     }
                     foreach (var User in usersList)
                     {
-                        if (User.UserRoleEnum == RoleEnum.ADMIN)
-                        {
-                            continue;
-                        }
-                        Console.WriteLine(User);
+                        string Role = (User.UserRoleEnum == RoleEnum.ADMIN) ? "Admin" : "User";
+                        Console.WriteLine($"{User}, Role: {Role}");
                     }
                     break;
                 case 2:
