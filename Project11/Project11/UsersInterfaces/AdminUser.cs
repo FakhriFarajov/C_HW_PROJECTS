@@ -1,11 +1,11 @@
 using System.Runtime.CompilerServices;
 using System.Xml;
 using Services;
+using Interfaces;
+using Classes;
 
 namespace Project11.UsersInterfaces;
 
-using Interfaces;
-using Classes;
 
 public class AdminUser:IAdminUser
 {
@@ -26,7 +26,6 @@ public class AdminUser:IAdminUser
         List<ShowRoom> showRoomsList = new();
         List<User> usersList = new();
         
-        
         bool flag = true;
         while (flag)
         {
@@ -46,8 +45,6 @@ public class AdminUser:IAdminUser
                 Console.WriteLine("The input is either incorrect or out of range.");
                 continue;
             }
-
-
             switch (menuChoice.Id)
             {
                 case 1:
@@ -83,6 +80,12 @@ public class AdminUser:IAdminUser
                     
                     Console.WriteLine("Enter the Name of ShowRoom:");
                     string showRoomName = Console.ReadLine();
+                    
+                    if (showRoomName == "")
+                    {
+                        Console.WriteLine("You entered an incorrect value!");
+                        continue;
+                    }
                     
                     Console.WriteLine("Enter the Car capacity of ShowRoom:");
                     if (!(int.TryParse(Console.ReadLine(), out int CarCapacity)) || CarCapacity < 1)
@@ -159,7 +162,7 @@ public class AdminUser:IAdminUser
                                 Console.WriteLine($"You chose {editMenuChoice.Description}");
                                 Console.WriteLine("Enter new name:");
                                 string? newName = Console.ReadLine();
-                                if (newName == ShowRoomToEdit.Name || newName == "")
+                                if (newName == "")
                                 {
                                     Console.WriteLine("You entered an incorrect value!");
                                     continue;
@@ -250,7 +253,6 @@ public class AdminUser:IAdminUser
                     Console.WriteLine("Invalid choice");
                     break;
             }
-            
         }
     }
 }

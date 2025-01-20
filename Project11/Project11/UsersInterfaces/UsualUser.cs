@@ -1,10 +1,9 @@
 using System.Runtime.InteropServices.JavaScript;
-
-namespace Project11.UsersInterfaces;
-
 using Interfaces;
 using Services;
 using Classes;
+
+namespace Project11.UsersInterfaces;
 
 public class UsualUser:IUsualUser
 {
@@ -195,20 +194,27 @@ public class UsualUser:IUsualUser
                     
                     Console.WriteLine("Enter the Make of Car:");
                     string CarMake = Console.ReadLine();
+
+                    if (CarMake == "")
+                    {
+                        Console.WriteLine("Invalid value for Make of car!");
+                        continue;
+                    }
                     
                     Console.WriteLine("Enter the Model of Car:");
                     string CarModel = Console.ReadLine();
+
+                    if (CarModel == "")
+                    {
+                        Console.WriteLine("Invalid value for Model of Car!");
+                        continue;
+                    }
                     
                     Console.WriteLine("Enter a date (e.g., 2025-01-18):");
                     string userDateInput = Console.ReadLine();
                     DateTime userDate;
-
-                    if (CarMake == "" || CarModel == "" || userDateInput == "")
-                    {
-                        Console.WriteLine("You have to enter a valid data!");
-                        continue;
-                    } 
-                    if (!DateTime.TryParse(userDateInput, out userDate))
+                    
+                    if (!DateTime.TryParse(userDateInput, out userDate) || userDate > DateTime.Now || userDate.Year < 1886)
                     {
                         Console.WriteLine("Invalid date format. Please try again.");
                         continue;

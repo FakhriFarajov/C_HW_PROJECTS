@@ -11,7 +11,7 @@ public class ShowRoom
     public int UserCapacity { get; set; }
     public int CarCount  => Cars.Count;
     public int UserCount  => Users.Count;
-    public int SalesCount { get; set; }
+    public int SalesCount  => Sales.Count;
 
     public override string ToString()
     {

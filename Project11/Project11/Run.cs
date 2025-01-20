@@ -16,7 +16,6 @@ public class Run
             new(){ Id = 3, Description = "Exit" },
         };
         
-        
         bool flag = true;
         while (flag)
         {
@@ -25,8 +24,6 @@ public class Run
             
             MenuChoice choice = new();
             ILoginRegisterService LogRegServer = new LoginRegisterService();
-
-            //Checking
             
             try
             {
@@ -44,10 +41,21 @@ public class Run
                 case 1:
                     Console.WriteLine($"You chose {choice.Description}");
 
-                    Console.WriteLine("Enter Login:");
+                    Console.Write("Enter Login: ");
                     var Username = Console.ReadLine();
-                    Console.WriteLine("Enter Password:");
+                    if (Username == "")
+                    {
+                        Console.WriteLine("Incorrect value!");
+                        continue;
+                    }
+                    
+                    Console.Write("Enter Password: ");
                     var Password = Console.ReadLine();
+                    if (Password == "")
+                    {
+                        Console.WriteLine("Incorrect value!");
+                        continue;
+                    }
 
                     Login_DTO loginDto = new Login_DTO(Username, Password);
                     
@@ -78,14 +86,27 @@ public class Run
                     break;
                 case 2:
                     Console.WriteLine($"You chose {choice.Description}");
-                    Console.WriteLine("Enter Login:");
-                    Console.WriteLine(
-                        "Requirements\n1.Starts with a letter.\n2.Ends with a letter or digit.\n3.Allows letters, digits, ., -, _ in between.\n4.1 to 20 characters long\nExample: [user.name].");
+                    Console.WriteLine("Login Entry:");
+                    Console.Write(
+                        "Requirements\n1.Starts with a letter.\n2.Ends with a letter or digit.\n3.Allows letters, digits, ., -, _ in between.\n4.1 to 20 characters long\nExample: [user.name].\nEnter login: ");
                     var RegisterUsername = Console.ReadLine();
-                    Console.WriteLine("Enter Password:");
-                    Console.WriteLine(
-                        "Requirements:\n1.At least 1 uppercase letter\n2.At least 1 lowercase letter\n3.At least 1 digit\n4.At least 1 special character (!@#$%&_)\n5.8-16 characters long\nExample: [Password123!].");
+                    if (RegisterUsername == "")
+                    {
+                        Console.WriteLine("Invalid Username!");
+                        continue;
+                    }
+                    
+                    Console.WriteLine("Password Entry:");
+                    Console.Write(
+                        "Requirements:\n1.At least 1 uppercase letter\n2.At least 1 lowercase letter\n3.At least 1 digit\n4.At least 1 special character (!@#$%&_)\n5.8-16 characters long\nExample: [Password123!].\nEnter password: ");
                     var RegisterPassword = Console.ReadLine();
+
+                    if (RegisterPassword == "")
+                    {
+                        Console.WriteLine("Invalid Password!");
+                        continue;
+                    }
+                    
                     Console.WriteLine("Enter the user role:");
                     Console.WriteLine("1.User\n2.Admin");
                     Console.Write("Choice: ");
@@ -133,7 +154,6 @@ public class Run
                     break;
             }
         }
-        
         Console.WriteLine("Goodbye!");
     }
     
