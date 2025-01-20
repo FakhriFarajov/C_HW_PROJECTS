@@ -31,6 +31,8 @@ public class AdminUser:IAdminUser
         while (flag)
         {
             AdminMenu.DisplayMenu();
+            Console.Write("Choice: ");
+
             MenuChoice menuChoice = new();
             showRoomsList = fileService.GetShowRoomsFromFile();//Error needs to be fixed 
             usersList = fileService.GetUsersFromFile();
@@ -141,6 +143,8 @@ public class AdminUser:IAdminUser
                     while (flag2)
                     {
                         ShowRoomEditMenu.DisplayMenu();
+                        Console.Write("Choice: ");
+
                         MenuChoice editMenuChoice = new();
                         try
                         {

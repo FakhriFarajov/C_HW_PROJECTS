@@ -112,6 +112,8 @@ public class UsualUser:IUsualUser
         while (flag)
         {
             UserMenu.DisplayMenu();
+            Console.Write("Choice: ");
+
             MenuChoice menuChoice = new();
             showRoomsList = fileService.GetShowRoomsFromFile(); 
             usersList = fileService.GetUsersFromFile();
@@ -228,6 +230,8 @@ public class UsualUser:IUsualUser
                     while (flag4)
                     {
                         CarEditMenu.DisplayMenu();
+                        Console.Write("Choice: ");
+
                         MenuChoice editMenuChoice = new();
                         
                         try

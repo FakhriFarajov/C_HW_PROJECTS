@@ -21,7 +21,8 @@ public class Run
         while (flag)
         {
             LoginRegisterMenu.DisplayMenu();
-
+            Console.Write("Choice: ");
+            
             MenuChoice choice = new();
             ILoginRegisterService LogRegServer = new LoginRegisterService();
 
@@ -33,6 +34,7 @@ public class Run
             }
             catch (Exception e)
             {
+
                 Console.WriteLine("The input is either incorrect or out of range.");
                 continue;
             }
