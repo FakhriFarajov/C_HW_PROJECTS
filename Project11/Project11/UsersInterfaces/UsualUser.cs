@@ -24,7 +24,6 @@ public class UsualUser:IUsualUser
                 break;
             }
         }
-        
         while (true)
         {
             if (user.ShowRoomId == null)
@@ -104,7 +103,8 @@ public class UsualUser:IUsualUser
             new(){ Id = 6, Description = "Edit Car" },
             new(){ Id = 7, Description = "Delete Car" },
             new(){ Id = 8, Description = "Sell Car" },
-            new(){ Id = 9, Description = "Exit" },
+            new(){ Id = 9, Description = "Leave the ShowRoom" },
+            new(){ Id = 10, Description = "Exit" },
         };
         
         bool flag = true;
@@ -412,6 +412,55 @@ public class UsualUser:IUsualUser
                     fileService.WriteUserListToFile(usersList);
                     break;
                 case 9:
+                    Console.WriteLine($"You chose {menuChoice.Description}");
+                    bool Left = false;
+                    while (true)
+                    {
+                        Console.WriteLine("Are you sure you wanna leave this showRoom?\nREMAINDER: ALL THE PROGRESS IN THIS SHOWROOM WILL BE SAVED!");
+                        Console.Write("Choice[YES/NO]:");
+                        string ChoiceYesOrNo = Console.ReadLine();
+                        if (ChoiceYesOrNo == "")
+                        {
+                            Console.WriteLine("Incorrect input!");
+                            continue;
+                        }
+                        ChoiceYesOrNo = ChoiceYesOrNo.ToUpper();
+                        if (ChoiceYesOrNo == "YES")
+                        {
+                            
+                            usersList[UsersIndex].ShowRoomId = null;
+                            foreach (var User in showRoomsList[ShowRoomIndex].Users)
+                            {
+                                if (user.Id == User.Id)
+                                {
+                                    showRoomsList[ShowRoomIndex].Users.Remove(User);
+                                    break;
+                                }
+                            }
+                            fileService.WriteShowRoomListToFile(showRoomsList);
+                            fileService.WriteUserListToFile(usersList);
+                            Console.WriteLine("You have left this showRoom!");
+                            Left = true;
+                            break;
+                        }
+                        else if(ChoiceYesOrNo == "NO")
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Incorrect input!");
+                            continue;
+                        }
+                    }
+
+                    if (Left)
+                    {
+                        flag = true;
+                        UsualUserInterface(usersList[UsersIndex]);
+                    }
+                    break;
+                case 10:
                     Console.WriteLine($"You chose {menuChoice.Description}");
                     showRoomsList[ShowRoomIndex] = UserShowRoom;
                     fileService.WriteShowRoomListToFile(showRoomsList);

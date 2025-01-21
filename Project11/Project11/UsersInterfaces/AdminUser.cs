@@ -69,10 +69,41 @@ public class AdminUser:IAdminUser
                     }
 
                     int index = 0;
+                    int indexUser = 0;
+                    int indexCar = 0;
                     foreach (var showRoom in showRoomsList)
                     {
                         index++;
                         Console.WriteLine($"{index}.{showRoom}");
+                        if (showRoom.UserCount != 0)
+                        {
+                            Console.WriteLine("Users: ");
+                            foreach (var User in showRoom.Users)
+                            {
+                                indexUser++;
+                                Console.WriteLine($"{indexUser}. {User}");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("There are no users yet!");
+                        }
+                        
+                        if (showRoom.CarCount != 0)
+                        {
+                            Console.WriteLine("Cars: ");
+
+                            foreach (var Car in showRoom.Cars)
+                            {
+                                indexCar++;
+                                Console.WriteLine($"{indexUser}. {Car}");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("There are no cars yet!");
+                        }
+                        
                     }
                     break;
                 case 3:
@@ -137,8 +168,6 @@ public class AdminUser:IAdminUser
                         new(){ Id = 4, Description = "Exit" },
                     };
                     
-
-
                     bool flag2 = true;
                     while (flag2)
                     {
@@ -218,7 +247,6 @@ public class AdminUser:IAdminUser
                                 break;
                         }
                     }
-
                     break;
                 case 5:
                     Console.WriteLine($"You chose {menuChoice.Description}");
