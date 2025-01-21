@@ -1,4 +1,13 @@
 using Interfaces;
 using Classes;
 
-Run.RunProgram();
+if (!File.Exists("./Data/Users.json"))
+{
+    File.WriteAllText("./Data/Users.json", "");
+}
+if (!File.Exists("./Data/ShowRooms.json"))
+{
+    File.WriteAllText("./Data/ShowRooms.json", "");
+}
+
+MainMenu.StartMainMenu();

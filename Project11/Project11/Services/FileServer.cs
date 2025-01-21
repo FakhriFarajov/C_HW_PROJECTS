@@ -9,7 +9,6 @@ public class FileServer: IFileService
 {
     public List<User>? UsersList { get; set; } = new();
     public List<ShowRoom>? ShowRoomList { get; set; } = new();
-    
     public void WriteUserToFile(User user)
     {
         var json = File.ReadAllText("./Data/Users.json");
@@ -22,15 +21,12 @@ public class FileServer: IFileService
         var jsonNew = JsonSerializer.Serialize(UsersList);
         File.WriteAllText("./Data/Users.json", jsonNew);
     }
-    
     public void WriteUserListToFile(List<User> users)
     {
         File.WriteAllText("./Data/Users.json", "");
         var jsonNew = JsonSerializer.Serialize(users);
         File.WriteAllText("./Data/Users.json", jsonNew);
     }
-    
-
     public List<User> GetUsersFromFile()
     {
         var json = File.ReadAllText("./Data/Users.json");
@@ -41,7 +37,6 @@ public class FileServer: IFileService
         List<User> users = JsonSerializer.Deserialize<List<User>>(json);
         return users;
     }
-
     public void WriteShowRoomToFile(ShowRoom showRoom)
     {
         var json = File.ReadAllText("./Data/ShowRooms.json");
@@ -61,7 +56,6 @@ public class FileServer: IFileService
         var jsonNew = JsonSerializer.Serialize(showRooms);
         File.WriteAllText("./Data/ShowRooms.json", jsonNew);
     }
-
     public List<ShowRoom> GetShowRoomsFromFile()
     {
         var json = File.ReadAllText("./Data/ShowRooms.json");

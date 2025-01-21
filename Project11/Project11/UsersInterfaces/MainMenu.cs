@@ -4,9 +4,9 @@ using Interfaces;
 using Project11.UsersInterfaces;
 using Services;
 
-public class Run
+public class MainMenu
 {
-    public static void RunProgram()
+    public static void StartMainMenu()
     {
         Menu LoginRegisterMenu = new Menu();
         LoginRegisterMenu.MenuChoices = new()
@@ -19,6 +19,7 @@ public class Run
         bool flag = true;
         while (flag)
         {
+            Console.WriteLine("==========================");
             LoginRegisterMenu.DisplayMenu();
             Console.Write("Choice: ");
             
@@ -39,12 +40,14 @@ public class Run
             switch (choice.Id)
             {
                 case 1:
+                    Console.WriteLine("==========================");
                     Console.WriteLine($"You chose {choice.Description}");
 
                     Console.Write("Enter Login: ");
                     var Username = Console.ReadLine();
                     if (Username == "")
                     {
+                        Console.WriteLine("==========================");
                         Console.WriteLine("Incorrect value!");
                         continue;
                     }
@@ -53,6 +56,7 @@ public class Run
                     var Password = Console.ReadLine();
                     if (Password == "")
                     {
+                        Console.WriteLine("==========================");
                         Console.WriteLine("Incorrect value!");
                         continue;
                     }
@@ -85,30 +89,35 @@ public class Run
                     
                     break;
                 case 2:
+                    Console.WriteLine("==========================");
                     Console.WriteLine($"You chose {choice.Description}");
                     Console.WriteLine("Login Entry:");
+                    Console.WriteLine("==========================");
                     Console.Write(
-                        "Requirements\n1.Starts with a letter.\n2.Ends with a letter or digit.\n3.Allows letters, digits, ., -, _ in between.\n4.1 to 20 characters long\nExample: [user.name].\nEnter login: ");
+                        "Requirements\n1.Starts with a letter.\n2.Ends with a letter or digit.\n3.Allows letters, digits, ., -, _ in between.\n4.1 to 20 characters long\nExample: [user.name].\n==========================\nEnter login: ");
                     var RegisterUsername = Console.ReadLine();
                     if (RegisterUsername == "")
                     {
+                        Console.WriteLine("==========================");
                         Console.WriteLine("Invalid Username!");
                         continue;
                     }
                     
                     Console.WriteLine("Password Entry:");
+                    Console.WriteLine("==========================");
                     Console.Write(
-                        "Requirements:\n1.At least 1 uppercase letter\n2.At least 1 lowercase letter\n3.At least 1 digit\n4.At least 1 special character (!@#$%&_)\n5.8-16 characters long\nExample: [Password123!].\nEnter password: ");
+                        "Requirements:\n1.At least 1 uppercase letter\n2.At least 1 lowercase letter\n3.At least 1 digit\n4.At least 1 special character (!@#$%&_)\n5.8-16 characters long\nExample: [Password123!].\n==========================\nEnter password: ");
                     var RegisterPassword = Console.ReadLine();
 
                     if (RegisterPassword == "")
                     {
+                        Console.WriteLine("==========================");
                         Console.WriteLine("Invalid Password!");
                         continue;
                     }
                     
                     Console.WriteLine("Enter the user role:");
-                    Console.WriteLine("1.User\n2.Admin");
+                    Console.WriteLine("1.User\n2.Admin\nExample[Admin]\n==========================");
                     Console.Write("Choice: ");
                     var Role = Console.ReadLine();
                     Role = Role.ToLower();
@@ -118,6 +127,7 @@ public class Run
                     else if (Role == "admin") role = 2;
                     else
                     {
+                        Console.WriteLine("==========================");
                         Console.WriteLine("Invalid role!");
                         continue;
                     }
@@ -146,15 +156,17 @@ public class Run
                     }
                     break;
                 case 3:
+                    Console.WriteLine("==========================");
                     flag = false;
                     Console.WriteLine("Exit");
                     break;
                 default:
+                    Console.WriteLine("==========================");
                     Console.WriteLine("Invalid choice");
                     break;
             }
         }
+        Console.WriteLine("==========================");
         Console.WriteLine("Goodbye!");
     }
-    
 }

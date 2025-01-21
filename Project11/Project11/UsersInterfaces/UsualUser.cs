@@ -24,13 +24,15 @@ public class UsualUser:IUsualUser
                 break;
             }
         }
+
         while (true)
         {
+            Console.WriteLine("==========================");
             if (user.ShowRoomId == null)
             {
                 if (showRoomsList.Count == 0)
                 {
-
+                    Console.WriteLine("==========================");
                     Console.WriteLine("There are no show rooms yet, wait until it will be added!");
                     return;
                 }
@@ -45,11 +47,13 @@ public class UsualUser:IUsualUser
 
                 if (counter == showRoomsList.Count)
                 {
+                    Console.WriteLine("==========================");
                     Console.WriteLine("All ShowRooms have reached their capacity!");
                     Console.WriteLine("Wait until there will be vacant place in any showRoom!");
                     return;
                 }
                 Console.WriteLine("You are a new user, please choose the ShowRoom where you want to work:");
+                Console.WriteLine("==========================");
 
                 int index = 0;
                 foreach (var showRoom in showRoomsList)
@@ -58,13 +62,16 @@ public class UsualUser:IUsualUser
                     Console.WriteLine($"{index}.{showRoom}");
                 }
 
+                Console.Write("Choice:");
                 if (!(int.TryParse(Console.ReadLine(), out int roomId)) || roomId < 1 || roomId > showRoomsList.Count())
                 {
+                    Console.WriteLine("==========================");
                     Console.WriteLine("Incorrect input!");
                     continue;
                 }
                 if(showRoomsList[roomId - 1].UserCapacity <= showRoomsList[roomId - 1].Users.Count)
                 {
+                    Console.WriteLine("==========================");
                     Console.WriteLine("There are maximum number of users in this showroom!");
                     continue;
                 }
@@ -74,6 +81,7 @@ public class UsualUser:IUsualUser
                 usersList[UsersIndex] = user;
                 fileService.WriteUserListToFile(usersList);
                 fileService.WriteShowRoomListToFile(showRoomsList);
+                Console.WriteLine("==========================");
                 Console.WriteLine("You were registered in the ShowRoom!");
             }
             else
@@ -124,16 +132,19 @@ public class UsualUser:IUsualUser
             }
             catch (Exception e)
             {
+                Console.WriteLine("==========================");
                 Console.WriteLine("The input is either incorrect or out of range.");
                 continue;
             }
             switch (menuChoice.Id)
             {
                 case 1:
+                    Console.WriteLine("==========================");
                     Console.WriteLine($"You chose {menuChoice.Description}");
                     
                     if (UserShowRoom.Cars.Count == 0)
                     {
+                        Console.WriteLine("==========================");
                         Console.WriteLine("There are no cars yet!");
                         continue;
                     }
@@ -146,14 +157,17 @@ public class UsualUser:IUsualUser
                     
                     break;
                 case 2:
+                    Console.WriteLine("==========================");
                     Console.WriteLine($"You chose {menuChoice.Description}");
                     if (showRoomsList[ShowRoomIndex].Sales.Count == 0)
                     {
+                        Console.WriteLine("==========================");
                         Console.WriteLine("There are no sales yet!");
                         continue;
                     }
 
                     int index5 = 0;
+
                     foreach (var Sale in showRoomsList[ShowRoomIndex].Sales)
                     {
                         Console.WriteLine($"Sale {++index5}: {Sale.SaleDate.ToString("yyyy-MM-dd")}");
@@ -161,9 +175,11 @@ public class UsualUser:IUsualUser
                     Console.WriteLine($"Sales count: {showRoomsList[ShowRoomIndex].Sales.Count}");
                     break;
                 case 3:
+                    Console.WriteLine("==========================");
                     Console.WriteLine($"You chose {menuChoice.Description}");
                     if (usersList[UsersIndex].Sales.Count == 0)
                     {
+                        Console.WriteLine("==========================");
                         Console.WriteLine("There are no sales yet!");
                         continue;
                     }
@@ -176,6 +192,7 @@ public class UsualUser:IUsualUser
                     Console.WriteLine($"Sales count: {usersList[UsersIndex].Sales.Count}");
                     break;
                 case 4:
+                    Console.WriteLine("==========================");
                     Console.WriteLine($"You chose {menuChoice.Description}");
                     int index1 = 0;
                     foreach (var User in UserShowRoom.Users)
@@ -184,10 +201,12 @@ public class UsualUser:IUsualUser
                     }
                     break;
                 case 5:
+                    Console.WriteLine("==========================");
                     Console.WriteLine($"You chose {menuChoice.Description}");
 
                     if (UserShowRoom.Cars.Count >= UserShowRoom.CarCapacity)
                     {
+                        Console.WriteLine("==========================");
                         Console.WriteLine("There is no room for another car!");
                         continue;
                     }
@@ -197,6 +216,7 @@ public class UsualUser:IUsualUser
 
                     if (CarMake == "")
                     {
+                        Console.WriteLine("==========================");
                         Console.WriteLine("Invalid value for Make of car!");
                         continue;
                     }
@@ -206,6 +226,7 @@ public class UsualUser:IUsualUser
 
                     if (CarModel == "")
                     {
+                        Console.WriteLine("==========================");
                         Console.WriteLine("Invalid value for Model of Car!");
                         continue;
                     }
@@ -216,6 +237,7 @@ public class UsualUser:IUsualUser
                     
                     if (!DateTime.TryParse(userDateInput, out userDate) || userDate > DateTime.Now || userDate.Year < 1886)
                     {
+                        Console.WriteLine("==========================");
                         Console.WriteLine("Invalid date format. Please try again.");
                         continue;
                     }
@@ -224,16 +246,19 @@ public class UsualUser:IUsualUser
                     UserShowRoom.Cars.Add(car);
                     showRoomsList[ShowRoomIndex] = UserShowRoom;
                     fileService.WriteShowRoomListToFile(showRoomsList);
+                    Console.WriteLine("==========================");
                     Console.WriteLine("The car was added!");
                     break;
                 case 6:
+                    Console.WriteLine("==========================");
                     Console.WriteLine($"You chose {menuChoice.Description}");
                     if (UserShowRoom.Cars.Count == 0)
                     {
+                        Console.WriteLine("==========================");
                         Console.WriteLine("There are no cars yet!");
                         continue;
                     }
-                    
+                    Console.WriteLine("==========================");
                     Console.WriteLine("Available Car:");
                     int index3 = 0;
                     foreach (var Car in UserShowRoom.Cars)
@@ -244,13 +269,14 @@ public class UsualUser:IUsualUser
                     Console.WriteLine("Choose an Car:");
                     if (!(int.TryParse(Console.ReadLine(), out int CarChoice)) || CarChoice < 1 || CarChoice > UserShowRoom.CarCount)
                     {
+                        Console.WriteLine("==========================");
                         Console.WriteLine("Incorrect value!");
                         continue;
                     }
                     
                     Car CarToEdit = UserShowRoom.Cars[CarChoice-1];
                     int carIndex = UserShowRoom.Cars.IndexOf(CarToEdit);
-
+                    Console.WriteLine("==========================");
                     Console.WriteLine("Choose the value to change:");
                     Menu CarEditMenu = new Menu();
                     CarEditMenu.MenuChoices = new()
@@ -265,6 +291,7 @@ public class UsualUser:IUsualUser
                     bool flag4 = true;
                     while (flag4)
                     {
+                        Console.WriteLine("==========================");
                         CarEditMenu.DisplayMenu();
                         Console.Write("Choice: ");
 
@@ -276,6 +303,7 @@ public class UsualUser:IUsualUser
                         }
                         catch (Exception e)
                         {
+                            Console.WriteLine("==========================");
                             Console.WriteLine("The input is either incorrect or out of range.");
                             continue;
                         }
@@ -284,6 +312,7 @@ public class UsualUser:IUsualUser
                         switch (editMenuChoice.Id)
                         {
                             case 1:
+                                Console.WriteLine("==========================");
                                 Console.WriteLine($"You chose {editMenuChoice.Description}");
 
                                 Console.WriteLine("Enter the Make of Car:");
@@ -291,6 +320,7 @@ public class UsualUser:IUsualUser
 
                                 if (CarMakeNew == "")
                                 {
+                                    Console.WriteLine("==========================");
                                     Console.WriteLine("Invalid make name!");
                                     continue;
                                 }
@@ -299,10 +329,12 @@ public class UsualUser:IUsualUser
                                 UserShowRoom.Cars[carIndex] = CarToEdit;
                                 showRoomsList[ShowRoomIndex] = UserShowRoom;
                                 fileService.WriteShowRoomListToFile(showRoomsList);
+                                Console.WriteLine("==========================");
                                 Console.WriteLine("The car was edited!");
 
                                 break;
                             case 2:
+                                Console.WriteLine("==========================");
                                 Console.WriteLine($"You chose {editMenuChoice.Description}");
 
                                 Console.WriteLine("Enter the Model of Car:");
@@ -310,6 +342,7 @@ public class UsualUser:IUsualUser
 
                                 if (CarModelNew == "")
                                 {
+                                    Console.WriteLine("==========================");
                                     Console.WriteLine("Invalid Model name!");
                                     continue;
                                 }
@@ -318,22 +351,27 @@ public class UsualUser:IUsualUser
                                 UserShowRoom.Cars[carIndex] = CarToEdit;
                                 showRoomsList[ShowRoomIndex] = UserShowRoom;
                                 fileService.WriteShowRoomListToFile(showRoomsList);
+                                Console.WriteLine("==========================");
                                 Console.WriteLine("The car was edited!");
 
                                 break;
                             case 3:
+                                Console.WriteLine("==========================");
                                 Console.WriteLine($"You chose {editMenuChoice.Description}");
+                                Console.WriteLine("==========================");
                                 Console.WriteLine("Enter the IssueDate of Car:");
                                 string? CarIssueDateNew = Console.ReadLine();
 
                                 if (CarIssueDateNew == "")
                                 {
+                                    Console.WriteLine("==========================");
                                     Console.WriteLine("Invalid IssueDate name!");
                                     continue;
                                 }
 
                                 if (!DateTime.TryParse(CarIssueDateNew, out DateTime CarIssueDate))
                                 {
+                                    Console.WriteLine("==========================");
                                     Console.WriteLine("Invalid issue date!");
                                     continue;
                                 }
@@ -342,22 +380,27 @@ public class UsualUser:IUsualUser
                                 UserShowRoom.Cars[carIndex] = CarToEdit;
                                 showRoomsList[ShowRoomIndex] = UserShowRoom;
                                 fileService.WriteShowRoomListToFile(showRoomsList);
+                                Console.WriteLine("==========================");
                                 Console.WriteLine("The car was edited!");
                                 break;
                             case 4:
+                                Console.WriteLine("==========================");
                                 Console.WriteLine($"You chose {editMenuChoice.Description}");
                                 flag4 = false;
                                 break;
                             default:
+                                Console.WriteLine("==========================");
                                 Console.WriteLine("Incorrect input!");
                                 break;
                         }
                     }
                     break;
                 case 7:
+                    Console.WriteLine("==========================");
                     Console.WriteLine($"You chose {menuChoice.Description}");
                     if (UserShowRoom.Cars.Count == 0)
                     {
+                        Console.WriteLine("==========================");
                         Console.WriteLine("There are no cars yet!");
                         continue;
                     }
@@ -370,22 +413,26 @@ public class UsualUser:IUsualUser
 
                     if (!(int.TryParse(Console.ReadLine(), out int UserChoice)) || UserChoice > UserShowRoom.CarCount || UserChoice < 1)
                     {
+                        Console.WriteLine("==========================");
                         Console.WriteLine("Incorrect input!");
                         continue;
                     }
                     UserShowRoom.Cars.RemoveAt(index2-1);
                     showRoomsList[ShowRoomIndex] = UserShowRoom;
                     fileService.WriteShowRoomListToFile(showRoomsList);
+                    Console.WriteLine("==========================");
                     Console.WriteLine("The car was removed!");
                     break;
                 case 8:
+                    Console.WriteLine("==========================");
                     Console.WriteLine($"You chose {menuChoice.Description}");
                     if (UserShowRoom.Cars.Count == 0)
                     {
+                        Console.WriteLine("==========================");
                         Console.WriteLine("There are no cars to sell yet!");
                         continue;
                     }
-                    
+                    Console.WriteLine("==========================");
                     Console.WriteLine("Choose the Car to sell:");
                     
                     int index7 = 0;
@@ -397,6 +444,7 @@ public class UsualUser:IUsualUser
                     Console.Write("Choice: ");
                     if (!int.TryParse(Console.ReadLine(), out int carChoice))
                     {
+                        Console.WriteLine("==========================");
                         Console.WriteLine("Incorrect input!");
                         continue;
                     }
@@ -406,28 +454,30 @@ public class UsualUser:IUsualUser
                     usersList[UsersIndex].Sales.Add(saleNew);
                     showRoomsList[ShowRoomIndex].Sales.Add(saleNew);
                     showRoomsList[ShowRoomIndex].Cars.RemoveAt(carChoice-1);
-
+                    Console.WriteLine("==========================");
                     Console.WriteLine("The car was sold!");
                     fileService.WriteShowRoomListToFile(showRoomsList);
                     fileService.WriteUserListToFile(usersList);
                     break;
                 case 9:
+                    Console.WriteLine("==========================");
                     Console.WriteLine($"You chose {menuChoice.Description}");
                     bool Left = false;
                     while (true)
                     {
+                        Console.WriteLine("==========================");
                         Console.WriteLine("Are you sure you wanna leave this showRoom?\nREMAINDER: ALL THE PROGRESS IN THIS SHOWROOM WILL BE SAVED!");
                         Console.Write("Choice[YES/NO]:");
                         string ChoiceYesOrNo = Console.ReadLine();
                         if (ChoiceYesOrNo == "")
                         {
+                            Console.WriteLine("==========================");
                             Console.WriteLine("Incorrect input!");
                             continue;
                         }
                         ChoiceYesOrNo = ChoiceYesOrNo.ToUpper();
                         if (ChoiceYesOrNo == "YES")
                         {
-                            
                             usersList[UsersIndex].ShowRoomId = null;
                             foreach (var User in showRoomsList[ShowRoomIndex].Users)
                             {
@@ -439,6 +489,7 @@ public class UsualUser:IUsualUser
                             }
                             fileService.WriteShowRoomListToFile(showRoomsList);
                             fileService.WriteUserListToFile(usersList);
+                            Console.WriteLine("==========================");
                             Console.WriteLine("You have left this showRoom!");
                             Left = true;
                             break;
@@ -449,6 +500,7 @@ public class UsualUser:IUsualUser
                         }
                         else
                         {
+                            Console.WriteLine("==========================");
                             Console.WriteLine("Incorrect input!");
                             continue;
                         }
@@ -461,12 +513,14 @@ public class UsualUser:IUsualUser
                     }
                     break;
                 case 10:
+                    Console.WriteLine("==========================");
                     Console.WriteLine($"You chose {menuChoice.Description}");
                     showRoomsList[ShowRoomIndex] = UserShowRoom;
                     fileService.WriteShowRoomListToFile(showRoomsList);
                     flag = false;
                     break;
                 default:
+                    Console.WriteLine("==========================");
                     Console.WriteLine("You chose an invalid choice.");
                     break;
             }
