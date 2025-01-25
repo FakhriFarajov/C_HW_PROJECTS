@@ -123,7 +123,7 @@ public class AdminUser:IAdminUser
                     Console.WriteLine("Enter the Name of ShowRoom:");
                     string showRoomName = Console.ReadLine();
                     
-                    if (showRoomName == "")
+                    if (showRoomName.Replace(" ","") == "")
                     {
                         Console.WriteLine("==========================");
                         Console.WriteLine("You entered an incorrect value!");
@@ -214,7 +214,7 @@ public class AdminUser:IAdminUser
                                 Console.WriteLine($"You chose {editMenuChoice.Description}");
                                 Console.WriteLine("Enter new name:");
                                 string? newName = Console.ReadLine();
-                                if (newName == "")
+                                if (newName.Replace(" ","") == "")
                                 {
                                     Console.WriteLine("==========================");
                                     Console.WriteLine("You entered an incorrect value!");

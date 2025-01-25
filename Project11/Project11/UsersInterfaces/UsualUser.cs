@@ -52,7 +52,7 @@ public class UsualUser:IUsualUser
                     Console.WriteLine("Wait until there will be vacant place in any showRoom!");
                     return;
                 }
-                Console.WriteLine("You are a new user, please choose the ShowRoom where you want to work:");
+                Console.WriteLine("Please choose the ShowRoom where you want to work:");
                 Console.WriteLine("==========================");
 
                 int index = 0;
@@ -118,6 +118,7 @@ public class UsualUser:IUsualUser
         bool flag = true;
         while (flag)
         {
+            Console.WriteLine("==========================");
             UserMenu.DisplayMenu();
             Console.Write("Choice: ");
 
@@ -214,7 +215,7 @@ public class UsualUser:IUsualUser
                     Console.WriteLine("Enter the Make of Car:");
                     string CarMake = Console.ReadLine();
 
-                    if (CarMake == "")
+                    if (CarMake.Replace(" ", "") == "")
                     {
                         Console.WriteLine("==========================");
                         Console.WriteLine("Invalid value for Make of car!");
@@ -224,7 +225,7 @@ public class UsualUser:IUsualUser
                     Console.WriteLine("Enter the Model of Car:");
                     string CarModel = Console.ReadLine();
 
-                    if (CarModel == "")
+                    if (CarModel.Replace(" ", "") == "")
                     {
                         Console.WriteLine("==========================");
                         Console.WriteLine("Invalid value for Model of Car!");
@@ -266,7 +267,7 @@ public class UsualUser:IUsualUser
                         index3++;
                         Console.WriteLine($"{index3}.{Car}");
                     }
-                    Console.WriteLine("Choose an Car:");
+                    Console.Write("Choose a Car:");
                     if (!(int.TryParse(Console.ReadLine(), out int CarChoice)) || CarChoice < 1 || CarChoice > UserShowRoom.CarCount)
                     {
                         Console.WriteLine("==========================");
@@ -318,7 +319,7 @@ public class UsualUser:IUsualUser
                                 Console.WriteLine("Enter the Make of Car:");
                                 string? CarMakeNew = Console.ReadLine();
 
-                                if (CarMakeNew == "")
+                                if (CarMakeNew.Replace(" ", "") == "")
                                 {
                                     Console.WriteLine("==========================");
                                     Console.WriteLine("Invalid make name!");
@@ -340,7 +341,7 @@ public class UsualUser:IUsualUser
                                 Console.WriteLine("Enter the Model of Car:");
                                 string? CarModelNew = Console.ReadLine();
 
-                                if (CarModelNew == "")
+                                if (CarModelNew.Replace(" ", "") == "")
                                 {
                                     Console.WriteLine("==========================");
                                     Console.WriteLine("Invalid Model name!");
@@ -369,12 +370,15 @@ public class UsualUser:IUsualUser
                                     continue;
                                 }
 
-                                if (!DateTime.TryParse(CarIssueDateNew, out DateTime CarIssueDate))
+                                if (!DateTime.TryParse(CarIssueDateNew, out var CarIssueDate) || CarIssueDate > DateTime.Now || CarIssueDate.Year < 1886)
                                 {
                                     Console.WriteLine("==========================");
-                                    Console.WriteLine("Invalid issue date!");
+                                    Console.WriteLine("Invalid date format. Please try again.");
                                     continue;
                                 }
+                                
+                                
+                                
                                 
                                 CarToEdit.Year = CarIssueDate;
                                 UserShowRoom.Cars[carIndex] = CarToEdit;
@@ -411,6 +415,7 @@ public class UsualUser:IUsualUser
                         Console.WriteLine($"{++index2}.{Car}");
                     }
 
+                    Console.Write("Choice: ");
                     if (!(int.TryParse(Console.ReadLine(), out int UserChoice)) || UserChoice > UserShowRoom.CarCount || UserChoice < 1)
                     {
                         Console.WriteLine("==========================");
