@@ -1,13 +1,25 @@
 using Interfaces;
 using Classes;
 
-if (!File.Exists("./Data/Users.json"))
+string dataFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data");
+
+if (!Directory.Exists(dataFolder))
 {
-    File.WriteAllText("./Data/Users.json", "");
+    Directory.CreateDirectory(dataFolder);
 }
-if (!File.Exists("./Data/ShowRooms.json"))
+
+string usersFilePath = Path.Combine(dataFolder, "Users.json");
+string showroomsFilePath = Path.Combine(dataFolder, "ShowRooms.json");
+
+if (!File.Exists(usersFilePath))
 {
-    File.WriteAllText("./Data/ShowRooms.json", "");
+    File.WriteAllText(usersFilePath, "");
 }
+
+if (!File.Exists(showroomsFilePath))
+{
+    File.WriteAllText(showroomsFilePath, "");
+}
+
 
 MainMenu.StartMainMenu();
