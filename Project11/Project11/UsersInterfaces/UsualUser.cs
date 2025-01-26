@@ -360,7 +360,7 @@ public class UsualUser:IUsualUser
                                 Console.WriteLine("==========================");
                                 Console.WriteLine($"You chose {editMenuChoice.Description}");
                                 Console.WriteLine("==========================");
-                                Console.WriteLine("Enter the IssueDate of Car:");
+                                Console.Write("Enter the IssueDate of Car:");
                                 string? CarIssueDateNew = Console.ReadLine();
 
                                 if (CarIssueDateNew == "")

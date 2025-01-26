@@ -10,6 +10,6 @@ public class User
     public List<Sales> Sales { get; set; } = new ();
     public override string ToString()
     {
-        return $"Username {UserName}";
+        return $"Username: {UserName}";
     }
 }

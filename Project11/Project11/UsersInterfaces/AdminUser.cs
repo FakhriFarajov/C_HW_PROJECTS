@@ -85,6 +85,7 @@ public class AdminUser:IAdminUser
                         Console.WriteLine($"{index}.{showRoom}");
                         if (showRoom.UserCount != 0)
                         {
+                            Console.WriteLine("==========================");
                             Console.WriteLine("Users: ");
                             foreach (var User in showRoom.Users)
                             {
