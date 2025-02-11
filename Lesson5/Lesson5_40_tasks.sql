@@ -189,8 +189,6 @@ WHERE Products.ProductID IN (
     HAVING SUM(Quantity) > 10
 );
 
-select * from Orders
-insert into Orders values (2,1,'2025-1-3',23)
 
 --31
 select (select(SUM(TotalAmount)) from Orders where Customers.CustomerID = Orders.CustomerID) as 'Total' from Customers
