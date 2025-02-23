@@ -1,0 +1,15 @@
+C:\Users\Hp\Documents\C\Entity\Lesson1\Lesson1\bin\Debug\net8.0\Lesson1.exe
+C:\Users\Hp\Documents\C\Entity\Lesson1\Lesson1\bin\Debug\net8.0\Lesson1.deps.json
+C:\Users\Hp\Documents\C\Entity\Lesson1\Lesson1\bin\Debug\net8.0\Lesson1.runtimeconfig.json
+C:\Users\Hp\Documents\C\Entity\Lesson1\Lesson1\bin\Debug\net8.0\Lesson1.dll
+C:\Users\Hp\Documents\C\Entity\Lesson1\Lesson1\bin\Debug\net8.0\Lesson1.pdb
+C:\Users\Hp\Documents\C\Entity\Lesson1\Lesson1\obj\Debug\net8.0\Lesson1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hp\Documents\C\Entity\Lesson1\Lesson1\obj\Debug\net8.0\Lesson1.AssemblyInfoInputs.cache
+C:\Users\Hp\Documents\C\Entity\Lesson1\Lesson1\obj\Debug\net8.0\Lesson1.AssemblyInfo.cs
+C:\Users\Hp\Documents\C\Entity\Lesson1\Lesson1\obj\Debug\net8.0\Lesson1.csproj.CoreCompileInputs.cache
+C:\Users\Hp\Documents\C\Entity\Lesson1\Lesson1\obj\Debug\net8.0\Lesson1.sourcelink.json
+C:\Users\Hp\Documents\C\Entity\Lesson1\Lesson1\obj\Debug\net8.0\Lesson1.dll
+C:\Users\Hp\Documents\C\Entity\Lesson1\Lesson1\obj\Debug\net8.0\refint\Lesson1.dll
+C:\Users\Hp\Documents\C\Entity\Lesson1\Lesson1\obj\Debug\net8.0\Lesson1.pdb
+C:\Users\Hp\Documents\C\Entity\Lesson1\Lesson1\obj\Debug\net8.0\Lesson1.genruntimeconfig.cache
+C:\Users\Hp\Documents\C\Entity\Lesson1\Lesson1\obj\Debug\net8.0\ref\Lesson1.dll
