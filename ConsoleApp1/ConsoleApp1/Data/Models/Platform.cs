@@ -15,4 +15,11 @@ public class Platform
     public string Name { get; set; }
 
     public ICollection<Game> Games { get; set; } = new List<Game>();
+
+
+    public override string ToString()
+    {
+        return $"Id:{Id} Name: {Name} Games count: {Games.Count}";
+    }
+    
 }

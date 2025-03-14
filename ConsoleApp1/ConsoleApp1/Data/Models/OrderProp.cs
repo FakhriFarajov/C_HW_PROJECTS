@@ -22,5 +22,12 @@ public class OrderProp
     public int Quantity { get; set; }
     
     [Required]
-    public decimal TotalPrice { get; set; }
+    public float TotalPrice { get; set; }
+    
+    
+    
+    public override string ToString()
+    {
+        return $"Id:{Id}, OrderId:{OrderId}, GameId:{GameId}, Quantity:{Quantity}, TotalPrice:{TotalPrice}";
+    }
 }

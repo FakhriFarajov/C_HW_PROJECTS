@@ -14,6 +14,12 @@ public class VideoGamesStore : DbContext
     public DbSet<OrderProp> OrderProperties { get; set; }
     
     
+    public VideoGamesStore()
+    {
+        Database.Migrate();
+    }
+
+
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

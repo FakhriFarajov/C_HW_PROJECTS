@@ -12,8 +12,8 @@ using Project1.Data.Context;
 namespace ConsoleApp1.Migrations
 {
     [DbContext(typeof(VideoGamesStore))]
-    [Migration("20250312182924_First")]
-    partial class First
+    [Migration("20250314174644_New")]
+    partial class New
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,8 +44,8 @@ namespace ConsoleApp1.Migrations
                     b.Property<int>("PlatformId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -115,8 +115,8 @@ namespace ConsoleApp1.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("TotalPrice")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -153,8 +153,8 @@ namespace ConsoleApp1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<decimal>("Balance")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("Balance")
+                        .HasColumnType("real");
 
                     b.Property<string>("Email")
                         .IsRequired()

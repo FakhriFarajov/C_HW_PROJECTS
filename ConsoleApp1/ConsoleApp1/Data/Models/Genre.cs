@@ -13,4 +13,9 @@ public class Genre
     public string Name { get; set; }
 
     public ICollection<Game> Games { get; set; } = new List<Game>();
+    
+    public override string ToString()
+    {
+        return $"{Name}";
+    }
 }

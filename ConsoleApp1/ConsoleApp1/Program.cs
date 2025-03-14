@@ -8,10 +8,21 @@ using Project1.Data.Context;
 namespace Project1.ProgramPart;
 
 
+
 public class Program
 {
     public static void Main()
     {
+        var context = new VideoGamesStore();
+        context.Platforms.Add(new Platform() { Name = "XBox" });
+        context.Platforms.Add(new Platform() { Name = "Computer" });
+        context.Platforms.Add(new Platform() { Name = "PlayStation" });
+        context.Genres.Add(new Genre() { Name = "Action" });
+        context.Genres.Add(new Genre() { Name = "Adventure" });
+        context.Genres.Add(new Genre() { Name = "Horror" });
+        context.SaveChanges();
+        
+        
         Menu LoginRegisterMenu = new Menu();
         LoginRegisterMenu.MenuChoices = new()
         {
@@ -84,8 +95,8 @@ public class Program
                     }
                     else
                     {
-                        // IAdminUser adminUser = new AdminUser();
-                        // adminUser.AdminUserInterface(user);
+                        IAdminInterface adminUser = new AdminInterface();
+                        adminUser.AdminInterfaceMain(user);
                     }
                     break;
                 case 2:
@@ -187,7 +198,7 @@ public class Program
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(e);
+                        Console.WriteLine("Invalid credentials!");
                         continue;
                     }
                     
@@ -198,8 +209,8 @@ public class Program
                     }
                     else
                     {
-                        // IAdminUser adminUser = new AdminUser();
-                        // adminUser.AdminUserInterface(MainUser1);
+                        IAdminInterface adminUser = new AdminInterface();
+                        adminUser.AdminInterfaceMain(newUser);
                     }
                     break;
                 case 3:

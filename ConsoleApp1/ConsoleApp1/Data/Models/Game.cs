@@ -21,7 +21,12 @@ public class Game
     public Platform Platform { get; set; }
     
     [Required]
-    public decimal Price { get; set; }
+    public float Price { get; set; }
 
     public ICollection<OrderProp> OrderProp { get; set; } = new List<OrderProp>();
+
+    public override string ToString()
+    {
+        return $"{Id}. Name: {Name}, Price: {Price}$, GenreId: {GenreId}, PlatformId: {PlatformId}";
+    }
 }

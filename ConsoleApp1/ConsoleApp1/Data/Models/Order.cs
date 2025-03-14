@@ -20,4 +20,9 @@ public class Order
     public decimal TotalAmount { get; set; }
 
     public ICollection<OrderProp> OrderProp { get; set; } = new List<OrderProp>();
+    
+    public override string ToString()
+    {
+        return $"UserId: {UserId} Date: {Date} TotalAmount: {TotalAmount}";
+    }
 }

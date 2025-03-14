@@ -26,10 +26,18 @@ public class User
     [MaxLength(100)]
     public string Email { get; set; }
 
-    [Required] public decimal Balance { get; set; } = 0;
+    [Required] public float Balance { get; set; } = 0;
     
     [Required]
     public bool isAdmin { get; set; } = false;
 
     public ICollection<Order> Orders { get; set; } = new List<Order>();
+
+
+
+
+    public override string ToString()
+    {
+        return $"{Name} {Email}";
+    }
 }
