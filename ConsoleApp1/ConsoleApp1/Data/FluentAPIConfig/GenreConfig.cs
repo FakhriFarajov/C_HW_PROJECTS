@@ -9,8 +9,7 @@ public class GenreConfig : IEntityTypeConfiguration<Genre>
 {
     public void Configure(EntityTypeBuilder<Genre> builder)
     {
-        builder.HasKey(x => x.Id);
-        builder.Property(x => x.Name).HasMaxLength(100).IsRequired();
-        builder.HasMany(x => x.Games).WithOne(x => x.Genre).HasForeignKey(x => x.GenreId);
+        builder.HasKey(g => g.Id);
+        builder.Property(g => g.Name).IsRequired().HasMaxLength(100);
     }
 }

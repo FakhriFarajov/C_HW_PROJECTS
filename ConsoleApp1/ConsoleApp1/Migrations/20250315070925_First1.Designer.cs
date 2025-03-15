@@ -12,8 +12,8 @@ using Project1.Data.Context;
 namespace ConsoleApp1.Migrations
 {
     [DbContext(typeof(VideoGamesStore))]
-    [Migration("20250314174644_New")]
-    partial class New
+    [Migration("20250315070925_First1")]
+    partial class First1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,6 +46,9 @@ namespace ConsoleApp1.Migrations
 
                     b.Property<float>("Price")
                         .HasColumnType("real");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -85,8 +88,8 @@ namespace ConsoleApp1.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("TotalAmount")
+                        .HasColumnType("real");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");

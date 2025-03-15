@@ -1,9 +1,10 @@
 namespace Project1.Data.Models;
 
-
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
 public class Order
 {
     [Key]
@@ -17,10 +18,11 @@ public class Order
     public DateTime Date { get; set; } = DateTime.Now;
     
     [Required]
-    public decimal TotalAmount { get; set; }
+    public float TotalAmount { get; set; }
 
-    public ICollection<OrderProp> OrderProp { get; set; } = new List<OrderProp>();
-    
+    // Properly defining the relationship
+    public ICollection<OrderProp> OrderProps { get; set; } = new List<OrderProp>();
+
     public override string ToString()
     {
         return $"UserId: {UserId} Date: {Date} TotalAmount: {TotalAmount}";

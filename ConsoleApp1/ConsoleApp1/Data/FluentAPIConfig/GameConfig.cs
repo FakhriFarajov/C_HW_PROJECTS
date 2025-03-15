@@ -5,16 +5,23 @@ using Project1.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-public class GameConfig: IEntityTypeConfiguration<Game> 
+public class GameConfig : IEntityTypeConfiguration<Game>
 {
     public void Configure(EntityTypeBuilder<Game> builder)
     {
-        builder.HasKey(x => x.Id);
-        builder.Property(x => x.Name).IsRequired();
-        builder.HasOne(x => x.Genre).WithMany(x => x.Games).HasForeignKey(x => x.GenreId);
-        builder.Property(x => x.GenreId).IsRequired();
-        builder.HasOne(x => x.Platform).WithMany(x => x.Games).HasForeignKey(x => x.PlatformId);
-        builder.Property(x => x.PlatformId).IsRequired();
-        builder.Property(x => x.Price).IsRequired();
+        builder.HasKey(g => g.Id);
+        builder.Property(g => g.Name).IsRequired().HasMaxLength(100);
+        builder.Property(g => g.GenreId).IsRequired();
+        builder.Property(g => g.PlatformId).IsRequired();
+        builder.Property(g => g.Price).IsRequired();
+        builder.Property(g => g.Quantity).IsRequired();
+        
+        builder.HasOne(g => g.Genre)
+            .WithMany(gen => gen.Games)
+            .HasForeignKey(g => g.GenreId);
+        
+        builder.HasOne(g => g.Platform)
+            .WithMany(p => p.Games)
+            .HasForeignKey(g => g.PlatformId);
     }
 }

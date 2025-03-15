@@ -44,6 +44,9 @@ namespace ConsoleApp1.Migrations
                     b.Property<float>("Price")
                         .HasColumnType("real");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("GenreId");
@@ -82,8 +85,8 @@ namespace ConsoleApp1.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("TotalAmount")
+                        .HasColumnType("real");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");

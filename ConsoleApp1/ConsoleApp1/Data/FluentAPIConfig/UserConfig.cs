@@ -5,16 +5,16 @@ using Project1.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-public class UserConfig: IEntityTypeConfiguration<User> 
+public class UserConfig : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
-        builder.HasKey(x => x.Id);
-        builder.Property(x => x.Name).HasMaxLength(100).IsRequired();
-        builder.Property(x => x.Login).HasMaxLength(100).IsRequired();
-        builder.Property(x => x.Password).HasMaxLength(100).IsRequired();
-        builder.Property(x => x.Email).HasMaxLength(100).IsRequired();
-        builder.Property(x => x.Balance).HasDefaultValue(0).IsRequired();
-        builder.Property(x => x.isAdmin).HasDefaultValue(0).IsRequired();
+        builder.HasKey(u => u.Id);
+        builder.Property(u => u.Name).IsRequired().HasMaxLength(100);
+        builder.Property(u => u.Login).IsRequired().HasMaxLength(100);
+        builder.Property(u => u.Password).IsRequired().HasMaxLength(100);
+        builder.Property(u => u.Email).IsRequired().HasMaxLength(100);
+        builder.Property(u => u.Balance).IsRequired();
+        builder.Property(u => u.isAdmin).IsRequired();
     }
 }

@@ -22,11 +22,14 @@ public class Game
     
     [Required]
     public float Price { get; set; }
+    
+    [Required]
+    public int Quantity { get; set; }
 
     public ICollection<OrderProp> OrderProp { get; set; } = new List<OrderProp>();
 
     public override string ToString()
     {
-        return $"{Id}. Name: {Name}, Price: {Price}$, GenreId: {GenreId}, PlatformId: {PlatformId}";
+        return $"{Id}. Name: {Name}, Price: {Price}$, GenreId: {GenreId}, PlatformId: {PlatformId}, Quantity: {Quantity}";
     }
 }

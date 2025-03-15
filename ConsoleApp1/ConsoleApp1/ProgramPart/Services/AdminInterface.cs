@@ -97,10 +97,43 @@ public class AdminInterface : IAdminInterface
                         Console.WriteLine("The input is either incorrect or out of range.");
                         continue;
                     }
-
-
-                    Game newGame = new() {Name = gameName, GenreId = choice, PlatformId = choice2, Price = price};
                     
+                    int quantity;
+                    Console.Write("Enter the quantity: ");
+                    try
+                    {
+                        if (!int.TryParse(Console.ReadLine(), out quantity) || quantity  < 0)
+                        {
+                            Console.WriteLine("==========================");
+                            Console.WriteLine("Enter a valid value!");
+                            continue;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("The input is either incorrect or out of range.");
+                        continue;
+                    }
+
+
+                    bool inDatabase = false;   
+                    foreach (Game game in context.Games)
+                    {
+                        if (game.GenreId == choice & game.PlatformId == choice2 & game.Name.ToLower().Trim() == gameName.ToLower().Trim())
+                        {
+                            Console.WriteLine("==========================");
+                            Console.WriteLine("The game is already in the database!");
+                            inDatabase = true;
+                            continue;
+                        }
+                    }
+
+                    if (inDatabase)
+                    {
+                        continue;
+                    }
+                    
+                    Game newGame = new() {Name = gameName, GenreId = choice, PlatformId = choice2, Price = price,Quantity = quantity};
                     context.Games.Add(newGame);
                     context.SaveChanges();
                     Console.WriteLine("==========================");
@@ -167,8 +200,8 @@ public class AdminInterface : IAdminInterface
                     IndexUser = choice4 - 1;
                     Game GameSelected = context.Games.ToList()[IndexUser];
 
-                    Console.Write("Choose what to edit: \n1. Name\n2. Genre\n3. Platform\n4. Price\nChoice:  ");
-                    if (!int.TryParse(Console.ReadLine(), out int choice5) || choice5 < 1 || choice5 > 4)
+                    Console.Write("Choose what to edit: \n1. Name\n2. Genre\n3. Platform\n4. Price\n5. Quantity\nChoice:  ");
+                    if (!int.TryParse(Console.ReadLine(), out int choice5) || choice5 < 1 || choice5 > 5)
                     {
                         Console.WriteLine("==========================");
                         Console.WriteLine("Enter a valid value!");
@@ -220,6 +253,7 @@ public class AdminInterface : IAdminInterface
                             context.SaveChanges();
                             Console.WriteLine("Game edited successfully!");
                             break;
+                        
                         case 4:
                             Console.Write("Enter the new price: ");
                             if (!float.TryParse(Console.ReadLine(), out float price1) || price1 < 0)
@@ -230,6 +264,18 @@ public class AdminInterface : IAdminInterface
                             }
                             
                             context.Games.ToList()[IndexUser].Price = price1;
+                            context.SaveChanges();
+                            Console.WriteLine("Game edited successfully!");
+                            break;
+                        case 5:
+                            Console.Write("Enter the new quantity: ");
+                            if (!int.TryParse(Console.ReadLine(), out int quantity1) || quantity1 < 0)
+                            {
+                                Console.WriteLine("==========================");
+                                Console.WriteLine("Enter a valid value!");
+                                continue;
+                            }
+                            context.Games.ToList()[IndexUser].Quantity = quantity1;
                             context.SaveChanges();
                             Console.WriteLine("Game edited successfully!");
                             break;
