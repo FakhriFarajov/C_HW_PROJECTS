@@ -1,0 +1,14 @@
+C:\Users\Hp\Documents\System\Lesson3\Lesson3\obj\Debug\net8.0\Lesson3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hp\Documents\System\Lesson3\Lesson3\obj\Debug\net8.0\Lesson3.AssemblyInfoInputs.cache
+C:\Users\Hp\Documents\System\Lesson3\Lesson3\obj\Debug\net8.0\Lesson3.AssemblyInfo.cs
+C:\Users\Hp\Documents\System\Lesson3\Lesson3\obj\Debug\net8.0\Lesson3.csproj.CoreCompileInputs.cache
+C:\Users\Hp\Documents\System\Lesson3\Lesson3\bin\Debug\net8.0\Lesson3.exe
+C:\Users\Hp\Documents\System\Lesson3\Lesson3\bin\Debug\net8.0\Lesson3.deps.json
+C:\Users\Hp\Documents\System\Lesson3\Lesson3\bin\Debug\net8.0\Lesson3.runtimeconfig.json
+C:\Users\Hp\Documents\System\Lesson3\Lesson3\bin\Debug\net8.0\Lesson3.dll
+C:\Users\Hp\Documents\System\Lesson3\Lesson3\bin\Debug\net8.0\Lesson3.pdb
+C:\Users\Hp\Documents\System\Lesson3\Lesson3\obj\Debug\net8.0\Lesson3.dll
+C:\Users\Hp\Documents\System\Lesson3\Lesson3\obj\Debug\net8.0\refint\Lesson3.dll
+C:\Users\Hp\Documents\System\Lesson3\Lesson3\obj\Debug\net8.0\Lesson3.pdb
+C:\Users\Hp\Documents\System\Lesson3\Lesson3\obj\Debug\net8.0\Lesson3.genruntimeconfig.cache
+C:\Users\Hp\Documents\System\Lesson3\Lesson3\obj\Debug\net8.0\ref\Lesson3.dll

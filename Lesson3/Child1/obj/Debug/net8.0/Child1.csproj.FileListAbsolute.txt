@@ -1,0 +1,14 @@
+C:\Users\Hp\Documents\System\Lesson3\Child1\bin\Debug\net8.0\Child1.exe
+C:\Users\Hp\Documents\System\Lesson3\Child1\bin\Debug\net8.0\Child1.deps.json
+C:\Users\Hp\Documents\System\Lesson3\Child1\bin\Debug\net8.0\Child1.runtimeconfig.json
+C:\Users\Hp\Documents\System\Lesson3\Child1\bin\Debug\net8.0\Child1.dll
+C:\Users\Hp\Documents\System\Lesson3\Child1\bin\Debug\net8.0\Child1.pdb
+C:\Users\Hp\Documents\System\Lesson3\Child1\obj\Debug\net8.0\Child1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hp\Documents\System\Lesson3\Child1\obj\Debug\net8.0\Child1.AssemblyInfoInputs.cache
+C:\Users\Hp\Documents\System\Lesson3\Child1\obj\Debug\net8.0\Child1.AssemblyInfo.cs
+C:\Users\Hp\Documents\System\Lesson3\Child1\obj\Debug\net8.0\Child1.csproj.CoreCompileInputs.cache
+C:\Users\Hp\Documents\System\Lesson3\Child1\obj\Debug\net8.0\Child1.dll
+C:\Users\Hp\Documents\System\Lesson3\Child1\obj\Debug\net8.0\refint\Child1.dll
+C:\Users\Hp\Documents\System\Lesson3\Child1\obj\Debug\net8.0\Child1.pdb
+C:\Users\Hp\Documents\System\Lesson3\Child1\obj\Debug\net8.0\Child1.genruntimeconfig.cache
+C:\Users\Hp\Documents\System\Lesson3\Child1\obj\Debug\net8.0\ref\Child1.dll
