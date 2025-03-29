@@ -1,0 +1,92 @@
+﻿namespace Cars.Models
+{
+
+    public class Result
+    {
+        public string make { get; set; }
+        public string model { get; set; }
+        public float barrels08 { get; set; }
+        public float barrelsa08 { get; set; }
+        public float charge120 { get; set; }
+        public float charge240 { get; set; }
+        public int city08 { get; set; }
+        public float city08u { get; set; }
+        public int citya08 { get; set; }
+        public float citya08u { get; set; }
+        public float citycd { get; set; }
+        public float citye { get; set; }
+        public float cityuf { get; set; }
+        public int co2 { get; set; }
+        public int co2a { get; set; }
+        public float co2tailpipeagpm { get; set; }
+        public float co2tailpipegpm { get; set; }
+        public int comb08 { get; set; }
+        public float comb08u { get; set; }
+        public int comba08 { get; set; }
+        public float comba08u { get; set; }
+        public float combe { get; set; }
+        public float combinedcd { get; set; }
+        public float combineduf { get; set; }
+        public int cylinders { get; set; }
+        public float displ { get; set; }
+        public string drive { get; set; }
+        public string engid { get; set; }
+        public string[] eng_dscr { get; set; }
+        public int? fescore { get; set; }
+        public int fuelcost08 { get; set; }
+        public int fuelcosta08 { get; set; }
+        public string fueltype { get; set; }
+        public string fueltype1 { get; set; }
+        public int? ghgscore { get; set; }
+        public object ghgscorea { get; set; }
+        public int highway08 { get; set; }
+        public float highway08u { get; set; }
+        public int highwaya08 { get; set; }
+        public float highwaya08u { get; set; }
+        public float highwaycd { get; set; }
+        public float highwaye { get; set; }
+        public float highwayuf { get; set; }
+        public int hlv { get; set; }
+        public int hpv { get; set; }
+        public string id { get; set; }
+        public int lv2 { get; set; }
+        public int lv4 { get; set; }
+        public string mpgdata { get; set; }
+        public string phevblended { get; set; }
+        public int pv2 { get; set; }
+        public int pv4 { get; set; }
+        public int range { get; set; }
+        public float rangecity { get; set; }
+        public float rangecitya { get; set; }
+        public float rangehwy { get; set; }
+        public float rangehwya { get; set; }
+        public string trany { get; set; }
+        public float ucity { get; set; }
+        public float ucitya { get; set; }
+        public float uhighway { get; set; }
+        public float uhighwaya { get; set; }
+        public string vclass { get; set; }
+        public string year { get; set; }
+        public int yousavespend { get; set; }
+        public string guzzler { get; set; }
+        public string trans_dscr { get; set; }
+        public string tcharger { get; set; }
+        public string scharger { get; set; }
+        public object atvtype { get; set; }
+        public object fueltype2 { get; set; }
+        public object rangea { get; set; }
+        public object evmotor { get; set; }
+        public string mfrcode { get; set; }
+        public object c240dscr { get; set; }
+        public float charge240b { get; set; }
+        public object c240bdscr { get; set; }
+        public string createdon { get; set; }
+        public string modifiedon { get; set; }
+        public string startstop { get; set; }
+        public int phevcity { get; set; }
+        public int phevhwy { get; set; }
+        public int phevcomb { get; set; }
+        public string basemodel { get; set; }
+    }
+
+}
