@@ -18,7 +18,7 @@ public class Server
         try
         {
             serverSocket.Bind(endPoint);
-            serverSocket.Listen(1);
+            serverSocket.Listen();
             Console.WriteLine("Server started. Waiting for client...");
 
             clientSocket = serverSocket.Accept();
