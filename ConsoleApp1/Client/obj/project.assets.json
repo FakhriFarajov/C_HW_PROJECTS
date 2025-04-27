@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Hp\\Downloads\\ConsoleApp1\\ConsoleApp1\\Client\\Client.csproj",
+      "projectUniqueName": "C:\\Users\\Hp\\Documents\\Network\\ConsoleApp1\\Client\\Client.csproj",
       "projectName": "Client",
-      "projectPath": "C:\\Users\\Hp\\Downloads\\ConsoleApp1\\ConsoleApp1\\Client\\Client.csproj",
+      "projectPath": "C:\\Users\\Hp\\Documents\\Network\\ConsoleApp1\\Client\\Client.csproj",
       "packagesPath": "C:\\Users\\Hp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Hp\\Downloads\\ConsoleApp1\\ConsoleApp1\\Client\\obj\\",
+      "outputPath": "C:\\Users\\Hp\\Documents\\Network\\ConsoleApp1\\Client\\obj\\",
       "projectStyle": "PackageReference",
       "UsingMicrosoftNETSdk": false,
       "fallbackFolders": [

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Hp\\Downloads\\ConsoleApp1\\ConsoleApp1\\Server\\Server.csproj": {}
+    "C:\\Users\\Hp\\Documents\\Network\\ConsoleApp1\\Server\\Server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Hp\\Downloads\\ConsoleApp1\\ConsoleApp1\\Server\\Server.csproj": {
+    "C:\\Users\\Hp\\Documents\\Network\\ConsoleApp1\\Server\\Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hp\\Downloads\\ConsoleApp1\\ConsoleApp1\\Server\\Server.csproj",
+        "projectUniqueName": "C:\\Users\\Hp\\Documents\\Network\\ConsoleApp1\\Server\\Server.csproj",
         "projectName": "Server",
-        "projectPath": "C:\\Users\\Hp\\Downloads\\ConsoleApp1\\ConsoleApp1\\Server\\Server.csproj",
+        "projectPath": "C:\\Users\\Hp\\Documents\\Network\\ConsoleApp1\\Server\\Server.csproj",
         "packagesPath": "C:\\Users\\Hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hp\\Downloads\\ConsoleApp1\\ConsoleApp1\\Server\\obj\\",
+        "outputPath": "C:\\Users\\Hp\\Documents\\Network\\ConsoleApp1\\Server\\obj\\",
         "projectStyle": "PackageReference",
         "UsingMicrosoftNETSdk": false,
         "fallbackFolders": [
