@@ -36,29 +36,12 @@ public class ClientService
         byte[] data = Encoding.UTF8.GetBytes(message);
         clientSocket.Send(data);
 
-        // Optionally show the sent message
-        chatBox.Dispatcher.Invoke(() => { chatBox.AppendText($"You: {message}\n"); });
+        chatBox.Dispatcher.Invoke(() => { chatBox.AppendText($"Client: {message}\n"); });
 
         ReceiveMessage(chatBox);
     }
 
-    // private void ReceiveMessage(TextBox chatBox)
-    // {
-    //     Task.Run(() =>
-    //     {
-    //         try
-    //         {
-    //             int received = clientSocket.Receive(buffer);
-    //             string serverResponse = Encoding.UTF8.GetString(buffer, 0, received);
-    //
-    //             chatBox.Dispatcher.Invoke(() => { chatBox.AppendText($"Server: {serverResponse}\n"); });
-    //         }
-    //         catch (Exception ex)
-    //         {
-    //             Console.WriteLine("Receive error: " + ex.Message);
-    //         }
-    //     });
-    // }
+
     
     
     public void ReceiveMessage(TextBox ChatBox)
@@ -75,7 +58,7 @@ public class ClientService
 
                     string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
 
-                    ChatBox.Dispatcher.Invoke(() => { ChatBox.AppendText("Server: " + message + "\n"); });
+                    ChatBox.Dispatcher.Invoke(() => { ChatBox.AppendText("ServerSolution: " + message + "\n"); });
 
                     if (message.ToLower() == "quit")
                     {
