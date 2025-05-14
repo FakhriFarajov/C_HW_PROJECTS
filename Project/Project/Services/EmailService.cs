@@ -27,7 +27,7 @@ public static class EmailService
 
         using var mailMessage = new MailMessage()
         {
-            From = new MailAddress("farajooaze@gmail.com"),
+            From = new MailAddress("MAIL"), // ENTER YOUR MAIL
             Subject = "Test Email",
             Body = htmlBody,
             IsBodyHtml = true,

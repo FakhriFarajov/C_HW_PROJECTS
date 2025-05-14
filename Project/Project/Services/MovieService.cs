@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Json;
+using Microsoft.Extensions.Configuration;
 using Project.Models;
 
 namespace Project.Services;
@@ -10,6 +11,15 @@ public static class MovieService
     {
         // Создаю класс HttpClient для отправки запроса
         var client = new HttpClient();
+        
+        var configBuilder = new ConfigurationBuilder();
+
+        configBuilder.AddJsonFile("appSettings.json", optional: false, reloadOnChange: true);
+
+        var config = configBuilder.Build();
+
+        var api = config["API"];
+        
 
         // Создаю объект HttpRequestMessage для отправки запроса
         var request = new HttpRequestMessage
@@ -23,7 +33,7 @@ public static class MovieService
                 { "accept", "application/json" },
                 {
                     "Authorization",
-                    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2NDU0Y2VjYmNkYTNiODgxOWY5YTM1MjFmNDVkYzExZiIsIm5iZiI6MS43NDY1NDMxMjA0OTEwMDAyZSs5LCJzdWIiOiI2ODFhMjIxMGI4NjY4M2YxMTg0NDQwY2QiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.lVxMO3_jdjZeVMaoaRAlDBldQR6cONv21n2BLAMiB8U"
+                    $"Bearer {api}" //Enter your API 
                 },
             },
         };
