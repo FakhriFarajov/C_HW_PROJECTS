@@ -9,10 +9,6 @@ public class User
     
     [Required]
     [MaxLength(100)]
-    public string Name { get; set; }
-    
-    [Required]
-    [MaxLength(100)]
     public string Email { get; set; }
 
     [Required]
@@ -28,6 +24,6 @@ public class User
     
     public override string ToString()
     {
-        return $"{Name} {Email}";
+        return $"{Login} {Email}";
     }
 }

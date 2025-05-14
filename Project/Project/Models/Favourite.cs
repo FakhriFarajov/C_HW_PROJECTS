@@ -17,4 +17,9 @@ public class Favourite
     public int userId { get; set; }
     
     public User User { get; set; }
+
+    public override string ToString()
+    {
+        return $"{MovieTitle} - {releaseDate}";
+    }
 }

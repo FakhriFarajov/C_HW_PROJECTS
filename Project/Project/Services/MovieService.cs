@@ -4,9 +4,9 @@ using Project.Models;
 
 namespace Project.Services;
 
-public class MovieService
+public static class MovieService
 {
-    public MovieSearchResult? SearchMovie(string movieName, int page = 1)
+    public static MovieSearchResult? SearchMovie(string movieName, int page = 1)
     {
         // Создаю класс HttpClient для отправки запроса
         var client = new HttpClient();
@@ -23,7 +23,7 @@ public class MovieService
                 { "accept", "application/json" },
                 {
                     "Authorization",
-                    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyYTcxYWMxNTc3NzdkZTM3YzIxNTFjY2Q3OTQxZjU1YSIsIm5iZiI6MTY5Nzc4NDY2OS4yMDgsInN1YiI6IjY1MzIyMzVkOWFjNTM1MDg3NzU2MGEzYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hFRAfYIZ3c589bcPOw8gDGN_fPWT1BZnimjUxlbYa3I"
+                    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2NDU0Y2VjYmNkYTNiODgxOWY5YTM1MjFmNDVkYzExZiIsIm5iZiI6MS43NDY1NDMxMjA0OTEwMDAyZSs5LCJzdWIiOiI2ODFhMjIxMGI4NjY4M2YxMTg0NDQwY2QiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.lVxMO3_jdjZeVMaoaRAlDBldQR6cONv21n2BLAMiB8U"
                 },
             },
         };

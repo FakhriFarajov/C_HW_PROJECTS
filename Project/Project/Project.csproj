@@ -21,10 +21,20 @@
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
       <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.4" />
+      <PackageReference Include="PDFsharp" Version="6.1.1" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="FluentApi\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="appSettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Templates\EmailTemplate.html">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

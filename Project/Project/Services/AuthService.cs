@@ -1,9 +1,11 @@
 using Project.Models;
+using Project.Utilities;
 
 namespace Project.Services;
 
 public class AuthService
 {
+    
     public User Login(string Login, string Password)
     {
         if (!ValidateService.ValidateLogin(Login, Password))//Validate the credentials
@@ -14,23 +16,21 @@ public class AuthService
 
         foreach (var user in UsersList)//If login and password are in list return user
         {
-            if (user.Login == Login && BCrypt.Net.BCrypt.EnhancedVerify(Password, user.Password))
+            if (user.Login == Login && PasswordHashing.VerifyHashedPassword(user.Password, Password))
             {
                 return user;
             }
         }
-        throw new Exception("There is no such user!"); //else exception
+        throw new Exception("There is no such user!");
     }
 
 
-    public void Register(ref User UserToReg)
+    public void Register(User UserToReg)
     {
         if (!ValidateService.ValidateRegister(UserToReg))//Validate input
             throw new Exception("Invalid credentials!");
-        
-        BCrypt.Net.BCrypt.EnhancedHashPassword(UserToReg.Password,12);
-        
-        using var context = new ContextMovie();
+        UserToReg.Password = PasswordHashing.HashPassword(UserToReg.Password);//Hash the password
+        var context = new ContextMovie();
         context.Users.Add(UserToReg);
         context.SaveChanges();
         Console.WriteLine("Registered User!");

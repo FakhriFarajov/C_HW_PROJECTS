@@ -9,11 +9,7 @@ public class ContextMovie : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<Favourite> Favourites { get; set; }
     
-    public ContextMovie()
-    {
-        Database.Migrate();
-    }
-    
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
