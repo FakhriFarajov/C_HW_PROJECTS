@@ -3,16 +3,16 @@ const ball = document.getElementById('ball');
 const ballSize = 130;
 
 field.addEventListener('click', function(event) {
-  const rect = field.getBoundingClientRect();
-  let x = event.clientX - rect.left - ballSize / 2;
-  let y = event.clientY - rect.top - ballSize / 2;
+    const rect = field.getBoundingClientRect();
+    let x = event.clientX - rect.left - ballSize / 2;
+    let y = event.clientY - rect.top - ballSize / 2;
 
-  const maxX = field.clientWidth - ballSize;
-  const maxY = field.clientHeight - ballSize;
+    const maxX = field.clientWidth - ballSize;
+    const maxY = field.clientHeight - ballSize;
 
-  x = Math.max(0, Math.min(x, maxX));
-  y = Math.max(0, Math.min(y, maxY));
+    x = Math.max(0, Math.min(x, maxX));
+    y = Math.max(0, Math.min(y, maxY));
 
-  ball.style.left = x + 'px';
-  ball.style.top = y + 'px';
+    ball.style.left = x + 'px';
+    ball.style.top = y + 'px';
 });

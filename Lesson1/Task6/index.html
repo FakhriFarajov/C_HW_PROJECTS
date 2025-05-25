@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    body {
+      height: 400px;
+      align-items:start;
+      padding-top: 100px;
+      font-family: sans-serif;
+    }
+
+    .btn-container {
+      position: relative;
+      display: inline-block;
+      margin: 40px;
+    }
+
+    .tooltip {
+      position: absolute;
+      background: purple;
+      color: white;
+      padding: 5px 10px;
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <div class="btn-container">
+    <button>Кнопка 1</button>
+    <div class="tooltip">Подсказка к кнопке 1</div>
+  </div>
+
+  <div class="btn-container">
+    <button>Кнопка 2</button>
+    <div class="tooltip">Подсказка к кнопке 2</div>
+  </div>
+
+  <script>
+    const containers = document.querySelectorAll('.btn-container');
+
+    containers.forEach(container => {
+      const tooltip = container.querySelector('.tooltip');
+      const button = container.querySelector('button');
+
+      container.addEventListener('mouseenter', () => {
+        tooltip.style.top = '';
+        tooltip.style.bottom = `${button.offsetHeight + 8}px`;
+        tooltip.style.left = '50%';
+        tooltip.style.transform = 'translateX(-50%)';
+
+        requestAnimationFrame(() => {
+          const rect = tooltip.getBoundingClientRect();
+          if (rect.top < 0) {
+            tooltip.style.bottom = '';
+            tooltip.style.top = `${button.offsetHeight + 8}px`;
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+
+
