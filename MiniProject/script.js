@@ -22,6 +22,7 @@ function ChangeTheForms() {
     }
 }
 
+
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("SignInUpText").addEventListener("click", ChangeTheForms);
     document.getElementById("auth-signIn-form").addEventListener("submit", SignIn);
@@ -32,13 +33,13 @@ async function SignIn(event) {
     event.preventDefault();
     const username = document.getElementById("signInUsername").value;
     const password = document.getElementById("signInPassword").value;
-
+    
     const response = await fetch("http://localhost:3000/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password })
     });
-
+    
     if (response.ok) {
         const data = await response.json();
         localStorage.setItem("user", JSON.stringify(data.user));
@@ -54,23 +55,23 @@ async function SignUp(event) {
     const username = document.getElementById("signUpUsername").value.trim();
     const email = document.getElementById("signUpEmail").value.trim();
     const password = document.getElementById("signUpPassword").value;
-
+    
     if (!ValidationService.validateEmail(email)) {
         alert("Invalid email");
         return;
     }
-
+    
     if (!ValidationService.validatePassword(password)) {
         alert("Password must be 8+ characters, include letters and numbers");
         return;
     }
-
+    
     const response = await fetch("http://localhost:3000/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, email, password })
     });
-
+    
     if (response.ok) {
         const data = await response.json();
         localStorage.setItem("user", JSON.stringify(data.user));
