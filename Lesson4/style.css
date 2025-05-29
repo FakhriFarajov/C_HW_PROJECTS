@@ -1,0 +1,528 @@
+body {
+    display: block;
+    margin: 0px;
+}
+
+@font-face {
+  font-family: "SF Pro Text";
+  font-style: normal;
+  font-weight: 300;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProText-Light.ttf");
+}
+@font-face {
+  font-family: "SF Pro Text";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProText-Regular.ttf");
+}
+@font-face {
+  font-family: "SF Pro Text";
+  font-style: normal;
+  font-weight: 500;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProText-Medium.ttf");
+}
+@font-face {
+  font-family: "SF Pro Text";
+  font-style: normal;
+  font-weight: 600;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProText-SemiBold.ttf");
+}
+@font-face {
+  font-family: "SF Pro Text";
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProText-Bold.ttf");
+}
+@font-face {
+  font-family: "SF Pro Text";
+  font-style: normal;
+  font-weight: 900;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProText-Heavy.ttf");
+}
+@font-face {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 100;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProDisplay-Ultralight.ttf");
+}
+@font-face {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 200;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProDisplay-Thin.ttf");
+}
+@font-face {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 300;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProDisplay-Light.ttf");
+}
+@font-face {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProDisplay-Regular.ttf");
+}
+@font-face {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 500;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProDisplay-Medium.ttf");
+}
+@font-face {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 600;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProDisplay-SemiBold.ttf");
+}
+@font-face {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProDisplay-Bold.ttf");
+}
+@font-face {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 800;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProDisplay-Black.ttf");
+}
+@font-face {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 900;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProDisplay-Heavy.ttf");
+}
+
+#CapsuleHeader{
+    width: 100%;
+    height: 7vh;
+}
+
+#Header{
+    height: 7vh;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    width: 100%;
+    gap: 10px;
+}
+
+#Header a{
+    margin: 0;
+    padding: 0 8px;
+    font-family:  "SF Pro Text";
+    color: rgba(0, 0, 0, .8);
+    font-style: bold;
+    font-size: 2vh;
+}
+
+
+.SearchAndBag{
+    width: 3vh;
+    display: flex;
+    justify-content: center;
+}
+
+#Header svg{
+    width: 14px;
+    height: 44px;
+}
+
+
+#AppleLogo{
+    width: 2.5vh;
+    height: 3vh;
+}
+
+#FirstBlock{
+    width: 100%;
+    height: 90vh;
+    background-color: #f5f5f7;
+   background-image: url("https://www.apple.com/v/home/ce/images/heroes/iphone-family/hero_iphone_family__fuz5j2v5xx6y_largetall_2x.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 10vh;
+    display: flex;
+    justify-content:center;
+}
+
+#FirstBlockText{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    font-size: 3.5rem;
+    font-weight: 600;
+    margin-top: 6vh;
+}
+#IphoneH1{
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 8vh;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+}
+
+
+
+
+#FirstBlockText p{
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 3.5vh;
+    font-weight: 400;
+    margin: 0;
+}
+
+
+#FirstBlockTextButtons{
+    margin-top: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 25vw;
+    height: 6vh;
+    color: white;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+#LearnMore{
+    width: 100%;
+    height: 100%;
+    background-color: #007AFF;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-radius: 100px;
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vh;
+    font-weight: 400;
+    cursor: pointer;
+    border: none;
+}
+
+#ShopIphone {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-radius: 100px;
+    display: flex;
+    border: solid 1px #007AFF;
+    color: #007AFF;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vh;
+    font-weight: 400;
+    cursor: pointer;
+    margin-left: 18px;
+}
+
+#ShopIphone:hover {
+    background-color: #007AFF;
+    color: white;
+}
+
+#LearnMore:hover {
+    background-color: #208cff;
+}
+
+
+#GradientText {
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.5rem;
+
+    font-weight: 400;
+    background: linear-gradient(90deg, #2196f3 10%, #7c4dff 40%, #e040fb 60%, #ff1744 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#SecondBlock {
+    width: 100%;
+    background-image: url("https://www.apple.com/v/home/ce/images/heroes/apple-watch-series-10/hero_apple_watch_series_10_avail_lte__esu66gaw6dci_medium_2x.jpg");
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f5f5f7;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#SecondBlockText {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10vh;   
+}
+
+#SecondBlockText p {
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 5vh;
+    font-weight: 400;
+    margin: 3vh 0;
+    text-align: center;
+}
+
+#WatchImg{
+    width: 40vh;
+    background-image: url("https://www.apple.com/v/home/ce/images/logos/apple-watch-series-10/hero_logo_apple_watch_series_10__dla4dkv1wfue_largetall_2x.png");
+    height: 15vh;
+    background-color: #f5f5f7;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
+#SecondBlockTextButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 20vw;
+    height: 6vh;
+    color: white;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+
+
+#LearnMoreSecondBlock {
+    width: 70%;
+    height: 100%;
+    background-color: #007AFF;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-radius: 100px;
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vh;
+    font-weight: 400;
+    cursor: pointer;
+    border: none;
+}
+
+#ShopWatchSecondBlock {
+    width: 50%;
+    height: 100%;
+    background-color: #ffffff;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-radius: 100px;
+    display: flex;
+    border: solid 1px #007AFF;
+    color: #007AFF;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vh;
+    font-weight: 400;
+    cursor: pointer;
+    margin-left: 18px;
+}
+
+#ShopWatchSecondBlock:hover {
+    background-color: #007AFF;
+    color: white;
+}
+
+#LearnMoreSecondBlock:hover {
+    background-color: #208cff;
+}
+
+
+
+
+
+
+
+
+
+
+
+#ThirdBlock {
+    width: 100%;
+    height: 90vh;
+    background-color: #f5f5f7;
+    background-image: url("https://www.apple.com/v/home/ce/images/heroes/macbook-air/hero_macbook_air_avail__fpm99qgohx2e_medium_2x.jpg");
+    display: flex;
+    background-size: cover;
+    justify-content: center;
+    align-items: flex-start;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
+#ThirdBlockText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 8vh;
+}
+
+
+
+#ThirdBlockText #HeaderH1 {
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 8vh;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+}
+
+
+
+#ThirdBlockText p {
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 3.5vh;
+    font-weight: 400;
+    margin: 0;
+    text-align: center;
+}
+
+
+
+#ThirdBlockTextButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 15vw;
+    height: 6vh;
+    color: white;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-top: 5vh;
+}
+
+
+
+#LearnMoreThirdBlock {
+    width: 100%;
+    height: 100%;
+    background-color: #007AFF;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-radius: 100px;
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vh;
+    font-weight: 400;
+    cursor: pointer;
+    border: none;
+}
+
+
+
+#ShopMacBook {
+    width: 50%;
+    height: 100%;
+    background-color: #ffffff;
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-radius: 100px;
+    display: flex;
+    border: solid 1px #007AFF;
+    color: #007AFF;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vh;
+    font-weight: 400;
+    cursor: pointer;
+    margin-left: 18px;
+}
+
+
+#ShopMacBook:hover {
+    background-color: #007AFF;
+    color: white;
+}
+
+
+#LearnMoreThirdBlock:hover {
+    background-color: #208cff;
+}
+
+
+
+
+
+#GradientTextThirdBlock {
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: rem;
+    font-weight: 400;
+    background: linear-gradient(90deg, #2196f3 10%, #7c4dff 40%, #e040fb 60%, #ff1744 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    margin-top: 45vh;
+}
+
+
+
+
+
+
+
+
+
+#Grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    margin-top: 20px;
+    height: 100vh;
+
+}
+
+
+
+#WDC{
+    width: 100%;
+    height: 100%;
+    background-image: url("https://www.apple.com/v/home/ce/images/promos/wwdc25-announce/promo_wwdc25__e4ew4e8nmaaa_large_2x.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

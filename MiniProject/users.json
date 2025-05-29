@@ -5,5 +5,19 @@
     "passwordHashed": "$2b$12$JEghqJEoc7QR/G6UMNe0ROufUS1hf7Dd2UcDAxbLArtMFgbdt24QW",
     "lat": "44.21921091975441",
     "long": "43.10850441781443"
+  },
+  {
+    "username": "John",
+    "email": "john@mail.ru",
+    "passwordHashed": "$2b$12$2c7N9FxplhwqrRElYrBEH.8fVgwfbD9kj40/7o47IwbyDiZ3CsKfK",
+    "lat": "40.41026958572612",
+    "long": "49.8828070159912"
+  },
+  {
+    "username": "a",
+    "email": "a@a.awa",
+    "passwordHashed": "$2b$12$95VJpNZFhQShzMhZxczs8.CAzVgwNto708jtAPqVxXCQF1255SGnO",
+    "lat": "38.890562342709735",
+    "long": "42.61998581848143"
   }
 ]

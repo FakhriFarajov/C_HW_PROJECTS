@@ -80,9 +80,6 @@ document.getElementById("SaveButton").addEventListener("click", () => {
           alert("Failed to save location.");
         }
       })
-      .catch(error => {
-        alert("An error occurred while saving your location.");
-      });
   }
   else{
     alert("Please select a location on the map.");
@@ -99,10 +96,20 @@ document.getElementById("LogOut").addEventListener("click", () => {
 });
 
 
+let apiKey;
 
+// Load API key from config.json on page load
+(async () => {
+    const response = await fetch('api.json');
+    const json = await response.json();
+    apiKey = json.OpenWeatherAPI;
 
+    // Optionally, if you want to load weather data immediately after apiKey is set:
+    if (user && user.lat && user.long) {
+        getNearbyCityWeather(user.lat, user.long);
+    }
+})();
 
-const apiKey = 'c15ba3b71f8f57914a6a3c8e61ed5547';
 
 let citiesWithinRange;
 
