@@ -98,13 +98,11 @@ document.getElementById("LogOut").addEventListener("click", () => {
 
 let apiKey;
 
-// Load API key from config.json on page load
 (async () => {
     const response = await fetch('api.json');
     const json = await response.json();
     apiKey = json.OpenWeatherAPI;
 
-    // Optionally, if you want to load weather data immediately after apiKey is set:
     if (user && user.lat && user.long) {
         getNearbyCityWeather(user.lat, user.long);
     }
@@ -124,7 +122,7 @@ function getNearbyCityWeather(lat, lon) {
                     const distance = haversineDistance(lat, lon, city.coord.lat, city.coord.lon);
                     return distance <= 100;
                 });
-                currentPage = 1; // Reset to first page
+                currentPage = 1;
                 renderUsers();
             }
         })
@@ -133,7 +131,7 @@ function getNearbyCityWeather(lat, lon) {
 
 
 function haversineDistance(lat1, lon1, lat2, lon2) {
-    const R = 6371; // Earth radius in km
+    const R = 6371;
     const dLat = toRad(lat2 - lat1);
     const dLon = toRad(lon2 - lon1);
     const a = Math.sin(dLat / 2) ** 2 +
@@ -146,6 +144,9 @@ function haversineDistance(lat1, lon1, lat2, lon2) {
 function toRad(deg) {
     return deg * Math.PI / 180;
 }
+
+
+
 
 
 let currentPage = 1;

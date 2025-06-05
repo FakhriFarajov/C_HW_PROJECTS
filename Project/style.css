@@ -1,0 +1,209 @@
+
+@font-face {
+  font-family: "SF Pro Text";
+  font-style: normal;
+  font-weight: 300;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProText-Light.ttf");
+}
+@font-face {
+  font-family: "SF Pro Text";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProText-Regular.ttf");
+}
+@font-face {
+  font-family: "SF Pro Text";
+  font-style: normal;
+  font-weight: 500;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProText-Medium.ttf");
+}
+@font-face {
+  font-family: "SF Pro Text";
+  font-style: normal;
+  font-weight: 600;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProText-SemiBold.ttf");
+}
+@font-face {
+  font-family: "SF Pro Text";
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProText-Bold.ttf");
+}
+@font-face {
+  font-family: "SF Pro Text";
+  font-style: normal;
+  font-weight: 900;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProText-Heavy.ttf");
+}
+@font-face {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 100;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProDisplay-Ultralight.ttf");
+}
+@font-face {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 200;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProDisplay-Thin.ttf");
+}
+@font-face {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 300;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProDisplay-Light.ttf");
+}
+@font-face {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProDisplay-Regular.ttf");
+}
+@font-face {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 500;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProDisplay-Medium.ttf");
+}
+@font-face {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 600;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProDisplay-SemiBold.ttf");
+}
+@font-face {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProDisplay-Bold.ttf");
+}
+@font-face {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 800;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProDisplay-Black.ttf");
+}
+@font-face {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 900;
+  src: url("https://raw.githubusercontent.com/blaisck/sfwin/master/SFPro/TrueType/SFProDisplay-Heavy.ttf");
+}
+
+
+body{
+    margin: 0;
+    height: 100vh;
+    padding-top: 20vh;
+}
+
+
+#Header{
+    font-family: "SF Pro Display";
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;                  /* Make header slightly narrower */
+    height: 20vh;                 /* Slightly reduce height for a sleeker look */
+    background: white;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.16); /* Stronger shadow for floating effect */
+}
+
+
+
+#HeaderMainContainer {
+    display: flex;
+    width: 100%;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+#HeaderCategories{
+    margin-top: 2vh;
+        display: flex;
+    width: 100%;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+}
+#HeaderCategories > *:hover {
+    border-radius: 12px;
+    transform: scale(1.07);
+    transition: background 0.2s, transform 0.2s;
+}
+#Search {
+    display: flex;
+    align-items: center;
+    background: #f1f1f1;
+    border-radius: 25px;
+    padding: 5px 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    width: 20vw;
+    justify-content: space-between;
+}
+
+#Input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 1rem;
+    padding: 8px 10px;
+    width: 20vw;
+}
+
+
+#Input::-ms-clear {
+    display: none;
+}
+#Input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+}
+#Input[type="search"]::-webkit-search-decoration,
+#Input[type="search"]::-webkit-search-cancel-button,
+#Input[type="search"]::-webkit-search-results-button,
+#Input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+}
+
+#InputImg {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+#InputImg:hover {
+    opacity: 1;
+}
+
+#BurgerMenu{
+    background-image: url("Img\\5358649.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 5vh;
+    width: 5vw;
+}
+
+#LogoImg{
+    background-image: url("Img/Gemini_Generated_Image_swgtsqswgtsqswgt.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 10vh;
+    width: 10vw;
+}
+
+
