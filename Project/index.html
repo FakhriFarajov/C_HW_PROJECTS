@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
+    <script defer src="ts.js"></script>
 </head>
 <body>
+    <div id="Loading">
+        <div class="spinner"></div>
+    </div>
+
     <div id="Header">
         <div id="HeaderMainContainer">
             <div id="LogoImg"></div>
@@ -21,25 +25,36 @@
         </div>
 
 
-        <div id="HeaderCategories">
-            <a>Politics</a>
-            <a>Economics</a>
-            <a>Business</a>
-            <a>Technology</a>
-            <a>Sports</a>   
-        </div>
+<div id="HeaderCategories">
+    <a id="Politics">Politics</a>
+    <a id="Economics">Economics</a>
+    <a id="Business">Business</a>
+    <a id="Technology">Technology</a>
+    <a id="Sports">Sports</a>   
+</div>
     </div>
 
 
 
     <div id="Main">
-        <h1>HeadLines</h1>
+        <h1 id="HeadLinesTitle">HeadLines</h1>
         <div id="headLines">
-            <div id="HeadLineItem">
-
-            </div>
-
+            
         </div>
+
+        <div id="ButtonsHeadLine">
+            <button id="Prev">
+                Prev
+            </button>
+
+            <h1 id="CurrPage">Page</h1>
+
+            <button id="Next">
+                Next
+            </button>
+        </div>
+        
+        
 
     </div>
     

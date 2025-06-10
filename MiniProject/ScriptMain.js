@@ -150,7 +150,7 @@ function toRad(deg) {
 
 
 let currentPage = 1;
-const itemsPerPage = 5;
+const itemsPerPage = 4;
 
 const weatherInfoList = document.getElementById("weatherInfoList");
 const pageInfo = document.getElementById("pageInfo");
