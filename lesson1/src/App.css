@@ -1,0 +1,93 @@
+.App {
+  text-align: center;
+}
+
+.CityInfoTextT1{
+  display: flex;
+  justify-content: space-around;
+
+}
+
+
+.landmarksT1{
+  display: flex;
+  justify-content: center;
+}
+
+.landmarksT1 img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  margin: 10px;
+  border-radius: 8px;
+}
+
+
+
+
+
+.book-info-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  color: #333;
+}
+
+.book-title {
+  font-size: 2.8em;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 15px;
+}
+
+.book-author,
+.book-genre,
+.book-pages {
+  font-size: 1.3em;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.book-author strong,
+.book-genre strong,
+.book-pages strong {
+    color: #2c3e50;
+}
+
+
+.reviews-heading {
+  font-size: 2.2em;
+  color: #2c3e50;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  text-align: center;
+  border-top: 2px solid #eee;
+  padding-top: 20px;
+}
+
+.reviews-list {
+  list-style: none;
+  padding: 0;
+}
+
+.review-item {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.review-reviewer {
+  font-weight: bold;
+  color: #3498db;
+  font-size: 1.1em;
+  margin-bottom: 8px;
+}
+
+.review-comment {
+  font-style: italic;
+  color: #666;
+}
