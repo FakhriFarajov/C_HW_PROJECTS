@@ -1,3 +1,9 @@
 [
-
+  {
+    "username": "What'sup",
+    "email": "a@a.aw",
+    "passwordHashed": "$2b$12$TaFB3DFGoXswzVJSxe5D7eqaS/yQcAKtj4ReC7FElY0HHmUnHannK",
+    "lat": "40.407786111258275",
+    "long": "49.8773138519287"
+  }
 ]

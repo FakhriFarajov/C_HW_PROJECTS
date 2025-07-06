@@ -94,6 +94,7 @@
 body{
     margin: 0;
     padding-top: 20vh;
+    padding-bottom: 10vh;
 }
 
 
@@ -234,6 +235,10 @@ body{
 }
 
 
+#LogoImg:hover{
+    cursor: pointer;
+}
+
 #Main{
     display: flex;
     padding: 0 10vw;
@@ -361,4 +366,28 @@ body{
     color: #888;
     margin: 0;
     font-family: "SF Pro Text", Arial, sans-serif;
+}
+
+
+
+@media (max-width:690px){
+    #HeaderMainContainer{
+        flex-direction: column;
+    }
+
+    #Header{
+        height: 30vh;
+    }
+
+
+    body{
+        margin: 0;
+        padding-top: 30vh;
+    }
+    #headLines{
+        grid-template-columns: none;
+        grid-template-rows: repeat(1fr);
+        gap: 1rem; /* Optional: adds space between grid items */
+    }
+
 }

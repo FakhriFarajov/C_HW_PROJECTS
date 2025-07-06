@@ -34,65 +34,67 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _a;
+var _a, _b, _c;
 var _this = this;
 var loadingAnim = document.getElementById("Loading");
 var list = [];
-var api = ""; // This variable will hold your NewsAPI key
-// --- Asynchronous API Key Loading ---
-(function () { return __awaiter(_this, void 0, void 0, function () {
-    var response, json, error_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 3, , 4]);
-                return [4 /*yield*/, fetch('api.json')];
-            case 1:
-                response = _a.sent();
-                return [4 /*yield*/, response.json()];
-            case 2:
-                json = _a.sent();
-                api = json.api; // Correctly access the 'api' key from your JSON
-                return [3 /*break*/, 4];
-            case 3:
-                error_1 = _a.sent();
-                console.error("Error loading API key from api.json:", error_1);
-                // Display a user-friendly error message if the API key can't be loaded
-                if (document.getElementById("headlinesContainer")) { // Assuming you have this ID for the main content area
-                    document.getElementById("headlinesContainer").innerHTML = "<div>Error loading API configuration. News cannot be displayed.</div>";
-                }
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
-        }
-    });
-}); })();
-// --- getHeadLines function (corrected URL construction) ---
-function getHeadLines(baseUrl) {
+function getApi() {
     return __awaiter(this, void 0, void 0, function () {
-        var url, response, data, errorDetails, headlinesContainer, error_2;
+        var response, json, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch('api.json')];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    json = _a.sent();
+                    return [2 /*return*/, json.api];
+                case 3:
+                    error_1 = _a.sent();
+                    console.error("Error loading API key from api.json:", error_1);
+                    if (document.getElementById("headlinesContainer")) { // Assuming you have this ID for the main content area
+                        document.getElementById("headlinesContainer").innerHTML = "<div>Error loading API configuration. News cannot be displayed.</div>";
+                    }
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+// --- getHeadLines function (corrected URL construction) ---
+function getHeadLines(baseUrl) {
+    return __awaiter(this, void 0, void 0, function () {
+        var url, _a, _b, response, data, errorDetails, headlinesContainer, error_2;
+        return __generator(this, function (_c) {
+            switch (_c.label) {
+                case 0: return [4 /*yield*/, getApi()];
+                case 1:
                     // --- IMPORTANT: Check if API key is loaded before making the fetch call ---
-                    if (!api) {
+                    if (!(_c.sent())) {
                         console.error("API Key not loaded yet. Cannot fetch headlines.");
                         if (loadingAnim)
                             loadingAnim.style.display = "none";
                         // Optionally display a message to the user that the API key isn't ready
                         return [2 /*return*/];
                     }
-                    _a.label = 1;
-                case 1:
-                    _a.trys.push([1, 4, , 5]);
+                    _c.label = 2;
+                case 2:
+                    _c.trys.push([2, 6, , 7]);
                     if (loadingAnim)
                         loadingAnim.style.display = "flex";
-                    url = "".concat(baseUrl, "&apiKey=").concat(api);
-                    return [4 /*yield*/, fetch(url)];
-                case 2:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
+                    _b = (_a = "".concat(baseUrl, "&apiKey=")).concat;
+                    return [4 /*yield*/, getApi()];
                 case 3:
-                    data = _a.sent();
+                    url = _b.apply(_a, [_c.sent()]);
+                    return [4 /*yield*/, fetch(url)];
+                case 4:
+                    response = _c.sent();
+                    return [4 /*yield*/, response.json()];
+                case 5:
+                    data = _c.sent();
                     if (!response.ok) {
                         errorDetails = (data === null || data === void 0 ? void 0 : data.message) || response.statusText;
                         throw new Error("News API Error: ".concat(response.status, " - ").concat(errorDetails));
@@ -105,16 +107,16 @@ function getHeadLines(baseUrl) {
                         if (data.articles && data.articles.length > 0) {
                             list = data.articles;
                             currentPage = 1; // Reset to first page after fetching
-                            renderUsers();
+                            renderNews();
                         }
                         else {
                             list = [];
                             headlinesContainer.innerHTML = "<div>No headlines found.</div>";
                         }
                     }
-                    return [3 /*break*/, 5];
-                case 4:
-                    error_2 = _a.sent();
+                    return [3 /*break*/, 7];
+                case 6:
+                    error_2 = _c.sent();
                     if (loadingAnim)
                         loadingAnim.style.display = "none";
                     console.error("Headline fetch error:", error_2);
@@ -122,8 +124,8 @@ function getHeadLines(baseUrl) {
                     if (document.getElementById("headLines")) {
                         document.getElementById("headLines").innerHTML = "<div>Error fetching headlines: ".concat(error_2.message, ". Please try again later.</div>");
                     }
-                    return [3 /*break*/, 5];
-                case 5: return [2 /*return*/];
+                    return [3 /*break*/, 7];
+                case 7: return [2 /*return*/];
             }
         });
     });
@@ -134,7 +136,7 @@ var headLines = document.getElementById("headLines");
 var pageInfo = document.getElementById("CurrPage");
 var prevBtn = document.getElementById("Prev");
 var nextBtn = document.getElementById("Next");
-function renderUsers() {
+function renderNews() {
     if (!list || !Array.isArray(list) || list.length === 0) {
         if (headLines)
             headLines.innerHTML = "<div>No headlines found.</div>";
@@ -167,7 +169,7 @@ if (prevBtn)
     prevBtn.addEventListener("click", function () {
         if (currentPage > 1) {
             currentPage--;
-            renderUsers();
+            renderNews();
         }
     });
 if (nextBtn)
@@ -175,29 +177,28 @@ if (nextBtn)
         var totalPages = Math.ceil(list.length / itemsPerPage);
         if (currentPage < totalPages) {
             currentPage++;
-            renderUsers();
+            renderNews();
         }
     });
-// --- Initial Data Load on DOMContentLoaded (corrected URL) ---
 document.addEventListener("DOMContentLoaded", function () { return __awaiter(_this, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                if (!!api) return [3 /*break*/, 2];
-                return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, 50); })];
+            case 0: return [4 /*yield*/, getApi()];
             case 1:
+                if (!!(_a.sent())) return [3 /*break*/, 3];
+                return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, 50); })];
+            case 2:
                 _a.sent(); // Wait a bit
                 return [3 /*break*/, 0];
-            case 2:
+            case 3:
                 console.log("Initial fetch triggered.");
                 return [4 /*yield*/, getHeadLines("https://newsapi.org/v2/top-headlines?country=us")];
-            case 3:
+            case 4:
                 _a.sent(); // getHeadLines will append the key
                 return [2 /*return*/];
         }
     });
 }); });
-// --- Category Base URLs (without the API key) ---
 var categoryBaseUrls = {
     Politics: "https://newsapi.org/v2/everything?q=Politics&sortBy=popularity",
     Economics: "https://newsapi.org/v2/everything?q=Economics&sortBy=popularity",
@@ -205,7 +206,6 @@ var categoryBaseUrls = {
     Technology: "https://newsapi.org/v2/everything?q=Technology&sortBy=popularity",
     Sports: "https://newsapi.org/v2/everything?q=Sports&sortBy=popularity",
 };
-// --- Category Click Handlers (corrected URL usage) ---
 Object.keys(categoryBaseUrls).forEach(function (category) {
     var _a;
     (_a = document.getElementById(category)) === null || _a === void 0 ? void 0 : _a.addEventListener("click", function () { return __awaiter(_this, void 0, void 0, function () {
@@ -216,10 +216,8 @@ Object.keys(categoryBaseUrls).forEach(function (category) {
                     headLinesTitle = document.getElementById("HeadLinesTitle");
                     if (headLinesTitle)
                         headLinesTitle.innerHTML = category;
-                    // Call getHeadLines with the base URL; the function will append the API key
                     return [4 /*yield*/, getHeadLines(categoryBaseUrls[category])];
                 case 1:
-                    // Call getHeadLines with the base URL; the function will append the API key
                     _a.sent();
                     return [2 /*return*/];
             }
@@ -227,18 +225,74 @@ Object.keys(categoryBaseUrls).forEach(function (category) {
     }); });
 });
 (_a = document.getElementById("InputImg")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", function () { return __awaiter(_this, void 0, void 0, function () {
-    var value, headLinesTitle;
-    var _a;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+    var inputElement, value, _a, _b, _c, headLinesTitle;
+    return __generator(this, function (_d) {
+        switch (_d.label) {
             case 0:
-                value = (_a = document.getElementById("Input")) === null || _a === void 0 ? void 0 : _a.value;
-                return [4 /*yield*/, getHeadLines("https://newsapi.org/v2/everything?q=".concat(value, "&apiKey=b78309736d734341b5169baceb654854"))];
+                inputElement = document.getElementById("Input");
+                value = "";
+                if (inputElement.value) {
+                    value = inputElement.value;
+                    inputElement.value = "";
+                }
+                else {
+                    return [2 /*return*/];
+                }
+                value = value.trim();
+                _a = getHeadLines;
+                _c = (_b = "https://newsapi.org/v2/everything?q=".concat(value, "&apiKey=")).concat;
+                return [4 /*yield*/, getApi()];
+            case 1: return [4 /*yield*/, _a.apply(void 0, [_c.apply(_b, [_d.sent()])])];
+            case 2:
+                _d.sent();
+                headLinesTitle = document.getElementById("HeadLinesTitle");
+                if (headLinesTitle) {
+                    headLinesTitle.innerHTML = value;
+                }
+                return [2 /*return*/];
+        }
+    });
+}); });
+(_b = document.getElementById("LogoImg")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", function () { return __awaiter(_this, void 0, void 0, function () {
+    var headLinesTitle;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, getHeadLines("https://newsapi.org/v2/top-headlines?country=us")];
             case 1:
-                _b.sent();
+                _a.sent();
                 headLinesTitle = document.getElementById("HeadLinesTitle");
                 if (headLinesTitle)
+                    headLinesTitle.innerHTML = "HeadLines";
+                return [2 /*return*/];
+        }
+    });
+}); });
+(_c = document.getElementById("Input")) === null || _c === void 0 ? void 0 : _c.addEventListener("keypress", function (e) { return __awaiter(_this, void 0, void 0, function () {
+    var inputElement, value, _a, _b, _c, headLinesTitle;
+    return __generator(this, function (_d) {
+        switch (_d.label) {
+            case 0:
+                if (e.key != "Enter")
+                    return [2 /*return*/];
+                inputElement = document.getElementById("Input");
+                value = "";
+                if (inputElement.value) {
+                    value = inputElement.value;
+                    inputElement.value = "";
+                }
+                else
+                    return [2 /*return*/];
+                value = value.trim();
+                _a = getHeadLines;
+                _c = (_b = "https://newsapi.org/v2/everything?q=".concat(value, "&apiKey=")).concat;
+                return [4 /*yield*/, getApi()];
+            case 1: return [4 /*yield*/, _a.apply(void 0, [_c.apply(_b, [_d.sent()])])];
+            case 2:
+                _d.sent();
+                headLinesTitle = document.getElementById("HeadLinesTitle");
+                if (headLinesTitle) {
                     headLinesTitle.innerHTML = value;
+                }
                 return [2 /*return*/];
         }
     });

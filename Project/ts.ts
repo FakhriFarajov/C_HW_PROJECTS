@@ -1,45 +1,42 @@
 let loadingAnim = document.getElementById("Loading");
-
+ 
 let list: any[] = [];
-
+ 
 interface ApiConfig {
     api: string; // The key in your JSON is 'api'
 }
-
-
-let api: string = ""; // This variable will hold your NewsAPI key
-
-// --- Asynchronous API Key Loading ---
-(async () => {
+ 
+ 
+ 
+async function getApi(){
     try {
         const response = await fetch('api.json');
         const json: ApiConfig = await response.json(); // Type the JSON response
-        api = json.api; // Correctly access the 'api' key from your JSON
+        return json.api;
     } catch (error) {
         console.error("Error loading API key from api.json:", error);
-        // Display a user-friendly error message if the API key can't be loaded
         if (document.getElementById("headlinesContainer")) { // Assuming you have this ID for the main content area
             document.getElementById("headlinesContainer")!.innerHTML = "<div>Error loading API configuration. News cannot be displayed.</div>";
         }
     }
-})();
-
+}
+ 
 // --- getHeadLines function (corrected URL construction) ---
 async function getHeadLines(baseUrl: string) {
     // --- IMPORTANT: Check if API key is loaded before making the fetch call ---
-    if (!api) {
+    if (!await getApi()) {
         console.error("API Key not loaded yet. Cannot fetch headlines.");
         if (loadingAnim) loadingAnim.style.display = "none";
         // Optionally display a message to the user that the API key isn't ready
         return;
     }
-
+ 
     try {
         if (loadingAnim) loadingAnim.style.display = "flex";
-        
+       
         // --- Correctly construct the URL by appending the loaded API key ---
-        const url = `${baseUrl}&apiKey=${api}`;
-        
+        const url = `${baseUrl}&apiKey=${await getApi()}`;
+       
         const response = await fetch(url);
         // ... rest of your error handling and data processing ...
         const data = await response.json();
@@ -48,17 +45,17 @@ async function getHeadLines(baseUrl: string) {
             const errorDetails = data?.message || response.statusText;
             throw new Error(`News API Error: ${response.status} - ${errorDetails}`);
         }
-
+ 
         if (loadingAnim) loadingAnim.style.display = "none";
-
+ 
         const headlinesContainer = document.getElementById("headLines");
         if (headlinesContainer) {
             headlinesContainer.innerHTML = "";
             if (data.articles && data.articles.length > 0) {
                 list = data.articles;
                 currentPage = 1; // Reset to first page after fetching
-                renderUsers();
-
+                renderNews();
+ 
             } else {
                 list = [];
                 headlinesContainer.innerHTML = "<div>No headlines found.</div>";
@@ -73,27 +70,27 @@ async function getHeadLines(baseUrl: string) {
         }
     }
 }
-
+ 
 let currentPage = 1;
 const itemsPerPage = 10;
-
+ 
 const headLines = document.getElementById("headLines");
 const pageInfo = document.getElementById("CurrPage");
 const prevBtn = document.getElementById("Prev");
 const nextBtn = document.getElementById("Next");
-
-function renderUsers() {
+ 
+function renderNews() {
     if (!list || !Array.isArray(list) || list.length === 0) {
         if (headLines) headLines.innerHTML = "<div>No headlines found.</div>";
         if (pageInfo) pageInfo.textContent = "";
         return;
     }
-
+ 
     if (headLines) headLines.innerHTML = "";
     const start = (currentPage - 1) * itemsPerPage;
     const end = start + itemsPerPage;
     const forecastPage = list.slice(start, end);
-
+ 
     const headlinesContainer = document.getElementById("headLines");
     if (headlinesContainer)
         forecastPage.forEach((article: any) => {
@@ -112,41 +109,38 @@ function renderUsers() {
             `;
             headlinesContainer.appendChild(item);
         });
-
+ 
     const totalPages = Math.ceil(list.length / itemsPerPage);
     if (pageInfo)
         pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
-
+ 
 }
-
+ 
 if (prevBtn)
     prevBtn.addEventListener("click", () => {
         if (currentPage > 1) {
             currentPage--;
-            renderUsers();
+            renderNews();
         }
     });
-
+ 
 if (nextBtn)
     nextBtn.addEventListener("click", () => {
         const totalPages = Math.ceil(list.length / itemsPerPage);
         if (currentPage < totalPages) {
             currentPage++;
-            renderUsers();
+            renderNews();
         }
     });
-
-// --- Initial Data Load on DOMContentLoaded (corrected URL) ---
+ 
 document.addEventListener("DOMContentLoaded", async () => {
-    // Wait for the 'api' key to be loaded before attempting the initial fetch
-    while (!api) {
+    while (!await getApi()) {
         await new Promise(resolve => setTimeout(resolve, 50)); // Wait a bit
     }
     console.log("Initial fetch triggered.");
     await getHeadLines(`https://newsapi.org/v2/top-headlines?country=us`); // getHeadLines will append the key
 });
-
-// --- Category Base URLs (without the API key) ---
+ 
 const categoryBaseUrls: { [key: string]: string } = {
     Politics: "https://newsapi.org/v2/everything?q=Politics&sortBy=popularity",
     Economics: "https://newsapi.org/v2/everything?q=Economics&sortBy=popularity",
@@ -154,24 +148,59 @@ const categoryBaseUrls: { [key: string]: string } = {
     Technology: "https://newsapi.org/v2/everything?q=Technology&sortBy=popularity",
     Sports: "https://newsapi.org/v2/everything?q=Sports&sortBy=popularity",
 };
-
-// --- Category Click Handlers (corrected URL usage) ---
+ 
 Object.keys(categoryBaseUrls).forEach(category => {
     document.getElementById(category)?.addEventListener("click", async () => {
         const headLinesTitle = document.getElementById("HeadLinesTitle"); // Make sure this element exists in your HTML
         if (headLinesTitle) headLinesTitle.innerHTML = category;
-        // Call getHeadLines with the base URL; the function will append the API key
         await getHeadLines(categoryBaseUrls[category]);
     });
 });
+ 
+ 
+document.getElementById("InputImg")?.addEventListener("click", async () => {
+    const inputElement = document.getElementById("Input") as HTMLInputElement;
+    let value: string = "";
+    if (inputElement.value) {
+        value = inputElement.value;
+        inputElement.value = "";
+    }
+    else{
+        return
+    }
+    value = value.trim()
 
-
-
-document.getElementById("InputImg")?.addEventListener("click", async ()=>{
-    let value = (document.getElementById("Input") as HTMLInputElement)?.value;
-    await getHeadLines(`https://newsapi.org/v2/everything?q=${value}&apiKey=b78309736d734341b5169baceb654854`)
+    await getHeadLines(`https://newsapi.org/v2/everything?q=${value}&apiKey=${await getApi()}`);
+ 
+    const headLinesTitle = document.getElementById("HeadLinesTitle");
+ 
+    if (headLinesTitle) {
+        headLinesTitle.innerHTML = value;
+    }
+});
+  
+document.getElementById("LogoImg")?.addEventListener("click", async ()=>{
+    await getHeadLines(`https://newsapi.org/v2/top-headlines?country=us`);
     const headLinesTitle = document.getElementById("HeadLinesTitle"); // Make sure this element exists in your HTML
-        if (headLinesTitle) headLinesTitle.innerHTML = value;
-    
+    if (headLinesTitle) headLinesTitle.innerHTML = "HeadLines";
 })
 
+document.getElementById("Input")?.addEventListener("keypress", async (e) => {
+    if(e.key != "Enter") return 
+    const inputElement = document.getElementById("Input") as HTMLInputElement;
+    let value: string = "";
+    if (inputElement.value) {
+        value = inputElement.value;
+        inputElement.value = "";
+    }
+    else return
+    value = value.trim()
+
+    await getHeadLines(`https://newsapi.org/v2/everything?q=${value}&apiKey=${await getApi()}`);
+ 
+    const headLinesTitle = document.getElementById("HeadLinesTitle");
+ 
+    if (headLinesTitle) {
+        headLinesTitle.innerHTML = value;
+    }
+});
