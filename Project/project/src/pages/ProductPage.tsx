@@ -65,7 +65,6 @@ export default function ProductPage() {
   if (!product) {
     return <div className="p-8 text-center text-red-500">{t('Product not found')}</div>;
   }
-
   return (
     <>
       <Navbar></Navbar>
@@ -73,7 +72,7 @@ export default function ProductPage() {
         <div className="flex flex-col md:flex-row gap-8">
           <div className="flex-1 flex flex-col items-center">
             {product?.images?.length ? (
-              <ImageCarousel slides={product.images} />
+              <ImageCarousel slides={product.images}  />
             ) : (
               <div className="w-full h-64 bg-gray-200 flex items-center justify-center rounded-lg">
                 {t('No Image')}

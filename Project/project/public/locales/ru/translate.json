@@ -70,7 +70,7 @@
   "Car Accessories": "Автоаксессуары",
   "Motorcycle Parts": "Мото детали",
   "Tools & Equipment": "Инструменты и оборудование",
-  "Home": "Главная",
+  "Home": "Дом",
   "Man": "Мужчина",
   "Woman": "Женщина",
   "Kids": "Дети",
@@ -178,6 +178,8 @@
   "Login": "Войти",
   "Continue with Apple": "Продолжить с Apple",
   "Continue with Google": "Продолжить с Google",
-  "Or" : "Или"
+  "Or" : "Или",
+  "Sign Up": "Зарегистрироваться",
+  "Quantity": "Количество"
 
 }

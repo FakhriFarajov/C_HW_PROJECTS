@@ -34,6 +34,7 @@ export default function CartItem({ item, currentStock, onQuantityChange, onRemov
           )}
         </div>
         <Label>{t('Size')}: {item.size}</Label>
+        <Label>{t('Color')}: {item.color || t('N/A')}</Label>
         <Label>{t('Quantity')}: {item.quantity}</Label>
         <Label>{t('In Stock')}: {currentStock}</Label>
         <Label className="text-red-500">{currentStock <= 3 ? `${t('Left')} ${currentStock} ${t('pcs')}` : ""}</Label>

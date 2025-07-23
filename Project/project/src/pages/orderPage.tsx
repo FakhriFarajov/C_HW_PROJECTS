@@ -41,6 +41,7 @@ export default function OrderPage() {
                 <Label>
                   {t('Customer')}: {order.customer.name} ({order.customer.email})
                 </Label>
+
               </div>
 
               <div className="border-t pt-4">

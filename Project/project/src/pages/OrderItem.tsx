@@ -6,6 +6,7 @@ export type OrderItemType = {
   name: string;
   image?: string;
   size?: string;
+  color?: string;
   quantity: number;
   price: number;
   oldPrice?: number;
@@ -22,11 +23,13 @@ const OrderItem = ({ item }: OrderItemProps) => (
         src={item.image}
         alt={item.name}
         className="w-16 h-16 rounded-md object-cover"
-      />
+        />
+
     )}
     <div className="flex-1">
       <p className="font-medium">{t(item.name)}</p>
       {item.size && <Label>{t("Size")}: {item.size}</Label>}
+      {item.color && <Label>{t("Color")}: {item.color}</Label>}
       <Label>{t("Qty")}: {item.quantity}</Label>
     </div>
     <div className="text-right font-medium">
