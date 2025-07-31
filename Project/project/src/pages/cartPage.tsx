@@ -80,7 +80,7 @@ export default function Cart() {
     return (
         <>
             <NavBar />
-            <div className="container mx-auto px-4 py-6 h-lvh">
+            <div className="container mx-auto px-4 py-6 min-h-screen">
                 <h1 className="text-2xl font-bold mb-6">{t('Your Cart')}</h1>
                 <div className="flex flex-col md:flex-row gap-8">
                     <div className="flex-1 space-y-4">

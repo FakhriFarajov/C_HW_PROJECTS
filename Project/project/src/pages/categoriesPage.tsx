@@ -117,7 +117,8 @@ export default function CategoryPage() {
   return (
     <>
       <NavBar />
-      <div className="p-8 grid grid-cols-12 gap-6">
+      <div className="p-8 grid grid-cols-1 lg:grid-cols-12 gap-6">
+
         <section className="col-span-12 mb-4">
           <h1 className="text-3xl font-bold mb-6 text-left">{t(category.name)}</h1>
         </section>

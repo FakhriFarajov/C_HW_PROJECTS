@@ -86,38 +86,38 @@ export default function ProfilePage() {
   };
   return (
     <>
-    <Navbar></Navbar>
+    <Navbar />
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto p-8 grid grid-cols-12 gap-8">
+      <div className="max-w-7xl mx-auto p-4 md:p-8 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8">
         
-        <aside className="col-span-3 bg-white rounded-md shadow p-6 h-fit sticky top-4">
-          <h2 className="text-lg font-semibold mb-6">{t('Account')}</h2>
-          <ul className="space-y-3">
+        <aside className="col-span-12 md:col-span-3 bg-white rounded-md shadow p-4 md:p-6 h-fit mb-4 md:mb-0 md:sticky md:top-4">
+          <h2 className="text-base md:text-lg font-semibold mb-4 md:mb-6">{t('Account')}</h2>
+          <ul className="space-y-2 md:space-y-3">
             {sidebarItems.map((item) => (
-              <li key={item.label} className="flex items-center gap-3 text-gray-700 hover:text-blue-600 cursor-pointer">
+              <li key={item.label} className="flex items-center gap-2 md:gap-3 text-gray-700 hover:text-blue-600 cursor-pointer">
                 <span className="text-xl">{item.icon}</span>
-                <span>{t(item.label)}</span>
+                <span className="text-sm md:text-base">{t(item.label)}</span>
               </li>
             ))}
           </ul>
         </aside>
 
-        <section className="col-span-9">
-          <h1 className="text-2xl font-bold mb-6">{t('Edit Profile')}</h1>
+        <section className="col-span-12 md:col-span-9">
+          <h1 className="text-lg md:text-2xl font-bold mb-4 md:mb-6">{t('Edit Profile')}</h1>
           <Card>
-            <CardContent className="space-y-6 p-8">
-              <div className="flex items-center gap-6 mb-6">
+            <CardContent className="space-y-4 md:space-y-6 p-4 md:p-8">
+              <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 mb-4 md:mb-6">
                 <div>
                   {profile.profilePicPreview ? (
-                    <img src={profile.profilePicPreview} alt={t('Profile Preview')} className="w-24 h-24 object-cover rounded-full border" />
+                    <img src={profile.profilePicPreview} alt={t('Profile Preview')} className="w-20 h-20 md:w-24 md:h-24 object-cover rounded-full border" />
                   ) : (
-                    <div className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center text-4xl text-gray-400 border">
+                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gray-200 flex items-center justify-center text-3xl md:text-4xl text-gray-400 border">
                       <FaUser />
                     </div>
                   )}
                   <Input type="file" accept="image/*" onChange={handleProfilePicChange} className="mt-2" />
                 </div>
-                <div className="flex flex-col gap-4 flex-1">
+                <div className="flex flex-col gap-3 md:gap-4 flex-1 w-full">
                   <div>
                     <label className="block mb-1">{t('Name')}</label>
                     <Input

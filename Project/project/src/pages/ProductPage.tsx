@@ -66,7 +66,7 @@ export default function ProductPage() {
   return (
     <>
       <Navbar></Navbar>
-      <div className="w-full mx-auto p-6 bg-white rounded-lg shadow-lg mt-8 h-lvh">
+      <div className="w-full mx-auto p-6 bg-white rounded-lg shadow-lg mt-8 ">
         <div className="flex flex-col md:flex-row gap-8">
           <div className="flex-1 flex flex-col items-center">
             {product?.images?.length ? (
