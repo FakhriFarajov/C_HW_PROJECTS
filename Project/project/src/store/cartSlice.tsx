@@ -21,7 +21,6 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const product = action.payload;
-      // Find existing item by id, size, and color
       const existing = state.find(item =>
         item.id === product.id &&
         item.size === product.selectedSize &&

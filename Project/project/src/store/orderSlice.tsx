@@ -1,4 +1,3 @@
-// orderSlice.ts
 import { createSlice } from "@reduxjs/toolkit";
 
 const orderSlice = createSlice({
