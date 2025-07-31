@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import NavBar from "@/components/custom/Navbar/navbar";
 import Footer from "@/components/custom/footer";
 import { useSelector } from "react-redux";
-import OrderItem from "./OrderItem";
-import type { OrderItemType } from "./OrderItem";
+import OrderItem from "@/components/custom/OrderItem";
+import type { OrderItemType } from "@/components/custom/OrderItem";
 import { TfiPackage } from "react-icons/tfi";
 import { useTranslation } from "react-i18next";
 

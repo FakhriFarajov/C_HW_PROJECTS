@@ -1,24 +1,35 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { getTranslatedCategories } from '@/components/custom/Navbar/navbar';
+import { getTranslatedCategories } from '@/components/custom/Navbar/getTranslatedCategories';
 import NavBar from '@/components/custom/Navbar/navbar';
 import { ProductCard } from '@/components/custom/itemCard';
-import { use } from 'i18next';
-import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import CategoryFilters from './CategoryFilters';
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
 
 export default function CategoryPage() {
   const { t } = useTranslation();
-  const categories = getTranslatedCategories(t);
+  // Use translation keys in getTranslatedCategories!
+  const categories = getTranslatedCategories((x: string) => x);
   const { category: categoryId, subcategory: subcategoryId } = useParams();
   const navigate = useNavigate();
-  const allProducts = useSelector((state) => state.product);
-  const category = categoryId ? categories[categoryId] : undefined;
+  const allProducts = useSelector((state: any) => state.product);
+  const category = categoryId ? (categories as Record<string, typeof categories[keyof typeof categories]>)[categoryId] : undefined;
   const [selectedFilters, setSelectedFilters] = useState<{ [key: string]: string[] }>({});
   const [priceRange, setPriceRange] = useState({ min: '', max: '' });
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
+  const [sortBy, setSortBy] = useState<'price-asc' | 'price-desc' | 'name-asc' | 'name-desc'>('price-asc');
+
 
   const selectedSubcategory = subcategoryId ?? null;
 
@@ -48,10 +59,11 @@ export default function CategoryPage() {
   const allFilters = useMemo(() => {
     if (!category) return [];
     const filtersMap: Record<string, any> = {};
-    category.subcategories.forEach((subcat: any) => {
+    const subcats = selectedSubcategory
+      ? category.subcategories.filter((subcat: any) => String(subcat.id) === selectedSubcategory)
+      : category.subcategories;
+    subcats.forEach((subcat: any) => {
       subcat.filters.forEach((filter: any) => {
-
-
         if (!filtersMap[filter.id]) {
           filtersMap[filter.id] = {
             id: filter.id,
@@ -68,143 +80,111 @@ export default function CategoryPage() {
       name: f.name,
       options: Array.from(f.options),
     }));
-  }, [category]);
-
+  }, [category, selectedSubcategory]);
 
   useEffect(() => {
     if (!categoryId) return;
     setSelectedFilters({});
     setPriceRange({ min: '', max: '' });
-  }, [categoryId])
+  }, [categoryId]);
 
-  // Reset page when filters, category, or subcategory change
   useEffect(() => {
     setCurrentPage(1);
   }, [selectedFilters, priceRange, categoryId, selectedSubcategory]);
 
-  // Paginated products
-  const paginatedProducts = filteredProducts.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+  // Sort filtered products before pagination
+  const sortedProducts = useMemo(() => {
+    const products = [...filteredProducts];
+    switch (sortBy) {
+      case 'price-asc':
+        return products.sort((a, b) => a.price - b.price);
+      case 'price-desc':
+        return products.sort((a, b) => b.price - a.price);
+      case 'name-asc':
+        return products.sort((a, b) => t(a.name).localeCompare(t(b.name)));
+      case 'name-desc':
+        return products.sort((a, b) => t(b.name).localeCompare(t(a.name)));
+      default:
+        return products;
+    }
+  }, [filteredProducts, sortBy, t]);
+
+  const paginatedProducts = sortedProducts.slice((currentPage - 1) * pageSize, currentPage * pageSize);
   const totalPages = Math.ceil(filteredProducts.length / pageSize);
 
-  if (!category) return <div className="p-8">Category not found.</div>;
+  if (!category) return <div className="p-8">{t('Category not found')}</div>;
 
   return (
     <>
       <NavBar />
       <div className="p-8 grid grid-cols-12 gap-6">
         <section className="col-span-12 mb-4">
-          <h1 className="text-3xl font-bold mb-6 text-left">{category.name} </h1>
+          <h1 className="text-3xl font-bold mb-6 text-left">{t(category.name)}</h1>
         </section>
-        <aside className="col-span-3 bg-white rounded-md shadow p-4 sticky top-4 h-fit">
-          <h2 className="text-lg font-semibold mb-4">{t('Filters')}</h2>
-          <button
-            className="mb-4 px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 text-sm"
-            onClick={() => setSelectedFilters({})}
-          >
-            {t('Uncheck All')}
-          </button>
-          {/* Price filter UI */}
-          <div className="mb-4">
-            <h3 className="font-medium mb-2">{t('Price')}</h3>
-            <div className="flex gap-2">
-              <input
-                type="number"
-                placeholder={t('Min')}
-                className="border rounded px-2 py-1 w-20"
-                value={priceRange.min}
-                onChange={e => setPriceRange(r => ({ ...r, min: e.target.value }))}
-              />
-              <span>-</span>
-              <input
-                type="number"
-                placeholder={t('Max')}
-                className="border rounded px-2 py-1 w-20"
-                value={priceRange.max}
-                onChange={e => setPriceRange(r => ({ ...r, max: e.target.value }))}
-              />
-            </div>
-          </div>
-          {allFilters.map((filter: any) => (
-            <div key={filter.id} className="mb-4">
-              <h3 className="font-medium mb-2">{t(filter.name)}</h3>
-              <div className="space-y-1">
-                {filter.options.map((option: string) => (
-                  <label key={option} className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
-                      checked={selectedFilters[filter.id]?.includes(option) || false}
-                      onChange={(e) => {
-                        const checked = e.target.checked;
-                        setSelectedFilters((prev: Record<string, any[]>) => {
-                          const current = prev[filter.id] || [];
-                          return {
-                            ...prev,
-                            [filter.id]: checked
-                              ? [...current, option]
-                              : current.filter((v: string) => v !== option),
-                          };
-                        });
-                      }}
-                      className="form-checkbox"
-                    />
-                    <span>{t(option)}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-          ))}
-        </aside>
+        <CategoryFilters
+          allFilters={allFilters.map(f => ({
+            ...f,
+            name: t(f.name),
+            options: f.options.map((opt: string) => t(opt)),
+          }))}
+          selectedFilters={selectedFilters}
+          setSelectedFilters={setSelectedFilters}
+          priceRange={priceRange}
+          setPriceRange={setPriceRange}
+          t={t}
+        />
 
         <section className="col-span-9">
-          <div className="mb-6 flex flex-wrap gap-2">
-            {category.subcategories.map((subcat: any) => (
-              <button
-                key={subcat.id}
-                className={`px-4 py-2 rounded border ${selectedSubcategory === String(subcat.id) ? 'bg-blue-600 text-white' : 'bg-white text-gray-800'}`}
-                onClick={() => handleSubcategoryClick(subcat.id)}
-              >
-                {subcat.name}
-              </button>
-            ))}
-            <button
-              className={`px-4 py-2 rounded border ${!selectedSubcategory ? 'bg-blue-600 text-white' : 'bg-white text-gray-800'}`}
-              onClick={() => handleSubcategoryClick(null)}
+          {/* Sorting dropdown */}
+          <div className="flex items-center gap-2 mb-4">
+            <label className="font-medium">{t('Sort by')}:</label>
+            <select
+              value={sortBy}
+              onChange={e => setSortBy(e.target.value as any)}
+              className="border rounded p-2"
             >
-              {t('All')}
-            </button>
+              <option value="price-asc">{t('Price: Low to High')}</option>
+              <option value="price-desc">{t('Price: High to Low')}</option>
+              <option value="name-asc">{t('Name: A-Z')}</option>
+              <option value="name-desc">{t('Name: Z-A')}</option>
+            </select>
           </div>
-          {filteredProducts.length > 0 ? (
+          {paginatedProducts.length > 0 ? (
             <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5 gap-4">
-                {paginatedProducts.map((product: any) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </div>
-              {/* Pagination controls */}
-              <div className="flex justify-center items-center mt-6 gap-2">
-                <button
-                  className="px-3 py-1 rounded border bg-gray-200 hover:bg-gray-300"
-                  disabled={currentPage === 1}
-                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-                >
-                  {t('Prev')}
-                </button>
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-                  <button
-                    key={page}
-                    className={`px-3 py-1 rounded border ${currentPage === page ? 'bg-blue-600 text-white' : 'bg-white text-gray-800'}`}
-                    onClick={() => setCurrentPage(page)}
-                  >
-                    {page}
-                  </button>
-                ))}
-                <button
-                  className="px-3 py-1 rounded border bg-gray-200 hover:bg-gray-300"
-                  disabled={currentPage === totalPages}
-                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-                >
-                  {t('Next')}
-                </button>
+              <div className='flex flex-wrap flex-col justify-center w-full p-6 bg-white rounded-lg shadow-md mt-6'>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
+                  {paginatedProducts.map((product: any) => (
+                    <ProductCard key={product.id} product={{
+                      ...product,
+                      name: t(product.name),
+                      description: t(product.description),
+                      category: t(product.category),
+                      brand: t(product.brand),
+                      currency: t(product.currency)
+                    }} />
+                  ))}
+                </div>
+
+                <Pagination className="mt-6">
+                  <PaginationContent>
+                    <PaginationPrevious
+                      onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                    >
+                      {t('Previous')}
+                    </PaginationPrevious>
+                    {Array.from({ length: totalPages }, (_, i) => (
+                      <PaginationItem key={i + 1} onClick={() => setCurrentPage(i + 1)} active={currentPage === i + 1}>
+                        <PaginationLink>{i + 1}</PaginationLink>
+                      </PaginationItem>
+                    ))}
+                    <PaginationEllipsis />
+                    <PaginationNext
+                      onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                    >
+                      {t('Next')}
+                    </PaginationNext>
+                  </PaginationContent>
+                </Pagination>
               </div>
             </>
           ) : (

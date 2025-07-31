@@ -161,5 +161,14 @@
   "You have no items in your cart. Please add some products before proceeding to checkout.": "You have no items in your cart. Please add some products before proceeding to checkout.",
   "Close": "Close",
   "Cart is empty": "Cart is empty",
-  "Proceed to checkout": "Proceed to checkout"
+  "Proceed to checkout": "Proceed to checkout",
+  "Sort by": "Sort by",
+  "Price: Low to High": "Price: Low to High",
+  "Price: High to Low": "Price: High to Low",
+  "Name: A-Z": "Name: A-Z",
+  "Name: Z-A": "Name: Z-A",
+  "Previous": "Previous",
+  "Next": "Next",
+  "no_products_found": "No products found",
+  "Category not found": "Category not found"
 }

@@ -13,6 +13,8 @@ import { store, persistor } from '@/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import OrderPage from './pages/orderPage';
 import CategoryPage from './pages/categoriesPage';
+import { Toaster } from 'sonner';
+
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
           </Routes>
         </BrowserRouter>
       </PersistGate>
+            <Toaster>
+            </Toaster>
     </Provider>
   );
 }

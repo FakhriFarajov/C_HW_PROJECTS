@@ -1,6 +1,7 @@
-import NavBar, {getTranslatedCategories}  from "@/components/custom/Navbar/navbar";
+import NavBar  from "@/components/custom/Navbar/navbar";
+import { getTranslatedCategories } from '@/components/custom/Navbar/getTranslatedCategories';
 import Carousel from "@/components/custom/carousel";
-import Grid from "@/components/custom/grid"
+import Grid from "@/components/custom/ProductGrid";
 import Footer from "@/components/custom/footer"
 import { Label } from "@/components/ui/label";
 import { ProductCard } from "@/components/custom/itemCard";
@@ -38,21 +39,23 @@ interface SubcategoryFilter {
 
 const slides = [
     "https://aimg.kwcdn.com/material-put/2079f6251c/cc20ce65-db4a-4d92-aeee-37122020bca6.png?imageView2/q/70/format/webp",
-    "https://aimg.kwcdn.com/material-put/2079f6251c/cc20ce65-db4a-4d92-aeee-37122020bca6.png?imageView2/q/70/format/webp",
-    "https://aimg.kwcdn.com/material-put/2079f6251c/cc20ce65-db4a-4d92-aeee-37122020bca6.png?imageView2/q/70/format/webp",
-    "https://aimg.kwcdn.com/material-put/2079f6251c/cc20ce65-db4a-4d92-aeee-37122020bca6.png?imageView2/q/70/format/webp"
+    "https://ir.ozone.ru/s3/cms/fb/ta5/wc1450/en-tur_desktop_2832x600_1.jpg",
+    "https://ir.ozone.ru/s3/cms/c4/t38/wc1450/azengchina.jpg",
+    "https://ir.ozone.ru/s3/cms/14/ta8/wc1450/2832x600.jpg"
+
 
 ]
 
 
 export default function Main() {
     const { t } = useTranslation();
+    //Categories
+    const categories: { [key: string]: { id: number; name: any; subcategories: { id: number; name: any; filters: SubcategoryFilter[] }[] } } = getTranslatedCategories(t);
     const dispatch = useDispatch();
     const products = useSelector((state: any) => state.product);
-    const categories = getTranslatedCategories(t);
 
 
-    //Product generator
+    //Product generator needs to be deprecated in production
     useEffect(() => {
         if (products.length === 0) {
             const generatedProducts = Array.from({ length: 300 }, (_, i) => {
@@ -98,6 +101,7 @@ export default function Main() {
                     images: Array.from({ length: 4 }, (_, j) => `https://picsum.photos/seed/product${i + 3}-${j}/400/400`),
                     sizes: ["S", "M", "L", "XL"],
                     colors: ["Red", "Blue", "Green", "Black"],
+                    storage: ["64GB", "128GB", "256GB"],
                     currency: "USD",
                     discount: +(oldPrice - price).toFixed(2),
                     daysLeft: Math.floor(Math.random() * 30) + 1,
@@ -125,8 +129,8 @@ export default function Main() {
             <div className="flex flex-wrap flex-col justify-center w-full p-6 bg-white rounded-lg shadow-md mt-6">
                 <Label className="text-4xl justify-center font-semibold mb-4">{t('Featured Products')}</Label>
                 <div className="max-w-10xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
-                        {products.slice(0,20).map((product: Product, i: number) => (
+                    <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
+                        {products.slice(0,30).map((product: Product, i: number) => (
                             <ProductCard key={product.id || i} product={{
                                 ...product,
                                 name: t(product.name),
@@ -143,23 +147,14 @@ export default function Main() {
                 <Label className="text-4xl justify-center font-semibold mb-4">{t('Explore More')}</Label>
             </div>
 
-
-            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4  max-w-10xl justify-center content-center w-full p-6 bg-white rounded-lg shadow-md mt-6">
-                <Grid />
-            </div>
-            {/* 
-            <div className="flex flex-wrap flex-col justify-center w-full p-6 bg-white rounded-lg shadow-md mt-6">
-                <Label className="text-4xl justify-center font-semibold mb-4">{t('All Products')}</Label>
-                <div className="max-w-10xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
-                        {products.map((product: Product, i: number) => (
-                            <ProductCard key={product.id || i} product={product} />
-                        ))}
-                    </div>
+            <div className="flex flex-col items-center justify-center w-full p-6 bg-white rounded-lg shadow-md mt-6">
+                <div className="w-full">
+                    <Grid />
                 </div>
-            </div> */}
+            </div>
 
-            <Footer></Footer>
+
+            <Footer/>
         </>
     );
 }

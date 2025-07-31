@@ -3,18 +3,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from "react"
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
 import { useTranslation } from "react-i18next"
+import { toast } from "sonner"
 
 export default function LoginForm({
   className,
@@ -32,8 +22,7 @@ export default function LoginForm({
       localStorage.setItem("userToken", "demoToken")
       window.location.href = "/profile"
     } else {
-      
-
+      toast.error(t('Password or email is incorrect'))
     }
   }
 

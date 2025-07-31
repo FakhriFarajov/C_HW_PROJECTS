@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
+import { toast } from "sonner"
 
 export default function RegForm({
   className,
@@ -20,7 +21,7 @@ export default function RegForm({
     const user = { username, email, password }
     localStorage.setItem("userToken", "demoToken") // You can use a real token or uuid
     localStorage.setItem("user", JSON.stringify(user))
-    alert(t("Registration successful!"))
+    toast.success(t('Registration successful!'))
     window.location.href = "/profile" // Redirect to profile or main page
   }
 

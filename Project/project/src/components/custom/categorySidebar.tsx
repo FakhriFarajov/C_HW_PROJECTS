@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import { TbCategory } from "react-icons/tb";
 import { useTranslation } from "react-i18next";
@@ -32,11 +31,11 @@ interface Category {
     subcategories?: Subcategory[];
 }
 
+interface SideBarProps {
+    categories: Record<string, Category>;
+}
 
-
-
-
-export default function SideBar({ categories }) {
+export default function SideBar({ categories }: SideBarProps) {
     const { t } = useTranslation();
     const navigate = useNavigate();
     return (
@@ -55,13 +54,13 @@ export default function SideBar({ categories }) {
                         <SheetHeader>
                             <SheetTitle className="text-white">{t('Category')}</SheetTitle>
                             <Separator></Separator>
-                            <Accordion type="single" collapsible>
+                            <Accordion type="single" collapsible >
                                 {Object.entries(categories).map(([key, category]: [string, any]) => (
-                                    <AccordionItem value={category.name} className="text-white " key={key}>
+                                    <AccordionItem value={category.name} className="text-white border-none" key={key}>
                                         <AccordionTrigger className="flex items-center justify-between text-white hover:no-underline p-2 rounded-md cursor-pointer" >
-                                            {t(category.name)}
+                                            <span className="text-lg font-semibold" onClick={() => navigate(`/category/${key}`)}>{t(category.name)}</span>
                                         </AccordionTrigger>
-                                        <AccordionContent>
+                                        <AccordionContent className="text-gray-300 pl-4">
                                             {category.subcategories?.map((subcategory: any) => (
                                                 <div
                                                     key={subcategory.id}

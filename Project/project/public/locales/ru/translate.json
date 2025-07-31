@@ -180,6 +180,20 @@
   "Continue with Google": "Продолжить с Google",
   "Or" : "Или",
   "Sign Up": "Зарегистрироваться",
-  "Quantity": "Количество"
-
+  "Quantity": "Количество",
+  "Profile saved!": "Профиль сохранен!",
+  "Registration successful!": "Регистрация успешна!",
+  "Please log in to add items to your cart": "Пожалуйста, войдите, чтобы добавить товары в корзину",
+  "Password or email is incorrect": "Пароль или электронная почта неверны",
+  "Sort by": "Сортировать по",
+  "Price: Low to High": "Цена: по возрастанию",
+  "Price: High to Low": "Цена: по убыванию",
+  "Name: A-Z": "Имя: А-Я",
+  "Name: Z-A": "Имя: Я-А",
+  "Previous": "Назад",
+  "Next": "Вперёд",
+  "no_products_found": "Товары не найдены",
+  "Category not found": "Категория не найдена",
+  "Sizes": "Размеры",
+  "Storage": "Хранение"
 }

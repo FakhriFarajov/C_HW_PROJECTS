@@ -179,6 +179,22 @@
   "Continue with Apple": "Apple ilə davam et",
   "Continue with Google": "Google ilə davam et",
   "Or" : "Və ya",
-  "Quantity": "Miqdar"
-
+  "Quantity": "Miqdar",
+  "Profile saved!": "Profil yadda saxlanıldı!",
+  "Registration successful!": "Qeydiyyat uğurla tamamlandı!",
+  "Please log in to add items to your cart": "Səbətə məhsul əlavə etmək üçün daxil olun",
+  "Password or email is incorrect": "Şifrə və ya e-poçt yanlışdır",
+  "Sort by": "Sırala",
+  "Price: Low to High": "Qiymət: aşağıdan yuxarıya",
+  "Price: High to Low": "Qiymət: yuxarıdan aşağıya",
+  "Name: A-Z": "Ad: A-Z",
+  "Name: Z-A": "Ad: Z-A",
+  "Previous": "Əvvəlki",
+  "Next": "Növbəti",
+  "no_products_found": "Məhsul tapılmadı",
+  "Category not found": "Kateqoriya tapılmadı",
+  "Storage": "Yaddaş",
+  "Color": "Rəng",
+  "Material": "Material",
+  "Size": "Ölçü"
 }

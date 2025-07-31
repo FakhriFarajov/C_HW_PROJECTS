@@ -7,6 +7,7 @@ import Navbar from "@/components/custom/Navbar/navbar";
 import Footer from "@/components/custom/footer";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { toast } from "sonner";
 
 interface Profile {
   name: string;
@@ -86,7 +87,7 @@ export default function ProfilePage() {
       updatedProfile.profilePicPreview = profile.profilePicPreview;
     }
     localStorage.setItem("profile", JSON.stringify(updatedProfile));
-    alert("Profile saved!");
+    toast.success(t('Profile saved!'));
   };
 
   // Optionally, display user info in profile page
@@ -98,7 +99,7 @@ export default function ProfilePage() {
     <Navbar></Navbar>
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto p-8 grid grid-cols-12 gap-8">
-        {/* Sidebar */}
+        
         <aside className="col-span-3 bg-white rounded-md shadow p-6 h-fit sticky top-4">
           <h2 className="text-lg font-semibold mb-6">{t('Account')}</h2>
           <ul className="space-y-3">
@@ -110,7 +111,7 @@ export default function ProfilePage() {
             ))}
           </ul>
         </aside>
-        {/* Main content */}
+
         <section className="col-span-9">
           <h1 className="text-2xl font-bold mb-6">{t('Edit Profile')}</h1>
           <Card>

@@ -22,12 +22,12 @@ import Footer from "@/components/custom/footer";
 import { addOrder } from "@/store/orderSlice";
 import { updateProductStock } from "@/store/productSlice";
 import { BsCart3 } from "react-icons/bs";
-import CartItem from "@/pages/CartItem";
+import CartItem from "@/components/custom/CartItem";
 
 export default function Cart() {
     const dispatch = useDispatch();
-    const cartItems = useSelector((state) => state.cart);
-    const products = useSelector((state) => state.product);
+    const cartItems = useSelector((state:any) => state.cart);
+    const products = useSelector((state:any) => state.product);
     const [dialogOpen, setDialogOpen] = useState(false);
     const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
 
