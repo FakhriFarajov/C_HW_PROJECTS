@@ -67,7 +67,6 @@ export default function Main() {
                     Math.floor(Math.random() * categoryObj.subcategories.length)
                 ];
 
-                // Build filter fields dynamically
                 const filterFields: Record<string, string | string[]> = {};
                 (randomSubcat.filters as SubcategoryFilter[]).forEach((filter: SubcategoryFilter) => {
                     if (Array.isArray(filter.options) && filter.options.length > 0) {

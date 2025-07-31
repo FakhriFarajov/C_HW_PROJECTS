@@ -83,7 +83,6 @@ export default function Cart() {
             <div className="container mx-auto px-4 py-6 h-lvh">
                 <h1 className="text-2xl font-bold mb-6">{t('Your Cart')}</h1>
                 <div className="flex flex-col md:flex-row gap-8">
-                    {/* Left: Cart Items */}
                     <div className="flex-1 space-y-4">
                         {cartItems.length > 0 ? (
                             cartItems.map((item) => {
@@ -109,7 +108,6 @@ export default function Cart() {
                             </div>
                         )}
                     </div>
-                    {/* Right: Cart Summary */}
                     <div className="w-full md:w-96 bg-white rounded-lg shadow-md p-6 h-fit">
                         <h2 className="text-xl font-bold mb-4">{t('Your cart')}</h2>
                         <div className="mb-2 flex justify-between">
@@ -132,7 +130,6 @@ export default function Cart() {
                     </div>
                 </div>
             </div>
-            {/* Checkout Dialog */}
             {cartItems.length > 0 ? (
 
             <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>

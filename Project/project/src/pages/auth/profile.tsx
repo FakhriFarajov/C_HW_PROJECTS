@@ -35,11 +35,10 @@ export default function ProfilePage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  // Check if user is logged in (example: using a token in localStorage)
   const user = JSON.parse(localStorage.getItem("user") || "null");
   const isLoggedIn = !!localStorage.getItem("userToken") && user;
   if (!isLoggedIn) {
-    navigate("/login"); // or "/register"
+    navigate("/login");
     return null;
   }
 
@@ -52,7 +51,6 @@ export default function ProfilePage() {
   });
   const [profilePic, setProfilePic] = useState<File | null>(null);
 
-  // Load profile from localStorage on mount
   useEffect(() => {
     const saved = localStorage.getItem("profile");
     if (saved) {
@@ -60,7 +58,6 @@ export default function ProfilePage() {
     }
   }, []);
 
-  // Show preview when profilePic changes
   useEffect(() => {
     if (profilePic) {
       const reader = new FileReader();
@@ -80,20 +77,13 @@ export default function ProfilePage() {
   };
 
   const handleSave = () => {
-    // Save to localStorage, including profilePicPreview
     const updatedProfile = { ...profile };
-    // If a new profilePic was uploaded and preview exists, save it
     if (profilePic && profile.profilePicPreview) {
       updatedProfile.profilePicPreview = profile.profilePicPreview;
     }
     localStorage.setItem("profile", JSON.stringify(updatedProfile));
     toast.success(t('Profile saved!'));
   };
-
-  // Optionally, display user info in profile page
-  // Example: show user's email or username
-  // You can use user.username or user.email as needed
-
   return (
     <>
     <Navbar></Navbar>

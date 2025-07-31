@@ -3,11 +3,6 @@ import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
 import { Star } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "@/store/cartSlice";
-import { isInCart as checkIsInCart } from "@/Services/cartIn";
-import ImageCarousel from "./carousel";
-import { BsCart3 } from "react-icons/bs";
-import ProductPage from "@/pages/ProductPage";
 import { useTranslation } from "react-i18next";
 
 

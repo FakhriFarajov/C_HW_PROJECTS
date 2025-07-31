@@ -120,12 +120,11 @@ export default function ProductPage() {
           </div>
         </div>
 
-        {/* Auto-generate dropdowns for all array properties except 'colors' */}
         {Object.entries(product)
           .filter(
             ([key, value]) =>
               Array.isArray(value) &&
-              key !== 'colors' && key!== 'images' && // Exclude 'colors' and 'images'
+              key !== 'colors' && key!== 'images' && 
               value.length > 0
           )
           .map(([key, value]) => (
@@ -135,7 +134,6 @@ export default function ProductPage() {
                 value={key === 'sizes' ? selectedSize : value[0]}
                 onChange={e => {
                   if (key === 'sizes') setSelectedSize(e.target.value);
-                  // Add more handlers if you want to support other properties
                 }}
                 className="border rounded p-2"
               >
