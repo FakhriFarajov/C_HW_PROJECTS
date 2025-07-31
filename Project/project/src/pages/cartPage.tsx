@@ -26,8 +26,8 @@ import CartItem from "@/components/custom/CartItem";
 
 export default function Cart() {
     const dispatch = useDispatch();
-    const cartItems = useSelector((state:any) => state.cart);
-    const products = useSelector((state:any) => state.product);
+    const cartItems = useSelector((state: any) => state.cart);
+    const products = useSelector((state: any) => state.product);
     const [dialogOpen, setDialogOpen] = useState(false);
     const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
 
@@ -132,27 +132,27 @@ export default function Cart() {
             </div>
             {cartItems.length > 0 ? (
 
-            <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-                <DialogContent>
-                    <DialogHeader>
-                        <DialogTitle>{t('Checkout Details')}</DialogTitle>
-                    </DialogHeader>
-                    <form
-                        onSubmit={(e) => {
-                            e.preventDefault();
-                            handleCheckout();
-                        }}
-                        className="space-y-4"
-                    >
-                        <Input required placeholder={t('Full Name')} value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
-                        <Input required type="email" placeholder={t('Email')} value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
-                        <Input required type="tel" pattern="^\+?[0-9\- ]{10,20}$" title={t('Please enter a valid phone number (10-15 digits, optional +)')} placeholder={t('Phone')} value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
-                        <DialogFooter>
-                            <Button type="submit">{t('Place Order')}</Button>
-                        </DialogFooter>
-                    </form>
-                </DialogContent>
-            </Dialog>
+                <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle>{t('Checkout Details')}</DialogTitle>
+                        </DialogHeader>
+                        <form
+                            onSubmit={(e) => {
+                                e.preventDefault();
+                                handleCheckout();
+                            }}
+                            className="space-y-4"
+                        >
+                            <Input required placeholder={t('Full Name')} value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+                            <Input required type="email" placeholder={t('Email')} value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+                            <Input required type="tel" pattern="^\+?[0-9\- ]{10,20}$" title={t('Please enter a valid phone number (10-15 digits, optional +)')} placeholder={t('Phone')} value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
+                            <DialogFooter>
+                                <Button type="submit">{t('Place Order')}</Button>
+                            </DialogFooter>
+                        </form>
+                    </DialogContent>
+                </Dialog>
             ) : (
                 <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
                     <DialogContent>

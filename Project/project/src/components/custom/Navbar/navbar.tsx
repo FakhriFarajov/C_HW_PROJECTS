@@ -103,10 +103,15 @@ export default function Navbar() {
         navigate('/login');
     };
     return (
-        <div className="flex flex-col bg-gray-800 w-full p-4 text-white">
-            <div className='flex flex-row items-center justify-between'>
-                <img src="\src\assets\images\Gemini_Generated_Image_fym6k9fym6k9fym6-Photoroom.png" className='w-50 h-50 cursor-pointer' alt="Company Logo" onClick={() => { navigate("/") }} />
-                <form className="relative w-full ml-6" onSubmit={handleSearch}>
+        <div className="flex flex-col bg-gray-800 w-full p-2 sm:p-4 text-white">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
+                <img
+                    src="\src\assets\images\Gemini_Generated_Image_fym6k9fym6k9fym6-Photoroom.png"
+                    className="w-20 h-20 sm:w-24 sm:h-24 cursor-pointer mb-2 sm:mb-0"
+                    alt="Company Logo"
+                    onClick={() => { navigate("/") }}
+                />
+                <form className="relative w-full sm:ml-6 mb-2 sm:mb-0" onSubmit={handleSearch}>
                     <Input
                         value={searchTerm}
                         onChange={handleSearchChange}
@@ -114,10 +119,7 @@ export default function Navbar() {
                         className='bg-white pl-10 pr-4 py-2 w-full text-gray-800 rounded-100 rounded-4xl'
                     />
                     <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
-                            <line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                        </svg>
+                        {/* ...svg... */}
                     </span>
                     {searchResults.length > 0 && (
                         <div className="absolute z-10 left-0 right-0 mt-2 bg-white text-gray-800 rounded shadow-lg max-h-60 overflow-y-auto">
@@ -131,15 +133,12 @@ export default function Navbar() {
                                         <img src={product.image} alt={t(product.name)} className="w-10 h-10 ml-2 inline-block" />
                                     )}
                                     {t(product.name)}
-
                                 </div>
                             ))}
                         </div>
                     )}
                 </form>
-
-
-                <div className="flex items-center justify-center w-200 items-center ml-4">
+                <div className="flex items-center justify-center w-full sm:w-auto gap-2">
                     <HoverCard>
                         <HoverCardTrigger>
                             <Button className="text-white cursor-pointer h-12 bg-inherit hover:bg-gray-700" >
@@ -155,7 +154,7 @@ export default function Navbar() {
                                         </AvatarFallback>
                                     </Avatar>
                                 </div>
-                                <span className='sm:hidden lg:block'>
+                                <span className='hidden lg:block'>
                                     {!!localStorage.getItem("profile") && isLoggedIn ? JSON.parse(localStorage.getItem("user") || "null")?.username : t('Account')}
                                 </span>
                             </Button>
@@ -188,7 +187,7 @@ export default function Navbar() {
                                 </span>)
                                 : null}
                         </div>
-                        <span className='sm:hidden lg:block'>{t('Orders')}</span>
+                        <span className='hidden lg:block'>{t('Orders')}</span>
                     </Button>
                     <Button className="text-white bg-inherit h-12 cursor-pointer ml-2 hover:bg-gray-700" onClick={navigateToCart}>
                         <div id='Cart' className="flex items-center justify-center rounded-full p-2 relative">
@@ -199,16 +198,16 @@ export default function Navbar() {
                                 </span>)
                                 : null}
                         </div>
-                        <span className='sm:hidden lg:block'>{t('Cart')}</span>
+                        <span className='hidden lg:block'>{t('Cart')}</span>
                     </Button>
                 </div>
             </div>
             <div>
-                <div className="flex items-center justify-between mt-4">
+                <div className="flex flex-col sm:flex-row items-center justify-between mt-4 gap-2">
                     <CategorySideBar categories={categories} />
-                    <div className="flex items-center space-x-2">
-                        <img src={flag} alt={t('flag')} className='w-10 h-10' />
-                        <select className="languageDropdown bg-white text-gray-800 p-2 rounded" id="langSelect"
+                    <div className="flex items-center space-x-2 mt-2 sm:mt-0">
+                        <img src={flag} alt={t('flag')} className='w-8 h-8' />
+                        <select className="languageDropdown bg-white text-gray-800 p-2 rounded"
                             onChange={handleLanguageChange}
                             value={i18n.language} >
                             <option value="en">{t('English')}</option>
@@ -217,7 +216,6 @@ export default function Navbar() {
                         </select>
                     </div>
                 </div>
-
             </div>
         </div>
     );

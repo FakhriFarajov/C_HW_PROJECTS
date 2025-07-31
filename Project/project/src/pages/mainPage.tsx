@@ -49,13 +49,11 @@ const slides = [
 
 export default function Main() {
     const { t } = useTranslation();
-    //Categories
     const categories: { [key: string]: { id: number; name: any; subcategories: { id: number; name: any; filters: SubcategoryFilter[] }[] } } = getTranslatedCategories(t);
     const dispatch = useDispatch();
     const products = useSelector((state: any) => state.product);
 
 
-    //Product generator needs to be deprecated in production
     useEffect(() => {
         if (products.length === 0) {
             const generatedProducts = Array.from({ length: 300 }, (_, i) => {
@@ -119,17 +117,17 @@ export default function Main() {
     return (
         <>
             <NavBar />
-            <div className="flex flex-col items-center justify-center  bg-gray-100">
-                <div className="flex flex-col items-center justify-center w-full p-6 bg-white rounded-lg shadow-md">
+            <div className="flex flex-col items-center justify-center bg-gray-100">
+                <div className="flex flex-col items-center justify-center w-full p-2 sm:p-4 bg-white rounded-lg shadow-md">
                     <Carousel slides={slides} />
                 </div>
             </div>
 
-            <div className="flex flex-wrap flex-col justify-center w-full p-6 bg-white rounded-lg shadow-md mt-6">
-                <Label className="text-4xl justify-center font-semibold mb-4">{t('Featured Products')}</Label>
-                <div className="max-w-10xl mx-auto">
-                    <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
-                        {products.slice(0,30).map((product: Product, i: number) => (
+            <div className="flex flex-col justify-center align-center w-full p-2 sm:p-6 bg-white rounded-lg shadow-md mt-4 sm:mt-6">
+                <Label className="text-2xl sm:text-4xl text-center font-semibold mb-4">{t('Featured Products')}</Label>
+                <div className="w-full max-w-full mx-auto">
+                    <div className="grid grid-cols-2 xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3 sm:gap-4">
+                        {products.slice(0, 30).map((product: Product, i: number) => (
                             <ProductCard key={product.id || i} product={{
                                 ...product,
                                 name: t(product.name),
@@ -142,18 +140,18 @@ export default function Main() {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col items-center justify-center w-full p-6 bg-white rounded-lg shadow-md mt-6">
-                <Label className="text-4xl justify-center font-semibold mb-4">{t('Explore More')}</Label>
+            <div className="flex flex-col items-center justify-center w-full p-2 sm:p-6 bg-white rounded-lg shadow-md mt-4 sm:mt-6">
+                <Label className="text-2xl sm:text-4xl text-center font-semibold mb-4">{t('Explore More')}</Label>
             </div>
 
-            <div className="flex flex-col items-center justify-center w-full p-6 bg-white rounded-lg shadow-md mt-6">
-                <div className="w-full">
+            <div className="flex flex-col items-center justify-center w-full p-2 sm:p-6 bg-white rounded-lg shadow-md mt-4 sm:mt-6">
+                <div className="w-full max-w-full">
                     <Grid />
                 </div>
             </div>
 
 
-            <Footer/>
+            <Footer />
         </>
     );
 }

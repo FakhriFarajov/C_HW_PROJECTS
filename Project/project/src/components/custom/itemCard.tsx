@@ -11,19 +11,26 @@ export function ProductCard({ product }) {
   const t = useTranslation().t;
 
   return (
-    <div className="cursor-pointer w-full max-w-xs" onClick={() => window.location.href = `/product/${product.id}`}>
-      <Card className="w-full h-full max-w-xs min-w-[260px] min-h-[420px] flex flex-col p-0 group transition hover:scale-[1.03] hover:shadow-xl">
+    <div
+      className="cursor-pointer w-full"
+      onClick={() => window.location.href = `/product/${product.id}`}
+    >
+      <Card className="w-full h-full flex flex-col p-0 group transition hover:scale-[1.03] hover:shadow-xl">
         <CardHeader className="p-0">
-          <img src={product?.images?.[0]} alt={product.name} className="h-48 w-full object-cover rounded-t-lg" />
+          <img
+            src={product?.images?.[0]}
+            alt={product.name}
+            className="w-full h-40 sm:h-48 object-cover rounded-t-lg"
+          />
         </CardHeader>
-        <CardContent className="p-4 space-y-1 flex-1 flex flex-col">
-          <h4 className="font-semibold">{product.name}</h4>
-          <p className="text-sm text-muted-foreground">{t(product.category)}</p>
+        <CardContent className="p-3 sm:p-4 space-y-1 flex-1 flex flex-col">
+          <h4 className="font-semibold text-base sm:text-lg">{product.name}</h4>
+          <p className="text-xs sm:text-sm text-muted-foreground">{t(product.category)}</p>
           {product.description && (
             <p className="text-xs text-gray-500 mb-1 line-clamp-2">{product.description.slice(0, 30)}...</p>
           )}
           <div>
-            <Badge className="">${product.price}</Badge>
+            <Badge>${product.price}</Badge>
             {product.oldPrice && (
               <Badge className="bg-red-600 line-through">${product.oldPrice}</Badge>
             )}
@@ -34,7 +41,7 @@ export function ProductCard({ product }) {
                 className={i < product.rating ? "text-yellow-500" : "text-gray-300"}
                 fill={i < product.rating ? "currentColor" : "none"} />
             ))}
-            <span className="text-sm text-muted-foreground ml-2">({product.rating})</span>
+            <span className="text-xs sm:text-sm text-muted-foreground ml-2">({product.rating})</span>
           </div>
           <div className="flex items-center gap-1 mt-auto">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
@@ -43,7 +50,6 @@ export function ProductCard({ product }) {
             <Label>{product.reviews} {t('reviews')}</Label>
           </div>
         </CardContent>
-
       </Card>
     </div>
   );
