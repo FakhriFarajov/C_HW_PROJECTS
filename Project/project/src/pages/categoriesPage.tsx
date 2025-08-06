@@ -5,7 +5,7 @@ import { getTranslatedCategories } from '@/components/custom/Navbar/getTranslate
 import NavBar from '@/components/custom/Navbar/navbar';
 import { ProductCard } from '@/components/custom/itemCard';
 import { useTranslation } from 'react-i18next';
-import CategoryFilters from './CategoryFilters';
+import CategoryFilters from '@/components/custom/CategoryFilters';
 import {
   Pagination,
   PaginationContent,
@@ -15,6 +15,8 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Filter } from "lucide-react"; // Optional: for filter icon
 
 export default function CategoryPage() {
   const { t } = useTranslation();
@@ -26,19 +28,20 @@ export default function CategoryPage() {
   const category = categoryId ? (categories as Record<string, typeof categories[keyof typeof categories]>)[categoryId] : undefined;
   const [selectedFilters, setSelectedFilters] = useState<{ [key: string]: string[] }>({});
   const [priceRange, setPriceRange] = useState({ min: '', max: '' });
+
+  const [pendingSelectedFilters, setPendingSelectedFilters] = useState<{ [key: string]: string[] }>({});
+  const [pendingPriceRange, setPendingPriceRange] = useState({ min: '', max: '' });
+
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
   const [sortBy, setSortBy] = useState<'price-asc' | 'price-desc' | 'name-asc' | 'name-desc'>('price-asc');
+  // Add state to control Sheet open/close
+  const [filterSheetOpen, setFilterSheetOpen] = useState(false);
 
 
   const selectedSubcategory = subcategoryId ?? null;
 
-  const handleSubcategoryClick = (subcatId: string | null) => {
-    if (!categoryId) return;
-    navigate(subcatId ? `/category/${categoryId}/${subcatId}` : `/category/${categoryId}`);
-    setSelectedFilters({});
-    setPriceRange({ min: '', max: '' });
-  };
+
 
   const filteredProducts = useMemo(() => {
     if (!category) return [];
@@ -112,6 +115,14 @@ export default function CategoryPage() {
   const paginatedProducts = sortedProducts.slice((currentPage - 1) * pageSize, currentPage * pageSize);
   const totalPages = Math.ceil(filteredProducts.length / pageSize);
 
+  // When opening the Sheet, copy applied filters to pending
+  useEffect(() => {
+    if (filterSheetOpen) {
+      setPendingSelectedFilters(selectedFilters);
+      setPendingPriceRange(priceRange);
+    }
+  }, [filterSheetOpen]);
+
   if (!category) return <div className="p-8">{t('Category not found')}</div>;
 
   return (
@@ -122,20 +133,63 @@ export default function CategoryPage() {
         <section className="col-span-12 mb-4">
           <h1 className="text-3xl font-bold mb-6 text-left">{t(category.name)}</h1>
         </section>
-        <CategoryFilters
-          allFilters={allFilters.map(f => ({
-            ...f,
-            name: t(f.name),
-            options: f.options.map((opt: string) => t(opt)),
-          }))}
-          selectedFilters={selectedFilters}
-          setSelectedFilters={setSelectedFilters}
-          priceRange={priceRange}
-          setPriceRange={setPriceRange}
-          t={t}
-        />
 
-        <section className="col-span-9">
+        {/* Mobile: Sheet trigger button */}
+        <div className="lg:hidden mb-4">
+          <Sheet open={filterSheetOpen} onOpenChange={setFilterSheetOpen}>
+            <SheetTrigger asChild>
+              <button
+                className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded shadow"
+                onClick={() => setFilterSheetOpen(true)}
+              >
+                <Filter className="w-4 h-4" />
+                {t("Filters")}
+              </button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-[320px] p-6">
+              <CategoryFilters
+                allFilters={allFilters.map(f => ({
+                  ...f,
+                  name: t(f.name),
+                  options: f.options.map((opt: string) => t(opt)),
+                }))}
+                selectedFilters={pendingSelectedFilters}
+                setSelectedFilters={setPendingSelectedFilters}
+                priceRange={pendingPriceRange}
+                setPriceRange={setPendingPriceRange}
+                t={t}
+              />
+              <button
+                className="mt-4 w-full bg-primary text-white rounded py-2"
+                onClick={() => {
+                  setSelectedFilters(pendingSelectedFilters);
+                  setPriceRange(pendingPriceRange);
+                  setFilterSheetOpen(false);
+                }}
+              >
+                {t("Apply Filters")}
+              </button>
+            </SheetContent>
+          </Sheet>
+        </div>
+
+        {/* Desktop: Filters always visible */}
+        <aside className="hidden lg:block col-span-3">
+          <CategoryFilters
+            allFilters={allFilters.map(f => ({
+              ...f,
+              name: t(f.name),
+              options: f.options.map((opt: string) => t(opt)),
+            }))}
+            selectedFilters={selectedFilters}
+            setSelectedFilters={setSelectedFilters}
+            priceRange={priceRange}
+            setPriceRange={setPriceRange}
+            t={t}
+          />
+        </aside>
+
+        <section className="col-span-12 lg:col-span-9">
           {/* Sorting dropdown */}
           <div className="flex items-center gap-2 mb-4">
             <label className="font-medium">{t('Sort by')}:</label>

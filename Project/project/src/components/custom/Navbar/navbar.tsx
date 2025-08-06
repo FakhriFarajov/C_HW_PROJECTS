@@ -18,12 +18,12 @@ import { CiLogout } from "react-icons/ci";
 export default function Navbar() {
     const { t, i18n } = useTranslation();
     const categories = getTranslatedCategories(t);
-    const cartItems = useSelector((state:any) => state.cart);
-    const orders = useSelector((state:any) => state.orders);
+    const cartItems = useSelector((state: any) => state.cart);
+    const orders = useSelector((state: any) => state.orders);
     const [flag, setFlag] = useState<string>(() => localStorage.getItem('flag') || 'https://flagsapi.com/GB/flat/64.png');// Default to UK flag
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState<any[]>([]); // Explicitly type as any[] or Product[] if available
-    const products = useSelector((state:any) => state.product);
+    const products = useSelector((state: any) => state.product);
 
     const navigate = useNavigate();
 
@@ -68,11 +68,11 @@ export default function Navbar() {
         }
     };
 
-    const handleSearchChange = (e:any) => {
+    const handleSearchChange = (e: any) => {
         const value = e.target.value;
         setSearchTerm(value);
         if (value.trim()) {
-            const results = products.filter((p:any) =>
+            const results = products.filter((p: any) =>
                 p.name.toLowerCase().includes(value.trim().toLowerCase())
             );
             setSearchResults(results);
@@ -81,7 +81,7 @@ export default function Navbar() {
         }
     };
 
-    const handleProductClick = (product:any) => {
+    const handleProductClick = (product: any) => {
         const categoryKey = Object.keys(categories).find(
             (key) => categories[key].id === product.categoryId
         );
@@ -119,7 +119,11 @@ export default function Navbar() {
                         className='bg-white pl-10 pr-4 py-2 w-full text-gray-800 rounded-100 rounded-4xl'
                     />
                     <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition duration-200">
-                        {/* ...svg... */}
+                        <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2"
+                            strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg>
                     </span>
                     {searchResults.length > 0 && (
                         <div className="absolute z-10 left-0 right-0 mt-2 bg-white text-gray-800 rounded shadow-lg max-h-60 overflow-y-auto">
