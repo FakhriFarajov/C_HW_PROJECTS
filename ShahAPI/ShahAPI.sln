@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShahAPI", "ShahAPI\ShahAPI.csproj", "{3396965C-2564-4F56-8167-567AD0BFAFBE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShahAPIdataBase", "ShahAPIdataBase\ShahAPIdataBase.csproj", "{A4F90BCB-7DA3-47B9-9692-ACE3791909F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3396965C-2564-4F56-8167-567AD0BFAFBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3396965C-2564-4F56-8167-567AD0BFAFBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3396965C-2564-4F56-8167-567AD0BFAFBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3396965C-2564-4F56-8167-567AD0BFAFBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4F90BCB-7DA3-47B9-9692-ACE3791909F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4F90BCB-7DA3-47B9-9692-ACE3791909F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4F90BCB-7DA3-47B9-9692-ACE3791909F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4F90BCB-7DA3-47B9-9692-ACE3791909F5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

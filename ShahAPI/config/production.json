@@ -1,0 +1,10 @@
+{
+  "port": 80,
+  "db": {
+    "host": "prod-db-host",
+    "port": 27017,
+    "name": "shahapi_prod"
+  },
+  "jwtSecret": "your_production_jwt_secret"
+}
+
