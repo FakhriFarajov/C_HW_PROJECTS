@@ -44,12 +44,6 @@ export default function LoginForm({
               </div>
             </a>
             <h1 className="text-xl font-bold">{t('Welcome to Shah.')}</h1>
-            <div className="text-center text-sm">
-              {t("Don't have an account?")}{" "}
-              <a href="/reg" className="underline underline-offset-4">
-                {t('Sign up')}
-              </a>
-            </div>
           </div>
           <div className="flex flex-col gap-6">
             <div className="grid gap-3">
@@ -78,21 +72,6 @@ export default function LoginForm({
               className="w-full bg-gray-800 hover:bg-gray-700 text-white hover:text-gray-100"
             >
               {t('Login')}
-            </Button>
-          </div>
-          <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
-            <span className="bg-background text-muted-foreground relative z-10 px-2">
-              {t('Or')}
-            </span>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Button variant="outline" type="button" className="w-full">
-              {/* Apple SVG unchanged */}
-              {t('Continue with Apple')}
-            </Button>
-            <Button variant="outline" type="button" className="w-full">
-              {/* Google SVG unchanged */}
-              {t('Continue with Google')}
             </Button>
           </div>
         </div>

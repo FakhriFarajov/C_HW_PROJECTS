@@ -85,7 +85,7 @@ export default function RegForm({
             </div>
             <Button
               type="submit"
-              className="w-full bg-gray-800 hover:bg-gray-700 text-white hover:text-gray-800"
+              className="w-full bg-gray-800 hover:bg-gray-700 text-white hover:text-gray-100"
             >
               {t("Register")}
             </Button>
