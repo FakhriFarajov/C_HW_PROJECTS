@@ -3,90 +3,10 @@
   <component name="CopilotDiffPersistence">
     <option name="pendingDiffs">
       <map>
-        <entry key="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/AddressConfiguration.cs">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/AddressConfiguration.cs" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/CartItemConfiguration.cs">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/CartItemConfiguration.cs" />
-              <option name="updatedContent" value="using Microsoft.EntityFrameworkCore;&#10;using Microsoft.EntityFrameworkCore.Metadata.Builders;&#10;using ShahAPIDataBase.Data.Models;&#10;&#10;namespace ShahAPIDataBase.Data.Config;&#10;&#10;public class CartItemConfiguration : IEntityTypeConfiguration&lt;CartItem&gt;&#10;{&#10;    public void Configure(EntityTypeBuilder&lt;CartItem&gt; builder)&#10;    {&#10;        builder.ToTable(&quot;CartItems&quot;);&#10;        builder.HasKey(ci =&gt; ci.Id);&#10;        builder.Property(ci =&gt; ci.Quantity).IsRequired();&#10;        builder.Property(ci =&gt; ci.AddedAt).IsRequired();&#10;&#10;        builder.HasOne(ci =&gt; ci.User)&#10;               .WithMany()&#10;               .HasForeignKey(ci =&gt; ci.UserId)&#10;               .OnDelete(DeleteBehavior.Cascade);&#10;&#10;        builder.HasOne(ci =&gt; ci.Product)&#10;               .WithMany()&#10;               .HasForeignKey(ci =&gt; ci.ProductId)&#10;               .OnDelete(DeleteBehavior.Cascade);&#10;    }&#10;}" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/CategoryConfiguration.cs">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/CategoryConfiguration.cs" />
-              <option name="originalContent" value="using Microsoft.EntityFrameworkCore;&#10;using Microsoft.EntityFrameworkCore.Metadata.Builders;&#10;using ShahAPIDataBase.Data.Models;&#10;&#10;namespace ShahAPIDataBase.Data.Configurations.ShahAPIDataBase.Data.Configurations;&#10;&#10;public class CategoryConfiguration : IEntityTypeConfiguration&lt;Category&gt;&#10;{&#10;    public void Configure(EntityTypeBuilder&lt;Category&gt; builder)&#10;    {&#10;        builder.HasKey(c =&gt; c.Id);&#10;&#10;        builder.Property(c =&gt; c.Id)&#10;            .ValueGeneratedOnAdd();&#10;&#10;        builder.Property(c =&gt; c.Name)&#10;            .IsRequired()&#10;            .HasMaxLength(100);&#10;&#10;        builder.HasMany(c =&gt; c.Products)&#10;            .WithOne(p =&gt; p.Category)&#10;            .HasForeignKey(p =&gt; p.CategoryId)&#10;            .OnDelete(DeleteBehavior.Restrict); // Products should not be deleted if category is deleted directly&#10;&#10;        builder.HasOne(c =&gt; c.ParentCategory)&#10;            .WithMany(c =&gt; c.Subcategories)&#10;            .HasForeignKey(c =&gt; c.ParentCategoryId)&#10;            .IsRequired(false)&#10;            .OnDelete(DeleteBehavior.Restrict); // Prevent circular cascade delete&#10;    }&#10;}" />
-              <option name="updatedContent" value="using Microsoft.EntityFrameworkCore;&#10;using Microsoft.EntityFrameworkCore.Metadata.Builders;&#10;using ShahAPIDataBase.Data.Models;&#10;&#10;namespace ShahAPIDataBase.Data.Configurations.ShahAPIDataBase.Data.Configurations;&#10;&#10;public class CategoryConfiguration : IEntityTypeConfiguration&lt;Category&gt;&#10;{&#10;    public void Configure(EntityTypeBuilder&lt;Category&gt; builder)&#10;    {&#10;        builder.HasKey(c =&gt; c.Id);&#10;&#10;        builder.Property(c =&gt; c.Id)&#10;            .ValueGeneratedOnAdd();&#10;&#10;        builder.Property(c =&gt; c.Name)&#10;            .IsRequired()&#10;            .HasMaxLength(100);&#10;&#10;        builder.HasMany(c =&gt; c.Products)&#10;            .WithOne(p =&gt; p.Category)&#10;            .HasForeignKey(p =&gt; p.CategoryId)&#10;            .OnDelete(DeleteBehavior.Restrict); // Products should not be deleted if category is deleted directly&#10;&#10;        builder.HasOne(c =&gt; c.ParentCategory)&#10;            .WithMany(c =&gt; c.Subcategories)&#10;            .HasForeignKey(c =&gt; c.ParentCategoryId)&#10;            .IsRequired(false)&#10;            .OnDelete(DeleteBehavior.Restrict); // Prevent circular cascade delete&#10;&#10;        builder.HasMany(c =&gt; c.Properties)&#10;            .WithOne(cp =&gt; cp.Category)&#10;            .HasForeignKey(cp =&gt; cp.CategoryId)&#10;            .OnDelete(DeleteBehavior.Cascade); // Delete category properties if the category is deleted&#10;    }&#10;}" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/CategoryPropertyConfiguration.cs">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/CategoryPropertyConfiguration.cs" />
-              <option name="updatedContent" value="using Microsoft.EntityFrameworkCore;&#10;using Microsoft.EntityFrameworkCore.Metadata.Builders;&#10;using ShahAPIDataBase.Data.Models;&#10;&#10;namespace ShahAPIDataBase.Data.Config;&#10;&#10;public class CategoryPropertyConfiguration : IEntityTypeConfiguration&lt;CategoryProperty&gt;&#10;{&#10;    public void Configure(EntityTypeBuilder&lt;CategoryProperty&gt; builder)&#10;    {&#10;        builder.ToTable(&quot;CategoryProperties&quot;);&#10;        builder.HasKey(cp =&gt; cp.Id);&#10;        builder.Property(cp =&gt; cp.Name).IsRequired().HasMaxLength(100);&#10;        builder.Property(cp =&gt; cp.CategoryId).IsRequired();&#10;&#10;        builder.HasOne(cp =&gt; cp.Category)&#10;               .WithMany(c =&gt; c.Properties)&#10;               .HasForeignKey(cp =&gt; cp.CategoryId)&#10;               .OnDelete(DeleteBehavior.Cascade);&#10;    }&#10;}" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/FavoriteConfiguration.cs">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/FavoriteConfiguration.cs" />
-              <option name="originalContent" value="using Microsoft.EntityFrameworkCore;&#10;using Microsoft.EntityFrameworkCore.Metadata.Builders;&#10;using ShahAPIDataBase.Data.Models;&#10;&#10;namespace ShahAPIDataBase.Data.Config;&#10;&#10;public class FavoriteConfiguration : IEntityTypeConfiguration&lt;Favorite&gt;&#10;{&#10;    public void Configure(EntityTypeBuilder&lt;Favorite&gt; builder)&#10;    {&#10;        builder.ToTable(&quot;Favorites&quot;);&#10;        builder.HasKey(f =&gt; f.Id);&#10;        builder.Property(f =&gt; f.LikedAt).IsRequired();&#10;&#10;        builder.HasOne(f =&gt; f.User)&#10;               .WithMany()&#10;               .HasForeignKey(f =&gt; f.UserId)&#10;               .OnDelete(DeleteBehavior.Cascade);&#10;&#10;        builder.HasOne(f =&gt; f.Product)&#10;               .WithMany()&#10;               .HasForeignKey(f =&gt; f.ProductId)&#10;               .OnDelete(DeleteBehavior.Cascade);&#10;    }&#10;}&#10;" />
-              <option name="updatedContent" value="using Microsoft.EntityFrameworkCore;&#10;using Microsoft.EntityFrameworkCore.Metadata.Builders;&#10;using ShahAPIDataBase.Data.Models;&#10;&#10;namespace ShahAPIDataBase.Data.Config;&#10;&#10;public class FavoriteConfiguration : IEntityTypeConfiguration&lt;Favorite&gt;&#10;{&#10;    public void Configure(EntityTypeBuilder&lt;Favorite&gt; builder)&#10;    {&#10;        builder.ToTable(&quot;Favorites&quot;);&#10;        builder.HasKey(f =&gt; f.Id);&#10;        builder.Property(f =&gt; f.LikedAt).IsRequired();&#10;&#10;        builder.HasOne(f =&gt; f.User)&#10;               .WithMany(u =&gt; u.Favorites)&#10;               .HasForeignKey(f =&gt; f.UserId)&#10;               .OnDelete(DeleteBehavior.Cascade);&#10;&#10;        builder.HasOne(f =&gt; f.Product)&#10;               .WithMany(p =&gt; p.Favorites)&#10;               .HasForeignKey(f =&gt; f.ProductId)&#10;               .OnDelete(DeleteBehavior.Cascade);&#10;    }&#10;}" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/OrderConfiguration.cs">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/OrderConfiguration.cs" />
-              <option name="updatedContent" value="using Microsoft.EntityFrameworkCore;&#10;               .HasForeignKey(o =&gt; o.BuyerId);&#10;&#10;        builder.HasOne(o =&gt; o.ShippingAddress)&#10;               .WithMany(a =&gt; a.Orders)&#10;               .HasForeignKey(o =&gt; o.ShippingAddressId);&#10;&#10;        builder.HasMany(o =&gt; o.OrderItems)&#10;               .WithOne(oi =&gt; oi.Order)&#10;               .HasForeignKey(oi =&gt; oi.OrderId);&#10;&#10;        builder.HasOne(o =&gt; o.Payment)&#10;               .WithOne(p =&gt; p.Order)&#10;               .HasForeignKey&lt;Payment&gt;(p =&gt; p.OrderId);&#10;    }&#10;}" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/PaymentConfiguration.cs">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/PaymentConfiguration.cs" />
-              <option name="updatedContent" value="using Microsoft.EntityFrameworkCore;&#10;        // Primary key&#10;        builder.HasKey(p =&gt; p.Id);&#10;&#10;        // Properties&#10;        builder.Property(p =&gt; p.Id).ValueGeneratedOnAdd();&#10;        builder.Property(p =&gt; p.Amount).IsRequired().HasColumnType(&quot;decimal(18,2)&quot;);&#10;        builder.Property(p =&gt; p.PaymentDate).IsRequired();&#10;        builder.Property(p =&gt; p.PaymentMethod).IsRequired().HasMaxLength(50);&#10;&#10;        // Relationships&#10;        builder.HasOne(p =&gt; p.Order)&#10;               .WithOne(o =&gt; o.Payment)&#10;               .HasForeignKey&lt;Payment&gt;(p =&gt; p.OrderId);&#10;    }&#10;}" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/ProductConfiguration.cs">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/ProductConfiguration.cs" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/ProductPropertiesValueConfiguration.cs">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/ProductPropertiesValueConfiguration.cs" />
-              <option name="updatedContent" value="using Microsoft.EntityFrameworkCore;&#10;using Microsoft.EntityFrameworkCore.Metadata.Builders;&#10;using ShahAPIDataBase.Data.Models;&#10;&#10;namespace ShahAPIDataBase.Data.Config;&#10;&#10;public class ProductPropertiesValueConfiguration : IEntityTypeConfiguration&lt;ProductPropertiesValue&gt;&#10;{&#10;    public void Configure(EntityTypeBuilder&lt;ProductPropertiesValue&gt; builder)&#10;    {&#10;        builder.ToTable(&quot;ProductPropertiesValues&quot;);&#10;        builder.HasKey(ppv =&gt; ppv.Id);&#10;        builder.Property(ppv =&gt; ppv.Value).IsRequired().HasMaxLength(255);&#10;        builder.Property(ppv =&gt; ppv.ProductId).IsRequired();&#10;        builder.Property(ppv =&gt; ppv.CategoryPropertyId).IsRequired();&#10;&#10;        builder.HasOne(ppv =&gt; ppv.Product)&#10;               .WithMany(p =&gt; p.ProductPropertiesValues)&#10;               .HasForeignKey(ppv =&gt; ppv.ProductId)&#10;               .OnDelete(DeleteBehavior.Cascade);&#10;&#10;        builder.HasOne(ppv =&gt; ppv.CategoryProperty)&#10;               .WithMany()&#10;               .HasForeignKey(ppv =&gt; ppv.CategoryPropertyId)&#10;               .OnDelete(DeleteBehavior.Cascade);&#10;    }&#10;}" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/README.md">
           <value>
             <PendingDiffInfo>
               <option name="filePath" value="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/README.md" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/ReviewConfiguration.cs">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/ShahAPIdataBase/Data/Config/ReviewConfiguration.cs" />
-              <option name="updatedContent" value="using Microsoft.EntityFrameworkCore;&#10;using Microsoft.EntityFrameworkCore.Metadata.Builders;&#10;using ShahAPIDataBase.Data.Models;&#10;&#10;namespace ShahAPIDataBase.Data.Config;&#10;&#10;public class ReviewConfiguration : IEntityTypeConfiguration&lt;Review&gt;&#10;{&#10;    public void Configure(EntityTypeBuilder&lt;Review&gt; builder)&#10;    {&#10;        // Table name&#10;        builder.ToTable(&quot;Reviews&quot;);&#10;&#10;        // Primary key&#10;        builder.HasKey(r =&gt; r.Id);&#10;&#10;        // Properties&#10;        builder.Property(r =&gt; r.Id).ValueGeneratedOnAdd();&#10;        builder.Property(r =&gt; r.Content).IsRequired().HasMaxLength(1000);&#10;        builder.Property(r =&gt; r.Rating).IsRequired().HasColumnType(&quot;decimal(3,2)&quot;);&#10;        builder.Property(r =&gt; r.CreatedAt).HasDefaultValueSql(&quot;GETDATE()&quot;);&#10;&#10;        // Relationships&#10;        builder.HasOne(r =&gt; r.User)&#10;               .WithMany(u =&gt; u.Reviews)&#10;               .HasForeignKey(r =&gt; r.UserId);&#10;&#10;        builder.HasOne(r =&gt; r.Product)&#10;               .WithMany(p =&gt; p.Reviews)&#10;               .HasForeignKey(r =&gt; r.ProductId);&#10;    }&#10;}" />
             </PendingDiffInfo>
           </value>
         </entry>
@@ -130,22 +50,6 @@
             <PendingDiffInfo>
               <option name="filePath" value="$PROJECT_DIR$/config/default.json" />
               <option name="updatedContent" value="{&#10;  &quot;port&quot;: 3000,&#10;  &quot;db&quot;: {&#10;    &quot;host&quot;: &quot;localhost&quot;,&#10;    &quot;port&quot;: 27017,&#10;    &quot;name&quot;: &quot;shahapi&quot;&#10;  },&#10;  &quot;jwtSecret&quot;: &quot;your_jwt_secret_here&quot;&#10;}&#10;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/config/fluentApiConfig.js">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/config/fluentApiConfig.js" />
-              <option name="updatedContent" value="module.exports = {&#10;  baseUrl: &quot;https://api.fluent.com/v1&quot;,&#10;  apiKey: &quot;your_fluent_api_key_here&quot;,&#10;  timeout: 5000, // milliseconds&#10;  endpoints: {&#10;    translate: &quot;/translate&quot;,&#10;    detect: &quot;/detect&quot;&#10;  }&#10;};&#10;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/config/production.json">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/config/production.json" />
-              <option name="updatedContent" value="{&#10;  &quot;port&quot;: 80,&#10;  &quot;db&quot;: {&#10;    &quot;host&quot;: &quot;prod-db-host&quot;,&#10;    &quot;port&quot;: 27017,&#10;    &quot;name&quot;: &quot;shahapi_prod&quot;&#10;  },&#10;  &quot;jwtSecret&quot;: &quot;your_production_jwt_secret&quot;&#10;}&#10;" />
             </PendingDiffInfo>
           </value>
         </entry>

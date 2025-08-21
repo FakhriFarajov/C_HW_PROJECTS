@@ -28,6 +28,9 @@ namespace ShahAPIdataBase.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("BuyerId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("City")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -43,6 +46,9 @@ namespace ShahAPIdataBase.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("SellerId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("State")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -53,15 +59,86 @@ namespace ShahAPIdataBase.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
+                    b.HasKey("Id");
+
+                    b.HasIndex("BuyerId");
+
+                    b.HasIndex("SellerId");
+
+                    b.ToTable("Addresses");
+                });
+
+            modelBuilder.Entity("ShahAPIDataBase.Data.Models.Buyer", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("ImageUrl")
+                        .HasMaxLength(2048)
+                        .HasColumnType("nvarchar(2048)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("isConfirmed")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("Email")
+                        .IsUnique();
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Buyers");
+                });
+
+            modelBuilder.Entity("ShahAPIDataBase.Data.Models.CartItem", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("AddedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("BuyerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProductId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BuyerId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CartItems", (string)null);
                 });
 
             modelBuilder.Entity("ShahAPIDataBase.Data.Models.Category", b =>
@@ -83,6 +160,52 @@ namespace ShahAPIdataBase.Migrations
                     b.HasIndex("ParentCategoryId");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("ShahAPIDataBase.Data.Models.CategoryProperty", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CategoryId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("CategoryProperties", (string)null);
+                });
+
+            modelBuilder.Entity("ShahAPIDataBase.Data.Models.Favorite", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("BuyerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("LikedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ProductId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BuyerId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Favorites", (string)null);
                 });
 
             modelBuilder.Entity("ShahAPIDataBase.Data.Models.Image", b =>
@@ -120,6 +243,10 @@ namespace ShahAPIdataBase.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("SellerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("ShippingAddressId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -135,6 +262,8 @@ namespace ShahAPIdataBase.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("BuyerId");
+
+                    b.HasIndex("SellerId");
 
                     b.HasIndex("ShippingAddressId");
 
@@ -244,6 +373,33 @@ namespace ShahAPIdataBase.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("ShahAPIDataBase.Data.Models.ProductPropertiesValue", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CategoryPropertyId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProductId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryPropertyId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductPropertiesValues", (string)null);
+                });
+
             modelBuilder.Entity("ShahAPIDataBase.Data.Models.Review", b =>
                 {
                     b.Property<string>("Id")
@@ -277,36 +433,30 @@ namespace ShahAPIdataBase.Migrations
                     b.ToTable("Reviews");
                 });
 
-            modelBuilder.Entity("ShahAPIDataBase.Data.Models.Role", b =>
+            modelBuilder.Entity("ShahAPIDataBase.Data.Models.Seller", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<string>("BankAccount")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("Roles");
-                });
-
-            modelBuilder.Entity("ShahAPIDataBase.Data.Models.User", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("CompanyName")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("ImageUrl")
-                        .HasMaxLength(2048)
-                        .HasColumnType("nvarchar(2048)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<bool>("IsVerified")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -315,53 +465,64 @@ namespace ShahAPIdataBase.Migrations
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<bool>("isConfirmed")
-                        .HasColumnType("bit");
+                    b.Property<string>("TaxId")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Website")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("ShahAPIDataBase.Data.Models.UserRole", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("UserRoles");
+                    b.ToTable("Seller");
                 });
 
             modelBuilder.Entity("ShahAPIDataBase.Data.Models.Address", b =>
                 {
-                    b.HasOne("ShahAPIDataBase.Data.Models.User", "User")
+                    b.HasOne("ShahAPIDataBase.Data.Models.Buyer", "Buyer")
                         .WithMany("Addresses")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("BuyerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ShahAPIDataBase.Data.Models.Seller", "Seller")
+                        .WithMany("Addresses")
+                        .HasForeignKey("SellerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("Buyer");
+
+                    b.Navigation("Seller");
+                });
+
+            modelBuilder.Entity("ShahAPIDataBase.Data.Models.CartItem", b =>
+                {
+                    b.HasOne("ShahAPIDataBase.Data.Models.Buyer", "Buyer")
+                        .WithMany("CartItems")
+                        .HasForeignKey("BuyerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.HasOne("ShahAPIDataBase.Data.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Buyer");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("ShahAPIDataBase.Data.Models.Category", b =>
@@ -372,6 +533,36 @@ namespace ShahAPIdataBase.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("ParentCategory");
+                });
+
+            modelBuilder.Entity("ShahAPIDataBase.Data.Models.CategoryProperty", b =>
+                {
+                    b.HasOne("ShahAPIDataBase.Data.Models.Category", "Category")
+                        .WithMany("Properties")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("ShahAPIDataBase.Data.Models.Favorite", b =>
+                {
+                    b.HasOne("ShahAPIDataBase.Data.Models.Buyer", "Buyer")
+                        .WithMany("Favorites")
+                        .HasForeignKey("BuyerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ShahAPIDataBase.Data.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Buyer");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("ShahAPIDataBase.Data.Models.Image", b =>
@@ -387,9 +578,15 @@ namespace ShahAPIdataBase.Migrations
 
             modelBuilder.Entity("ShahAPIDataBase.Data.Models.Order", b =>
                 {
-                    b.HasOne("ShahAPIDataBase.Data.Models.User", "Buyer")
+                    b.HasOne("ShahAPIDataBase.Data.Models.Buyer", "Buyer")
                         .WithMany("Orders")
                         .HasForeignKey("BuyerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ShahAPIDataBase.Data.Models.Seller", "Seller")
+                        .WithMany("Orders")
+                        .HasForeignKey("SellerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -400,6 +597,8 @@ namespace ShahAPIdataBase.Migrations
                         .IsRequired();
 
                     b.Navigation("Buyer");
+
+                    b.Navigation("Seller");
 
                     b.Navigation("ShippingAddress");
                 });
@@ -428,7 +627,7 @@ namespace ShahAPIdataBase.Migrations
                     b.HasOne("ShahAPIDataBase.Data.Models.Order", "Order")
                         .WithOne("Payment")
                         .HasForeignKey("ShahAPIDataBase.Data.Models.Payment", "OrderId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Order");
                 });
@@ -441,7 +640,7 @@ namespace ShahAPIdataBase.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("ShahAPIDataBase.Data.Models.User", "Seller")
+                    b.HasOne("ShahAPIDataBase.Data.Models.Seller", "Seller")
                         .WithMany("Products")
                         .HasForeignKey("SellerId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -452,9 +651,28 @@ namespace ShahAPIdataBase.Migrations
                     b.Navigation("Seller");
                 });
 
+            modelBuilder.Entity("ShahAPIDataBase.Data.Models.ProductPropertiesValue", b =>
+                {
+                    b.HasOne("ShahAPIDataBase.Data.Models.CategoryProperty", "CategoryProperty")
+                        .WithMany()
+                        .HasForeignKey("CategoryPropertyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ShahAPIDataBase.Data.Models.Product", "Product")
+                        .WithMany("ProductPropertiesValues")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CategoryProperty");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("ShahAPIDataBase.Data.Models.Review", b =>
                 {
-                    b.HasOne("ShahAPIDataBase.Data.Models.User", "Buyer")
+                    b.HasOne("ShahAPIDataBase.Data.Models.Buyer", "Buyer")
                         .WithMany("Reviews")
                         .HasForeignKey("BuyerId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -471,28 +689,24 @@ namespace ShahAPIdataBase.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("ShahAPIDataBase.Data.Models.UserRole", b =>
+            modelBuilder.Entity("ShahAPIDataBase.Data.Models.Buyer", b =>
                 {
-                    b.HasOne("ShahAPIDataBase.Data.Models.Role", "Role")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Addresses");
 
-                    b.HasOne("ShahAPIDataBase.Data.Models.User", "User")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("CartItems");
 
-                    b.Navigation("Role");
+                    b.Navigation("Favorites");
 
-                    b.Navigation("User");
+                    b.Navigation("Orders");
+
+                    b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("ShahAPIDataBase.Data.Models.Category", b =>
                 {
                     b.Navigation("Products");
+
+                    b.Navigation("Properties");
 
                     b.Navigation("Subcategories");
                 });
@@ -508,25 +722,18 @@ namespace ShahAPIdataBase.Migrations
                 {
                     b.Navigation("Images");
 
+                    b.Navigation("ProductPropertiesValues");
+
                     b.Navigation("Reviews");
                 });
 
-            modelBuilder.Entity("ShahAPIDataBase.Data.Models.Role", b =>
-                {
-                    b.Navigation("UserRoles");
-                });
-
-            modelBuilder.Entity("ShahAPIDataBase.Data.Models.User", b =>
+            modelBuilder.Entity("ShahAPIDataBase.Data.Models.Seller", b =>
                 {
                     b.Navigation("Addresses");
 
                     b.Navigation("Orders");
 
                     b.Navigation("Products");
-
-                    b.Navigation("Reviews");
-
-                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

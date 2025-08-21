@@ -6,9 +6,9 @@ namespace ShahAPIDataBase.Data.Context;
 
 public class ShahContext : DbContext
 {
-    public DbSet<User> Users => Set<User>();
-    public DbSet<Role> Roles => Set<Role>();
-    public DbSet<UserRole> UserRoles => Set<UserRole>();
+    public DbSet<Buyer> Buyers => Set<Buyer>();
+    public DbSet<Seller> Seller => Set<Seller>();
+
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<Product> Products => Set<Product>();
     public DbSet<Image> Images => Set<Image>();

@@ -12,7 +12,7 @@ public class Product
     public Category Category { get; set; } = null!;
 
     public string SellerId { get; set; }
-    public User Seller { get; set; } = null!;
+    public Seller Seller { get; set; } = null!;
 
     public ICollection<Image> Images { get; set; } = new List<Image>();
     public ICollection<Review> Reviews { get; set; } = new List<Review>();

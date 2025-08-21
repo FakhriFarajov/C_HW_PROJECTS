@@ -1,6 +1,6 @@
 namespace ShahAPIDataBase.Data.Models;
 
-public class User
+public class Buyer
 {
     public string Id { get; set; } = Guid.NewGuid().ToString();
     public string Name { get; set; }
@@ -13,10 +13,7 @@ public class User
     public string? Phone { get; set; }
     
     public bool isConfirmed { get; set; } = false;
-    
 
-    public ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
-    public ICollection<Product> Products { get; set; } = new List<Product>();
     public ICollection<Order> Orders { get; set; } = new List<Order>();
     public ICollection<Address> Addresses { get; set; } = new List<Address>();
     public ICollection<Review> Reviews { get; set; } = new List<Review>();

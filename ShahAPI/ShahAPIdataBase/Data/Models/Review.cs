@@ -4,8 +4,8 @@ public class Review
 {
     public string Id { get; set; } = Guid.NewGuid().ToString();
     public string BuyerId { get; set; }
-    public User Buyer { get; set; } = null!;
-
+    public Buyer Buyer { get; set; } = null!;
+   
     public string ProductId { get; set; }
     public Product Product { get; set; } = null!;
 

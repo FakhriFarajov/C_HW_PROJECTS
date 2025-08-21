@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ShahAPIdataBase")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fbaddb8b0c650b9124c68165d7c09fb1d9b19075")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c982731634420ccc4dec64af6d6a777d8d9e3deb")]
 [assembly: System.Reflection.AssemblyProductAttribute("ShahAPIdataBase")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ShahAPIdataBase")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

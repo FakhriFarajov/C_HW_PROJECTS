@@ -3,8 +3,11 @@ namespace ShahAPIDataBase.Data.Models;
 public class Address
 {
     public string Id { get; set; } = Guid.NewGuid().ToString();
-    public string UserId { get; set; }
-    public User User { get; set; } = null!;
+    public string? BuyerId { get; set; }
+    public Buyer? Buyer { get; set; }
+    
+    public string? SellerId { get; set; }
+    public Seller? Seller { get; set; }
 
     public string Street { get; set; } = null!;
     public string City { get; set; } = null!;

@@ -4,8 +4,11 @@ public class Order
 {
     public string Id { get; set; } = Guid.NewGuid().ToString();
     public string BuyerId { get; set; }
-    public User Buyer { get; set; } = null!;
+    public Buyer Buyer { get; set; } = null!;
 
+    public string SellerId { get; set; }
+    public Seller Seller { get; set; } = null!;
+    
     public decimal TotalAmount { get; set; }
     public string Status { get; set; } = null!; // Could be enum
 

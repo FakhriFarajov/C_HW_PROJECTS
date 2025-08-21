@@ -12,9 +12,9 @@ public class FavoriteConfiguration : IEntityTypeConfiguration<Favorite>
         builder.HasKey(f => f.Id);
         builder.Property(f => f.LikedAt).IsRequired();
 
-        builder.HasOne(f => f.User)
+        builder.HasOne(f => f.Buyer)
                .WithMany(u => u.Favorites)
-               .HasForeignKey(f => f.UserId)
+               .HasForeignKey(f => f.BuyerId)
                .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasOne(f => f.Product)

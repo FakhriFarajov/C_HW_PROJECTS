@@ -5,9 +5,9 @@ using ShahAPIDataBase.Data.Models;
 namespace ShahAPIDataBase.Data.Configurations;
 
 
-public class UserConfiguration : IEntityTypeConfiguration<User>
+public class BuyerConfiguration : IEntityTypeConfiguration<Buyer>
 {
-    public void Configure(EntityTypeBuilder<User> builder)
+    public void Configure(EntityTypeBuilder<Buyer> builder)
     {
         builder.HasKey(u => u.Id);
 
@@ -41,25 +41,15 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.Property(u => u.isConfirmed)
             .IsRequired();
-
-        builder.HasMany(u => u.UserRoles)
-            .WithOne(ur => ur.User)
-            .HasForeignKey(ur => ur.UserId)
-            .OnDelete(DeleteBehavior.Cascade);
-
-        builder.HasMany(u => u.Products)
-            .WithOne(p => p.Seller)
-            .HasForeignKey(p => p.SellerId)
-            .OnDelete(DeleteBehavior.Cascade); // If user is deleted, their products are deleted.
-
+        
         builder.HasMany(u => u.Orders)
             .WithOne(o => o.Buyer)
             .HasForeignKey(o => o.BuyerId)
             .OnDelete(DeleteBehavior.Restrict); // Keep order history if user is deleted, BuyerId might be set to null or a generic user.
 
         builder.HasMany(u => u.Addresses)
-            .WithOne(a => a.User)
-            .HasForeignKey(a => a.UserId)
+            .WithOne(a => a.Buyer)
+            .HasForeignKey(a => a.BuyerId)
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasMany(u => u.Reviews)
@@ -67,12 +57,12 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasForeignKey(r => r.BuyerId)
             .OnDelete(DeleteBehavior.Restrict); // Keep reviews even if buyer is deleted.
         builder.HasMany(u => u.CartItems)
-            .WithOne(ci => ci.User)
-            .HasForeignKey(ci => ci.UserId)
+            .WithOne(ci => ci.Buyer)
+            .HasForeignKey(ci => ci.BuyerId)
             .OnDelete(DeleteBehavior.Cascade);
         builder.HasMany(u => u.Favorites)
-            .WithOne(f => f.User)
-            .HasForeignKey(f => f.UserId)
+            .WithOne(f => f.Buyer)
+            .HasForeignKey(f => f.BuyerId)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

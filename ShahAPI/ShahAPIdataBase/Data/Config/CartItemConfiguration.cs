@@ -13,9 +13,9 @@ public class CartItemConfiguration : IEntityTypeConfiguration<CartItem>
         builder.Property(ci => ci.Quantity).IsRequired();
         builder.Property(ci => ci.AddedAt).IsRequired();
 
-        builder.HasOne(ci => ci.User)
+        builder.HasOne(ci => ci.Buyer)
                .WithMany()
-               .HasForeignKey(ci => ci.UserId)
+               .HasForeignKey(ci => ci.BuyerId)
                .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasOne(ci => ci.Product)
