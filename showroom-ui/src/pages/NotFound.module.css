@@ -1,0 +1,53 @@
+.notfound-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f1f5f9 60%, #dbeafe 100%);
+}
+
+.notfound-title {
+  font-size: 5rem;
+  font-weight: 800;
+  color: #2563eb;
+  margin-bottom: 0.5em;
+  letter-spacing: 2px;
+}
+
+.notfound-message {
+  font-size: 1.5rem;
+  color: #334155;
+  margin-bottom: 2em;
+}
+
+.notfound-link {
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #2563eb 60%, #60a5fa 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.notfound-link:hover {
+  background: linear-gradient(90deg, #60a5fa 60%, #2563eb 100%);
+  transform: translateY(-2px) scale(1.03);
+}
+
+body[data-theme='dark'] .notfound-container {
+  background: linear-gradient(135deg, #23263a 60%, #1e293b 100%);
+}
+body[data-theme='dark'] .notfound-title {
+  color: #60a5fa;
+}
+body[data-theme='dark'] .notfound-message {
+  color: #cbd5e1;
+}
+body[data-theme='dark'] .notfound-link {
+  background: linear-gradient(90deg, #334155 60%, #2563eb 100%);
+}

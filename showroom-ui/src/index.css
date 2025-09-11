@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+:root {
+  --color-bg-light: #f8fafc;
+  --color-bg-dark: #18181b;
+  --color-text-light: #18181b;
+  --color-text-dark: #f8fafc;
+  --color-primary: #2563eb;
+  --color-primary-light: #60a5fa;
+  --color-sidebar-dark: #23263a;
+  --color-sidebar-light: #e0e7ff;
+}
+
+body[data-theme='light'] {
+  background: var(--color-bg-light);
+  color: var(--color-text-light);
+}
+
+body[data-theme='dark'] {
+  background: var(--color-bg-dark);
+  color: var(--color-text-dark);
+}
+
+/* Example for sidebar and main backgrounds */
+.sidebar {
+  background: linear-gradient(135deg, var(--color-primary) 60%, var(--color-primary-light) 100%);
+}
+body[data-theme='dark'] .sidebar {
+  background: linear-gradient(135deg, var(--color-sidebar-dark) 60%, #1e293b 100%);
+}
+
+/* Add smooth transition for theme switch */
+body, .sidebar {
+  transition: background 0.3s, color 0.3s;
+}

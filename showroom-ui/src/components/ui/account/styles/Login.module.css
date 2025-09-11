@@ -1,0 +1,88 @@
+.login-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 32px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #f1f5f9 60%, #dbeafe 100%);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+.login-title {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: large;
+}
+
+.login-form label {
+  font-weight: 500;
+}
+
+.login-form input[type="text"],
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  margin-top: 6px;
+  margin-bottom: 18px;
+  font-size: 15px;
+}
+
+.login-form .show-password {
+  font-size: 14px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.login-form button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #2563eb 60%, #60a5fa 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+  transition: background 0.2s;
+}
+
+.login-register {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+.login-register a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+body[data-theme='dark'] .login-container {
+  background: linear-gradient(135deg, #23263a 60%, #1e293b 100%);
+  color: #e0e7ff;
+}
+
+body[data-theme='dark'] .login-title {
+  color: #60a5fa;
+}
+
+body[data-theme='dark'] .login-form input[type="text"],
+body[data-theme='dark'] .login-form input[type="email"],
+body[data-theme='dark'] .login-form input[type="password"] {
+  background: #23263a;
+  color: #e0e7ff;
+  border: 1px solid #334155;
+}
+
+body[data-theme='dark'] .login-form button[type="submit"] {
+  background: linear-gradient(90deg, #334155 60%, #2563eb 100%);
+  color: #fff;
+}
+
+body[data-theme='dark'] .login-register a {
+  color: #60a5fa;
+}
